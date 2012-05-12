@@ -39,10 +39,7 @@ namespace BounceAngle
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-<<<<<<< HEAD
-=======
             //draw the buildings before the menu
->>>>>>> 387d3c13c921ec8b3edb43c49e580cb553f11432
             mapMan.Draw(spriteBatch);
             menuManager.Draw(spriteBatch);
         }

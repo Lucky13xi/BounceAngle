@@ -16,6 +16,7 @@ namespace BounceAngle
         int getID();
         Boolean isOver();
         Texture2D getTexture();
+        int getScavengeTime();
         
         void setAmmo(int ammo);
         void setFood(int food);

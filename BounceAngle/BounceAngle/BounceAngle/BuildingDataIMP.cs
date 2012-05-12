@@ -17,8 +17,9 @@ namespace BounceAngle
         private int id;
         private int survivors;
         private Boolean isOn;
+        private int scavengeTime;
 
-        public BuildingDataIMP(int _id, Texture2D _texture, int _ammo, int _food, int _zombies, string _description, int _survivors, Boolean _isOn)
+        public BuildingDataIMP(int _id, Texture2D _texture, int _ammo, int _food, int _zombies, string _description, int _survivors, int _scavengeTime, Boolean _isOn)
         {
             id = _id;
             texture = _texture;
@@ -28,6 +29,7 @@ namespace BounceAngle
             description = _description;
             survivors = _survivors;
             isOn = _isOn;
+            scavengeTime = _scavengeTime;
         }
         public Boolean isOver() {
             return isOn;
@@ -67,10 +69,13 @@ namespace BounceAngle
         public void setBuildingDescription(string desc) { description = desc; }
         public void setOver(Boolean over) { isOn = over;  }
 
+        public int getScavengeTime() {
+            return scavengeTime;
+        }
 
         public Microsoft.Xna.Framework.Graphics.Texture2D getTexture()
         {
-            return null;
+            return texture;
         }
 
         public void setTexture(Microsoft.Xna.Framework.Graphics.Texture2D img)
