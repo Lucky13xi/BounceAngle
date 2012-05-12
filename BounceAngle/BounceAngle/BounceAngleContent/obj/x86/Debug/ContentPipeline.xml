@@ -44,7 +44,16 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\UIFont.xnb</Output>
-      <Time>2012-05-11T22:57:16.50239-04:00</Time>
+      <Time>2012-05-12T00:49:30.5005009-04:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuItems\timeBox.png</Source>
+      <Name>MenuItems\timeBox</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\timeBox.xnb</Output>
+      <Time>2012-05-12T00:44:13.2027509-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
