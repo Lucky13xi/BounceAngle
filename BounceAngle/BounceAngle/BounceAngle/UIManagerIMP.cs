@@ -3,18 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace BounceAngle
 {
     class UIManagerIMP : UIManager
     {
-
+        private MouseState preMouseState;
         private BuildingData lastHoveredBuildingData;
-        public void ProcessMouse(Vector2 mousePos) {
+        public void ProcessMouse(MouseState mouseState) {
 
-            processBuildingHover(mousePos);
+            processBuildingHover(new Vector2(mouseState.X, mouseState.Y));
+            processClick(mouseState);
+            preMouseState = mouseState;
+
         }
-
+        private void processClick(MouseState mouseState) {
+            if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
+                int building = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
+            
+            
+            }
+        
+        }
         private void processBuildingHover(Vector2 mousePos)
         {
 
@@ -26,24 +37,19 @@ namespace BounceAngle
                 if ((null != lastHoveredBuildingData) && (lastHoveredBuildingData.getID() != b.getBuildingData().getID()))
                 {
                     // remove the hover from the last building
-                    Building c = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(lastHoveredBuildingData.getID());
-                    BuildingData d = lastHoveredBuildingData;
-                    c.setBuildingData(new BuildingDataIMP(d.getID(), d.getAmmo(), d.getFood(), d.getZombies(), d.getBuildingDescription(), d.getSurvivors(), false));
+                    lastHoveredBuildingData.setOver(false);
                     lastHoveredBuildingData = null;
                 }
                 // add the hover to the next hover
-                BuildingData e = b.getBuildingData();
-                b.setBuildingData(new BuildingDataIMP(e.getID(), e.getAmmo(), e.getFood(), e.getZombies(), e.getBuildingDescription(), e.getSurvivors(), true));
                 lastHoveredBuildingData = b.getBuildingData();
+                lastHoveredBuildingData.setOver(true);
             }
             else
             {
                 // removing the hover
                 if (null != lastHoveredBuildingData)
                 {
-                    Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(lastHoveredBuildingData.getID());
-                    BuildingData d = lastHoveredBuildingData;
-                    b.setBuildingData(new BuildingDataIMP(d.getID(), d.getAmmo(), d.getFood(), d.getZombies(), d.getBuildingDescription(), d.getSurvivors(), false));
+                    lastHoveredBuildingData.setOver(false); 
                     lastHoveredBuildingData = null;
                 }
             }
