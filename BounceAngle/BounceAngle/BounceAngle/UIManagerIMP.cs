@@ -9,7 +9,6 @@ namespace BounceAngle
 {
     class UIManagerIMP : UIManager
     {
-        private List<BuildingData> buildingsForQue = new List<BuildingData>();
         private MouseState preMouseState;
         private BuildingData lastHoveredBuildingData;
         public void ProcessMouse(MouseState mouseState) {
@@ -62,37 +61,57 @@ namespace BounceAngle
 
         private void processClick(MouseState mouseState) {
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
-                // 1. check if any menu was pressed.
-                BuildingData buildingPopup = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
-                // if its a building popup, then do this
-                if (buildingPopup != null)
+
+                if (processMenuClicks(mouseState))
                 {
-                    buildingsForQue.Add(buildingPopup);
-                    Console.WriteLine("We queued the building " + buildingPopup.getID());
+                    // don't process anything else if any menu was clicked
                     return;
                 }
-                // if it is the turn run button, then do this
-                // TODO:
 
+                processBuildingClick(mouseState);
+            }
+        }
+
+        private Boolean processMenuClicks(MouseState mouseState)
+        {
+            // 1. check if any menu was pressed.
+            BuildingData buildingPopup = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+            // if its a building popup, then do this
+            if (buildingPopup != null)
+            {
+                DayGameEngineImp.getGameEngine().getSimMgr().queueBuildingToScavenge(buildingPopup);
+                Console.WriteLine("We queued the building " + buildingPopup.getID());
+                DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
+                return true;
+            }
+            else
+            {
                 DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
                 Console.WriteLine("closing all popups ");
-
-                int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
-            
-                // 2. check if any building was pressed 
-                if (buildingId >= 0)
-                {
-                    Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
-
-                    BuildingData d = b.getBuildingData();
-                    //  2a. pop up the building summary
-                    DayGameEngineImp.getGameEngine().getMenuManager().displayPopUp(d);
-                    Console.WriteLine("We popped up the info for building " + d.getID());
-
-                }
             }
-        
+
+            // if it is the turn run button, then do this
+            // TODO: DayGameEngineImp.getGameEngine().getSimMgr().runSim();
+
+            return false;
         }
+
+        private void processBuildingClick(MouseState mouseState)
+        {
+            int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
+
+            // 2. check if any building was pressed 
+            if (buildingId >= 0)
+            {
+                Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
+
+                BuildingData d = b.getBuildingData();
+                //  2a. pop up the building summary
+                DayGameEngineImp.getGameEngine().getMenuManager().displayPopUp(d);
+                Console.WriteLine("We popped up the info for building " + d.getID());
+            }
+        }
+
         private void processBuildingHover(Vector2 mousePos)
         {
 
