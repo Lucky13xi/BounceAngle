@@ -112,7 +112,7 @@ namespace BounceAngle
                 if (hitRect.Contains(new Point((int)cord.X, (int)cord.Y)))
                 {
                     //Console.WriteLine("hit"+i);
-
+                    
                     return i;
 
                 }
