@@ -15,9 +15,12 @@ namespace BounceAngle
         MenuManager getMenuManager();
         MapManager getMapManager();
         DaySimMgr getSimMgr();
+        ZombieManager getZombieManager();
+        SurvivorManager getSurvivorManager();
         void Draw(SpriteBatch spriteBatch);
         void Init(ContentManager Content);
         void Update(GameTime gameTime);
-        
+        void stop();
+        void start();
     }
 }
