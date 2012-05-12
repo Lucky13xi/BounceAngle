@@ -43,7 +43,7 @@ namespace BounceAngle
         }
 
         public void update(GameTime gameTime) { 
-            //ai
+            // 1. find the safe house location
         }
 
         public void draw(SpriteBatch spriteBatch) {

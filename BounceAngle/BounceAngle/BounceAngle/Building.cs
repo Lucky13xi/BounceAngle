@@ -9,7 +9,6 @@ namespace BounceAngle
 {
     interface Building
     {
-        Boolean isSafeHouse();
         Boolean isCollision();
         BuildingData getBuildingData();
         void Draw(SpriteBatch spriteBatch);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace BounceAngle
 {
@@ -17,6 +18,8 @@ namespace BounceAngle
         Boolean isOver();
         Texture2D getTexture();
         int getScavengeTime();
+        Vector2 getLocation();
+        Boolean isSafehouse();
         
         void setAmmo(int ammo);
         void setFood(int food);
@@ -25,5 +28,6 @@ namespace BounceAngle
         void setBuildingDescription(string desc);
         void setOver(Boolean over);
         void setTexture(Texture2D img);
+        void setLocation(Vector2 loc);
     }
 }
