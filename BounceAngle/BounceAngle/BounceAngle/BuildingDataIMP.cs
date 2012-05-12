@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
+
 
 namespace BounceAngle
 {
     class BuildingDataIMP : BuildingData
     {
+        private Texture2D texture;
         private int ammo;
         private int food;
         private int zombies;
@@ -15,9 +18,10 @@ namespace BounceAngle
         private int survivors;
         private Boolean isOn;
 
-        public BuildingDataIMP(int _id, int _ammo, int _food, int _zombies, string _description, int _survivors, Boolean _isOn)
+        public BuildingDataIMP(int _id, Texture2D _texture, int _ammo, int _food, int _zombies, string _description, int _survivors, Boolean _isOn)
         {
             id = _id;
+            texture = _texture;
             ammo = _ammo;
             food = _food;
             zombies = _zombies;
@@ -66,12 +70,12 @@ namespace BounceAngle
 
         public Microsoft.Xna.Framework.Graphics.Texture2D getTexture()
         {
-            return null;
+            return texture;
         }
 
         public void setTexture(Microsoft.Xna.Framework.Graphics.Texture2D img)
         {
-
+            texture = img;
         }
     }
 }
