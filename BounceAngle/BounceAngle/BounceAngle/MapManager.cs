@@ -21,5 +21,6 @@ namespace BounceAngle
         ArrayList getAllBuildings();
         Building getBuildingByID(int id);
         int findClosestBuildingID(Vector2 cord);
+        int getClickCollision(Vector2 cord);
     }
 }

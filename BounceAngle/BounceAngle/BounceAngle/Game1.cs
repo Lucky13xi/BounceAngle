@@ -49,6 +49,7 @@ namespace BounceAngle
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
             dayGame = DayGameEngineImp.getGameEngine();
 
             dayGame.Init(Content);
@@ -85,7 +86,7 @@ namespace BounceAngle
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.LightGray);
             spriteBatch.Begin();
 
             dayGame.Draw(spriteBatch);
