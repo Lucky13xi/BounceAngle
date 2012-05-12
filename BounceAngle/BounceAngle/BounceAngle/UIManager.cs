@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace BounceAngle
 {
     interface UIManager
     {
-        void ProcessMouse(Vector2 mousePos);
+        void ProcessMouse(MouseState mouseState);
     }
 }

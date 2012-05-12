@@ -56,7 +56,7 @@ namespace BounceAngle
         public void Update(GameTime gameTime)
         {
             MouseState mouseState = Mouse.GetState();
-            uiMan.ProcessMouse(new Vector2(mouseState.X, mouseState.Y));
+            uiMan.ProcessMouse(mouseState);
         }
 
         private DayGameEngineImp() {}
