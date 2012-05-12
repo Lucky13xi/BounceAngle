@@ -193,6 +193,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Images\titleScreen.png">
       <Name>titleScreen</Name>
@@ -213,6 +214,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Images\apartments3.png">
       <Name>apartments3</Name>
