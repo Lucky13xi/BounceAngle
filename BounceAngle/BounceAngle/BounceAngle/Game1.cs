@@ -80,7 +80,7 @@ namespace BounceAngle
         protected override void Update(GameTime gameTime)
         {
             
-            nightGame.Update(gameTime);
+            dayGame.Update(gameTime);
             KeyboardState keyState = Keyboard.GetState();
            
             if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape)) {
@@ -101,7 +101,7 @@ namespace BounceAngle
             GraphicsDevice.Clear(Color.LightGray);
             spriteBatch.Begin();
 
-            nightGame.Draw(spriteBatch);
+            dayGame.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
