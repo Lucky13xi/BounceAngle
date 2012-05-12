@@ -43,6 +43,10 @@ namespace BounceAngle
             addBuilding(new BuildingIMP(new Vector2(0, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments0"), 2, 2, 1, "Apartments", 1, 10, false)));
             addBuilding(new BuildingIMP(new Vector2(50, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church", 1, 2, false)));
             addBuilding(new BuildingIMP(new Vector2(600, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory1"), 0, 0, 2, "factory", 7, 6, false)));
+            addBuilding(new BuildingIMP(new Vector2(-300, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//groceryStore0"), 2, 5, 0, "Grocery Store", 0, 3, false)));
+            addBuilding(new BuildingIMP(new Vector2(1000, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse0"), 3, 0, 1, "Warehouse 52", 0, 4, false)));
+            addBuilding(new BuildingIMP(new Vector2(-600, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//arena0"), 10, 1, 7, "Air Canada Center", 0, 7, false)));
+            addBuilding(new BuildingIMP(new Vector2(1000, 0), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments3"), 0, 1, 4, "Dirty End Motel", 0, 5, false)));
         }
 
         public List<Building> getAllBuildings()
@@ -89,6 +93,7 @@ namespace BounceAngle
             }
             return -1;
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             for (int i = -1; i * 60 < 1340; i++)
