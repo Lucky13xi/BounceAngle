@@ -62,21 +62,25 @@ namespace BounceAngle
 
         private void processClick(MouseState mouseState) {
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
-                // 1. check if any menu was pressed.
+                // 1. check if the building go button was clicked
                 BuildingData buildingPopup = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
                 // if its a building popup, then do this
                 if (buildingPopup != null)
                 {
+                    // if go button clicked. add it to our queue
                     buildingsForQue.Add(buildingPopup);
                     Console.WriteLine("We queued the building " + buildingPopup.getID());
+                    // do not process anything else if the button was clicked
                     return;
                 }
-                // if it is the turn run button, then do this
-                // TODO:
 
+                // at this point no buttons or a cancel button was clicked
+
+                // hide all popups
                 DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
                 Console.WriteLine("closing all popups ");
 
+                // check if we clicked a building
                 int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
             
                 // 2. check if any building was pressed 
@@ -84,9 +88,9 @@ namespace BounceAngle
                 {
                     Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
 
-                    //BuildingData d = b.getBuildingData();
-                    //  2a. pop up the building summary
+                    //  pop up the building summary
                     DayGameEngineImp.getGameEngine().getMenuManager().displayPopUp(b.getBuildingData());
+
                     //Console.WriteLine("We popped up the info for building " + d.getID());
 
                 }
