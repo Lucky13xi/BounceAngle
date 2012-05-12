@@ -13,6 +13,7 @@ namespace BounceAngle
         void addZombie(ZombieData zombie);
         List<ZombieData> getAllZombies();
         ZombieData getZombieById(int id);
+        List<Texture2D> getZombieTextures();
 
         void init(ContentManager content);
         void update(GameTime gameTime);

@@ -132,7 +132,9 @@
     <Compile Include="UIManager.cs" />
     <Compile Include="UIManagerIMP.cs" />
     <Compile Include="ZombieData.cs" />
+    <Compile Include="ZombieDataImp.cs" />
     <Compile Include="ZombieManager.cs" />
+    <Compile Include="ZombieManagerImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

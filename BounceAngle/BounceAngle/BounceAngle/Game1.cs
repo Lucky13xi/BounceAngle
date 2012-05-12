@@ -59,7 +59,8 @@ namespace BounceAngle
             nightGame.Init(Content);
 
             // start the day game
-            dayGame.start();
+            //dayGame.start();
+            nightGame.start();
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace BounceAngle
         protected override void Update(GameTime gameTime)
         {
             
-            dayGame.Update(gameTime);
+            nightGame.Update(gameTime);
             KeyboardState keyState = Keyboard.GetState();
            
             if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape)) {
@@ -100,7 +101,7 @@ namespace BounceAngle
             GraphicsDevice.Clear(Color.LightGray);
             spriteBatch.Begin();
 
-            dayGame.Draw(spriteBatch);
+            nightGame.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
