@@ -70,10 +70,10 @@ namespace BounceAngle
         {
             isRunning = false;
             soundManager.initializeSounds(content);
-            menuManager = new MenuManagerImp();
-            menuManager.Init(content);
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
+            menuManager = new MenuManagerImp();
+            menuManager.Init(content);
             soundManager.playDayMusic();
             uiMan = new UIManagerIMP();
             simMgr = new DaySimMgrImpl();

@@ -61,6 +61,11 @@ namespace BounceAngle
 
         private void processClick(MouseState mouseState) {
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
+                // 1. check if the building go button was clicked
+
+                // at this point no buttons or a cancel button was clicked
+
+                // hide all popups
 
                 if (processMenuClicks(mouseState))
                 {
@@ -90,11 +95,13 @@ namespace BounceAngle
                 Console.WriteLine("closing all popups ");
             }
 
+
             // if it is the turn run button, then do this
             // TODO: DayGameEngineImp.getGameEngine().getSimMgr().runSim();
 
             return false;
         }
+
 
         private void processBuildingClick(MouseState mouseState)
         {

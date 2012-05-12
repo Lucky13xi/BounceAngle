@@ -10,21 +10,16 @@ namespace BounceAngle
     class popUp : MenuItem
     {
 
-        //bool alive;
+        bool alive;
 
         public popUp(Texture2D _box, SpriteFont _font, Vector2 _position, string[] _text, Color _fontColor, bool _alive)
             : base(_box, _font, _position, _text, _fontColor, _alive)
         {
         }
 
-        //public popUp(
-
         //public void Draw(SpriteBatch spriteBatch)
         //{
-        //    if (alive)
-        //    {
 
-        //    }
         //}
     }
 }
