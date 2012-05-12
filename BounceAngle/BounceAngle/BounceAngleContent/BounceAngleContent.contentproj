@@ -55,8 +55,10 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\mainStree0.png">
-      <Name>mainStree0</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\mainStreet0.png">
+      <Name>mainStreet0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

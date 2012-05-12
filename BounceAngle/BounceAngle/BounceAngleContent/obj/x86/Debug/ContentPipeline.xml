@@ -20,12 +20,12 @@
       <Time>2012-05-11T23:14:41.5911992-04:00</Time>
     </Item>
     <Item>
-      <Source>Images\mainStree0.png</Source>
-      <Name>Images\mainStree0</Name>
+      <Source>Images\mainStreet0.png</Source>
+      <Name>Images\mainStreet0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\mainStree0.xnb</Output>
+      <Output>C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\mainStreet0.xnb</Output>
       <Time>2012-05-11T23:13:37.3085224-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>

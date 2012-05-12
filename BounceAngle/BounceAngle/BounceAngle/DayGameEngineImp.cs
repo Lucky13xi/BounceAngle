@@ -10,6 +10,7 @@ namespace BounceAngle
 {
     class DayGameEngineImp : GameEngine
     {
+        public static GameEngine instance = null;
 
         private MenuManager menuManager;
 
@@ -51,9 +52,15 @@ namespace BounceAngle
         {
         }
 
-        public DayGameEngineImp()
+        private DayGameEngineImp() {}
+
+        public static GameEngine getGameEngine()
         {
-  
+            if (null == instance)
+            {
+                instance = new DayGameEngineImp();
+            }
+            return instance;
         }
     }
 }

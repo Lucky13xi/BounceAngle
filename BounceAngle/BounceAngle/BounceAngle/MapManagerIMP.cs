@@ -35,6 +35,8 @@ namespace BounceAngle
         {
 
             addBuilding(new BuildingIMP(new Vector2(200, 200), Content.Load<Texture2D>("Images//factory0"), false, new BuildingDataIMP(0, 4, 1, "factory", 0)));
+            addBuilding(new BuildingIMP(new Vector2(800, 200), Content.Load<Texture2D>("Images//hospital0"), false, new BuildingDataIMP(2, 3, 5, "Hospital", 1)));
+            addBuilding(new BuildingIMP(new Vector2(1100, 400), Content.Load<Texture2D>("Images//mainStreet0"), false, new BuildingDataIMP(5, 0, 1, "Main Street", 2)));
         }
 
         public ArrayList getAllBuildings()
