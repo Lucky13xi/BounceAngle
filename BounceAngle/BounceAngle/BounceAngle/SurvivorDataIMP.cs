@@ -13,6 +13,8 @@ namespace BounceAngle
         Vector2 location;
         Vector2 destination;
         Texture2D texture;
+        //TODO: animations! 
+
         float moveSpeed;
 
         public SurvivorDataIMP( int _id, Vector2 _loc, Vector2 _des, Texture2D _tex, float _moveSpeed) {
