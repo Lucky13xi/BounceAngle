@@ -19,6 +19,7 @@ namespace BounceAngle
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameEngine dayGame;
+        private KeyboardState preKeyState; 
 
         public Game1()
         {
@@ -73,9 +74,16 @@ namespace BounceAngle
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
+            
             dayGame.Update(gameTime);
-
+            KeyboardState keyState = Keyboard.GetState();
+           
+            if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape)) {
+                //TODO: exit the game on escape
+                this.Exit();
+            }
+            preKeyState = keyState;
+        
             base.Update(gameTime);
         }
 
