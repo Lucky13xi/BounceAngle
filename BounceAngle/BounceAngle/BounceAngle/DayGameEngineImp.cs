@@ -69,14 +69,17 @@ namespace BounceAngle
         public void Init(ContentManager content)
         {
             isRunning = false;
-            soundManager.initializeSounds(content);
             mapMan = new MapManagerIMP();
-            mapMan.LoadMap(content);
             menuManager = new MenuManagerImp();
-            menuManager.Init(content);
-            soundManager.playDayMusic();
             uiMan = new UIManagerIMP();
             simMgr = new DaySimMgrImpl();
+            
+            soundManager.initializeSounds(content);
+            mapMan.LoadMap(content);
+            menuManager.Init(content);
+            simMgr.init();
+
+            soundManager.playDayMusic();
         }
 
         public void Update(GameTime gameTime)

@@ -131,8 +131,7 @@ namespace BounceAngle
             }
             else
             {
-                Console.WriteLine("NOTHING!");
-                return new MenuClickResult(MenuClickResult.clickType.cancel, null);
+                return null;
             }
         }
 
