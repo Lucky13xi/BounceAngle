@@ -107,8 +107,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building.cs" />
+    <Compile Include="BuildingData.cs" />
+    <Compile Include="BuildingDataIMP.cs" />
+    <Compile Include="BuildingIMP.cs" />
     <Compile Include="DayGameEngineImp.cs" />
     <Compile Include="GameEngine.cs" />
+    <Compile Include="MapManager.cs" />
+    <Compile Include="MapManagerIMP.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MenuManagerImp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

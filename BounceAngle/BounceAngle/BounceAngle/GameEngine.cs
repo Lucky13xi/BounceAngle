@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace BounceAngle
 {
@@ -12,8 +13,9 @@ namespace BounceAngle
         SoundManager getSoundManager();
         UIManager getUIManager();
         MenuManager getMenuManager();
+        MapManager getMapManager();
         void Draw(SpriteBatch spriteBatch);
-        void Init();
+        void Init(ContentManager Content);
         void Update(GameTime gameTime);
         
     }
