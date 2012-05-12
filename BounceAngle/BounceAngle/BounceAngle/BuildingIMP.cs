@@ -44,8 +44,8 @@ namespace BounceAngle
         public void setOffset(Vector2 _offset)
         {
             offset += _offset;
-            offset.X = MathHelper.Clamp(offset.X, -2500, 2500);
-            offset.Y = MathHelper.Clamp(offset.Y, -2500, 2500);
+            offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
+            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
