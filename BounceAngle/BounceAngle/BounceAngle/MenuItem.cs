@@ -126,7 +126,8 @@ namespace BounceAngle
             }
             if (popUpImg != null)
             {
-                spriteBatch.Draw(popUpImg, new Vector2(box.Bounds.Width - (popUpImg.Width / 2), box.Bounds.Height - (popUpImg.Height / 2)), null, Color.White, 0f, Vector2.Zero, 0.25f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(popUpImg, new Vector2 (510, 350), new Rectangle(0, 0, popUpImg.Width, popUpImg.Height), Color.White, 0f, new Vector2(popUpImg.Width/2, popUpImg.Height/2), 0.5f, SpriteEffects.None, 0);
+                //spriteBatch.Draw(popUpImg, new Vector2(box.Bounds.Width - (popUpImg.Width / 2), box.Bounds.Height - (popUpImg.Height / 2)), null, Color.White, 0f, Vector2.Zero, 0.25f, SpriteEffects.None, 0f);
                 Vector2 location = subTextPos;
                 for (int i = 0; i < subText.Length; i++)
                 {
