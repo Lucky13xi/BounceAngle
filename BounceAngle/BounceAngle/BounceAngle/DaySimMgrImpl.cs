@@ -15,16 +15,28 @@ namespace BounceAngle
         Random random = new Random();
 
 
-        public DaySimMgrImpl() {
+        public void init() {
             buildingsToScavenge = new List<BuildingData>();
+            aliveSurvivors = 1;
             time = 8 *60;
+
+            DayGameEngineImp.getGameEngine().getMenuManager().SetUIAmmo = ammo;
+            DayGameEngineImp.getGameEngine().getMenuManager().SetUIFood = food;
+            DayGameEngineImp.getGameEngine().getMenuManager().SetUITime = time + 12 * 60;
+            DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors = aliveSurvivors;
         }
 
         public void queueBuildingToScavenge(BuildingData data)
         {
+            Console.WriteLine("We queued the building " + data.getID());
+
             // keep track of all the buildings that we will be scavenging
             buildingsToScavenge.Add(data);
 
+            if (getNumAvailableSurvivorsToScavenge() <= 0)
+            {
+                runSim();
+            }
         }
 
         public void runSim()
@@ -54,6 +66,7 @@ namespace BounceAngle
                 DayGameEngineImp.getGameEngine().getMenuManager().SetUIAmmo = ammo;
                 DayGameEngineImp.getGameEngine().getMenuManager().SetUIFood = food;
                 DayGameEngineImp.getGameEngine().getMenuManager().SetUITime = time + 12 * 60;
+                DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors = aliveSurvivors;
         
                 data.setAmmo((int)data.getAmmo() / 2 + random.Next(1));
                 data.setFood((int)data.getFood() / 2 + random.Next(1));
@@ -67,6 +80,17 @@ namespace BounceAngle
 
             //clear the buildings scavenged this turn
             buildingsToScavenge = new List<BuildingData>();
+        }
+
+        public int getNumAvailableSurvivorsToScavenge()
+        {
+            return aliveSurvivors - buildingsToScavenge.Count;
+        }
+
+        public void onSummaryPopupOkay()
+        {
+            // TODO: go to night mode?
+            Console.WriteLine("Summary popup submitted");
         }
     }
 }

@@ -19,6 +19,9 @@ namespace BounceAngle
         private ZombieManager zombieMgr;
         private SurvivorManager survivorMgr;
 
+        private const int SPAWN_DELAY = 1000;
+        private float spawnCounter;
+
         public SoundManager getSoundManager()       { return soundMgr; }
         public UIManager getUIManager()             { return uiMgr; }
         public MenuManager getMenuManager()         { return menuMgr; }
@@ -29,18 +32,20 @@ namespace BounceAngle
         public void Init(ContentManager content)
         {
             isRunning = false;
-            soundMgr = null;    // TODO: reuse old one? or new instance?
+            soundMgr = DayGameEngineImp.getGameEngine().getSoundManager();
+            soundMgr.playNightMusic();
             uiMgr = new NightUiManagerImpl();
             menuMgr = null;
-            mapMgr = null;
-            //zombieMgr = new ZombieManagerImpl();
+            mapMgr = DayGameEngineImp.getGameEngine().getMapManager();
+            spawnCounter = 0;
+            zombieMgr = new ZombieManagerImplementation();
             //survivorMgr = new SurvivorManagerImpl();
 
-            //soundMgr.initializeSounds(content);
+            
             //uiMgr.init();
             //menuMgr.Init(content);
             //mapMgr.Init();
-            //zombieMgr.init(content);
+            zombieMgr.init(content);
             //survivorMgr.init(content);
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -50,20 +55,28 @@ namespace BounceAngle
                 //menuMgr.draw(spriteBatch);
                 mapMgr.Draw(spriteBatch);
                 zombieMgr.draw(spriteBatch);
-                survivorMgr.draw(spriteBatch);
+                //survivorMgr.draw(spriteBatch);
             }
         }
 
         public void Update(GameTime gameTime)
         {
+
             if (isRunning)
             {
+                spawnCounter += gameTime.ElapsedGameTime.Milliseconds;
+                if (spawnCounter > SPAWN_DELAY)
+                {
+                    zombieMgr.addZombie(new ZombieDataImp(getZombieManager().getZombieTextures()[0]));
+                    spawnCounter = 0;
+                }
+
                 MouseState mouseState = Mouse.GetState();
                 uiMgr.ProcessMouse(mouseState);
                 //menuMgr.update(gameTime);
                 //mapMgr.update(gameTime);
                 zombieMgr.update(gameTime);
-                survivorMgr.update(gameTime);
+                //survivorMgr.update(gameTime);
             }
         }
 

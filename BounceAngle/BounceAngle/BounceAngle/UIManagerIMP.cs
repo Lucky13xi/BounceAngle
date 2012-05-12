@@ -80,24 +80,27 @@ namespace BounceAngle
         private Boolean processMenuClicks(MouseState mouseState)
         {
             // 1. check if any menu was pressed.
-            BuildingData buildingPopup = null;//DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+            MenuClickResult clickResult = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
             // if its a building popup, then do this
-            if (buildingPopup != null)
+            if (clickResult != null)
             {
-                DayGameEngineImp.getGameEngine().getSimMgr().queueBuildingToScavenge(buildingPopup);
-                Console.WriteLine("We queued the building " + buildingPopup.getID());
-                DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
+                if (MenuClickResult.clickType.submit == clickResult.type)
+                {
+                    BuildingData buildingPopup = (BuildingData)clickResult.payLoad;
+                    DayGameEngineImp.getGameEngine().getSimMgr().queueBuildingToScavenge(buildingPopup);
+                    DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
+                }
+                else if (MenuClickResult.clickType.summary == clickResult.type)
+                {
+                    DayGameEngineImp.getGameEngine().getSimMgr().onSummaryPopupOkay();
+                }
+                else
+                {
+                    DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
+                    Console.WriteLine("closing all popups ");
+                }
                 return true;
             }
-            else
-            {
-                DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
-                Console.WriteLine("closing all popups ");
-            }
-
-
-            // if it is the turn run button, then do this
-            // TODO: DayGameEngineImp.getGameEngine().getSimMgr().runSim();
 
             return false;
         }

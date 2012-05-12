@@ -55,10 +55,13 @@ namespace BounceAngle
         {
             foreach (MenuItem item in menuItems)
             {
-                item.Draw(spriteBatch);
                 if (item == menuItems[0])
                 {
-                 //   item.
+                    menuItems[0].leftUIText(spriteBatch);
+                }
+                else
+                {
+                    item.Draw(spriteBatch);
                 }
             }
 
@@ -132,7 +135,7 @@ namespace BounceAngle
             else
             {
                 Console.WriteLine("NOTHING!");
-                return new MenuClickResult(MenuClickResult.clickType.cancel, null);
+                return null;
             }
         }
 
