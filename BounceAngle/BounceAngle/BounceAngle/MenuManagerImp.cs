@@ -15,6 +15,8 @@ namespace BounceAngle
         static List<MenuItem> menuItems = new List<MenuItem>();
         Texture2D popUpBox;
 
+        public int Survivors { get; set; }
+
         public void setTime(int time)
         {
 
