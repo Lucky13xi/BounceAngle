@@ -119,14 +119,20 @@
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MenuManagerImp.cs" />
+    <Compile Include="NightGameEngineImp.cs" />
+    <Compile Include="NightUiManagerImpl.cs" />
     <Compile Include="popUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="DaySimMgr.cs" />
     <Compile Include="SoundManager.cs" />
+    <Compile Include="SurvivorData.cs" />
+    <Compile Include="SurvivorManager.cs" />
     <Compile Include="UIManager.cs" />
     <Compile Include="UIManagerIMP.cs" />
+    <Compile Include="ZombieData.cs" />
+    <Compile Include="ZombieManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
