@@ -4,20 +4,15 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using System.Collections;
 
 namespace BounceAngle
 {
     class MenuManagerImp : MenuManager
     {
 
-        private Texture2D box;
-        private SpriteFont font;
-        private Vector2 position;
-        private Vector2 textPos;
-        private float height = 0f;
-        private float width = 0f;
-        private string[] text;
-        private Color fontColor;
+        ArrayList menuItems;
 
         public void setTime(int time)
         {
@@ -35,12 +30,9 @@ namespace BounceAngle
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(box, position, Color.White);
-            Vector2 location = textPos;
-            for (int i = 0; i < text.Length; i++)
+            foreach (MenuItem item in menuItems)
             {
-                spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), fontColor);
-                //spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), Color.Red, 0f, location + new Vector2(0, 15 * i), 0.5f, SpriteEffects.None, 0f);
+                item.Draw(spriteBatch);
             }
 
         }
@@ -54,38 +46,28 @@ namespace BounceAngle
         }
 
 
-        public void Init()
+        public void Init(ContentManager content)
         {
- 
+            menuItems = new ArrayList();
+            Texture2D timeBox = content.Load<Texture2D>("MenuItems\\timeBox");
+            Texture2D leftUIBox = content.Load<Texture2D>("MenuItems\\leftUI");
+            Texture2D rightUIBox = content.Load<Texture2D>("MenuItems\\rightUI");
+            SpriteFont UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
+            SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\subUIFont");
+            string[] timeText = { "Daylight Time Remaining: 10:00" };
+            string[] leftUIText = { "Food: " };
+            string[] rightUIText = { "Survivors: " };
+
+
+            menuItems.Add(new MenuItem(leftUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) - leftUIBox.Width *0.9f + 1, 0), leftUIText, new Color(0f, 0f, 0f)));
+            menuItems.Add(new MenuItem(rightUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) + rightUIBox.Width, 0), rightUIText, new Color(0f, 0f, 0f)));
+            menuItems.Add(new MenuItem(timeBox, UIFont, new Vector2(640 - (timeBox.Width / 2), 0), timeText, new Color(255f, 0f, 0f)));
         }
 
-        public MenuManagerImp(Texture2D _box, SpriteFont _font, Vector2 _position, string[] _text, Color _fontColor)
+        public MenuManagerImp()
         {
-            box = _box;
-            font = _font;
-            position = _position;
-            text = _text;
-            fontColor = _fontColor;
-            MeasureText();
+
         }
-
-        public void MeasureText()
-        {
-            height = 0;
-            width = 0;
-            foreach (string item in text)
-            {
-                Vector2 size = font.MeasureString(item);
-                if (size.X > width)
-                    width = size.X;
-                height += font.LineSpacing + 5;
-            }
-
-            textPos = new Vector2(position.X + ((box.Bounds.Width - width) / 2), position.Y + ((box.Bounds.Height - height) / 2));
-        }
-
-
-
 
         public void setResource(int[] resource)
         {
