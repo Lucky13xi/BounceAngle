@@ -12,23 +12,23 @@ namespace BounceAngle
     {
         //use this when creating new survivorID's
         private static int survivorCounter = 0;
-        List<SurvivorDataIMP> survivorsData;
+        List<SurvivorData> survivorsData;
 
         public SurvivorManagerIMP() {
-            survivorsData = new List<SurvivorDataIMP>();
+            survivorsData = new List<SurvivorData>();
         }
 
-        public void addSurvivor(SurvivorDataIMP survivor) {
+        public void addSurvivor(SurvivorData survivor) {
             survivorsData.Add(survivor);
         }
 
-        public List<SurvivorDataIMP> getAllSurvivors(){
+        public List<SurvivorData> getAllSurvivors(){
             return survivorsData;
             
         }
 
-        public SurvivorDataIMP getSurvivorById(int id) {
-            foreach (SurvivorDataIMP survivor in survivorsData) {
+        public SurvivorData getSurvivorById(int id) {
+            foreach (SurvivorData survivor in survivorsData) {
                 if (survivor.getId() == id) {
                     return survivor;
                 }
@@ -36,8 +36,10 @@ namespace BounceAngle
             return null;
         }
 
-        public void init(ContentManager content) { 
-        
+        public void init(ContentManager content) {
+            addSurvivor(new SurvivorDataIMP(survivorCounter++,
+                                    new Vector2(70, 70), new Vector2(250, 275),
+                                    content.Load<Texture2D>("Images//survivor"), 1.0f));
         }
 
         public void update(GameTime gameTime) { 

@@ -39,14 +39,14 @@ namespace BounceAngle
             mapMgr = DayGameEngineImp.getGameEngine().getMapManager();
             spawnCounter = 0;
             zombieMgr = new ZombieManagerImplementation();
-            //survivorMgr = new SurvivorManagerImpl();
+            survivorMgr = new SurvivorManagerIMP();
 
             
             //uiMgr.init();
             //menuMgr.Init(content);
             //mapMgr.Init();
             zombieMgr.init(content);
-            //survivorMgr.init(content);
+            survivorMgr.init(content);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -55,7 +55,7 @@ namespace BounceAngle
                 //menuMgr.draw(spriteBatch);
                 mapMgr.Draw(spriteBatch);
                 zombieMgr.draw(spriteBatch);
-                //survivorMgr.draw(spriteBatch);
+                survivorMgr.draw(spriteBatch);
             }
         }
 
@@ -76,7 +76,7 @@ namespace BounceAngle
                 //menuMgr.update(gameTime);
                 //mapMgr.update(gameTime);
                 zombieMgr.update(gameTime);
-                //survivorMgr.update(gameTime);
+                survivorMgr.update(gameTime);
             }
         }
 

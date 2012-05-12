@@ -129,7 +129,9 @@
     <Compile Include="DaySimMgr.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="SurvivorData.cs" />
+    <Compile Include="SurvivorDataIMP.cs" />
     <Compile Include="SurvivorManager.cs" />
+    <Compile Include="SurvivorManagerIMP.cs" />
     <Compile Include="UIManager.cs" />
     <Compile Include="UIManagerIMP.cs" />
     <Compile Include="ZombieData.cs" />

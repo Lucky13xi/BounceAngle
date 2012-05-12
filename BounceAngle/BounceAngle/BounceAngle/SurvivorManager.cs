@@ -12,7 +12,7 @@ namespace BounceAngle
     {
         void addSurvivor(SurvivorData survivor);
         List<SurvivorData> getAllSurvivors();
-        SurvivorData getSurvivorsById(int id);
+        SurvivorData getSurvivorById(int id);
 
         void init(ContentManager content);
         void update(GameTime gameTime);
