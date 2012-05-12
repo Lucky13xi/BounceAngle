@@ -18,6 +18,7 @@ namespace BounceAngle
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        DayGameEngineImp dayGame;
 
         public Game1()
         {
@@ -48,7 +49,8 @@ namespace BounceAngle
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            dayGame = new DayGameEngineImp();
+            dayGame.Init();
             // TODO: use this.Content to load your game content here
         }
 
@@ -69,8 +71,7 @@ namespace BounceAngle
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            dayGame.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -84,9 +85,11 @@ namespace BounceAngle
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
 
-            // TODO: Add your drawing code here
+            dayGame.Draw(spriteBatch);
 
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

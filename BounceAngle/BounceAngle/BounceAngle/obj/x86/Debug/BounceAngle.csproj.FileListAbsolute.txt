@@ -4,3 +4,9 @@ F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\ResolveAssemblyRefere
 F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.exe
 F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.pdb
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.exe
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.pdb
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.exe
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.pdb

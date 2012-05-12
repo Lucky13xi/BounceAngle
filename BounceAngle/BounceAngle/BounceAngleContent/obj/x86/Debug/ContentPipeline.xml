@@ -7,10 +7,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>F:\TOJam\BounceAngle\BounceAngle\BounceAngleContent\</RootDirectory>
-      <LoggerRootDirectory>F:\TOJam\BounceAngle\BounceAngle\BounceAngle\</LoggerRootDirectory>
-      <IntermediateDirectory>F:\TOJam\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>F:\TOJam\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
