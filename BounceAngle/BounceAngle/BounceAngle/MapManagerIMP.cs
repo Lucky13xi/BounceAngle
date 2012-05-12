@@ -22,6 +22,7 @@ namespace BounceAngle
         List<BuildingIMP> buildings;
         Vector2 offset;
         Texture2D backgroundTile;
+        Texture2D[] roadTiles;
 
         public MapManagerIMP()
         {
@@ -37,17 +38,35 @@ namespace BounceAngle
         public void LoadMap(ContentManager Content)
         {
             backgroundTile = Content.Load<Texture2D>("Images//tile");
-            addBuilding(new BuildingIMP(new Vector2(950, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "ACME Industrial", 0, 6, false)));
-            addBuilding(new BuildingIMP(new Vector2(600, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Special H Hospital", 1, 8, false)));
-            addBuilding(new BuildingIMP(new Vector2(200, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street Strip Mall", 2, 4, false)));
-            addBuilding(new BuildingIMP(new Vector2(0, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments0"), 2, 2, 1, "Out to Lunch Apartments", 1, 10, false)));
-            addBuilding(new BuildingIMP(new Vector2(50, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church of the Flying Spagetti Monster", 1, 2, false)));
-            addBuilding(new BuildingIMP(new Vector2(600, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory1"), 0, 0, 2, "Pins & Pillows Factory", 7, 6, false)));
+            roadTiles = new Texture2D[3];
+            roadTiles[0] = Content.Load<Texture2D>("Images//roadTile");
+            roadTiles[1] = Content.Load<Texture2D>("Images//intersectionTile");
+            roadTiles[2] = Content.Load<Texture2D>("Images//roadTileNS");
+            addBuilding(new BuildingIMP(new Vector2(975, 275), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "ACME Industrial", 0, 6, false)));
+            addBuilding(new BuildingIMP(new Vector2(-980, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Special H Hospital", 1, 8, false)));
+            addBuilding(new BuildingIMP(new Vector2(360, 340), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street Strip Mall", 2, 4, false)));
+            addBuilding(new BuildingIMP(new Vector2(75, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments0"), 2, 2, 1, "Mega Block Apartments", 1, 10, false)));
+            addBuilding(new BuildingIMP(new Vector2(-400, 800), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church of the Flying Spagetti Monster", 1, 2, false)));
             addBuilding(new BuildingIMP(new Vector2(-300, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//groceryStore0"), 2, 5, 0, "Grey Matter Grocery Store", 0, 3, false)));
-            addBuilding(new BuildingIMP(new Vector2(1000, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse0"), 3, 0, 1, "Warehouse 52", 0, 4, false)));
+            addBuilding(new BuildingIMP(new Vector2(725, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse0"), 3, 0, 1, "Warehouse 52", 0, 4, false)));
             addBuilding(new BuildingIMP(new Vector2(-600, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//arena0"), 10, 1, 7, "Air Canada Center", 0, 7, false)));
-            addBuilding(new BuildingIMP(new Vector2(-300, 250), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments3"), 0, 1, 4, "Dirty End Motel", 0, 5, false)));
+            addBuilding(new BuildingIMP(new Vector2(-275, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments3"), 0, 1, 4, "Dirty End Motel", 0, 5, false)));
+            addBuilding(new BuildingIMP(new Vector2(-610, 330), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments1"), 7, 2, 2, "Dark Night Co-op", 0, 4, false)));
+            addBuilding(new BuildingIMP(new Vector2(725, 275), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//office0"), 2, 0, 0, "Louis Inc", 1, 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(75, 350), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//lawsociety0"), 10, 0, 4, "Creaky Court House", 0, 7, false)));
+            addBuilding(new BuildingIMP(new Vector2(-350, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 3, "Silent Storage", 0, 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(1100, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 3, "El Cheapo's Discount Lingerie", 0, 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(1200, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 3, "El Cheapo's Discount Swimware", 0, 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(-1225, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//stadium0"), 4, 3, 2, "Black & Blue Stadium", 0, 4, false)));
+            addBuilding(new BuildingIMP(new Vector2(275, 400), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//church1"), 0, 1, 0, "Redeption Church", 0, 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(450, 100), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hotel0"), 2, 2, 1, "Carlin Hotel", 0, 3, false)));
+            addBuilding(new BuildingIMP(new Vector2(60, 0), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments2"), 5, 0, 2, "FunTimes Rental Suits", 8, 4, false)));
+            addBuilding(new BuildingIMP(new Vector2(60, 1025), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory1"), 0, 0, 8, "Rusty Rivet Mill", 1, 5, false)));
+            //addRoads();
+
         }
+
+        
 
         public List<Building> getAllBuildings()
         {
@@ -76,8 +95,8 @@ namespace BounceAngle
         public void setOffset(Vector2 _offset)
         {
             offset += _offset;
-            offset.X = MathHelper.Clamp(offset.X, -2500, 2500);
-            offset.Y = MathHelper.Clamp(offset.Y, -2500, 2500);
+            offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
+            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
             
         }
 
@@ -112,12 +131,46 @@ namespace BounceAngle
                 }
             }
 
+
+            drawRoads(spriteBatch);
             foreach (BuildingIMP building in buildings)
             {
                 building.Draw(spriteBatch);
             }
-
             
+
+
+        }
+
+        private void drawRoads(SpriteBatch spriteBatch)
+        {
+            for (int i = -24; i < 38; i++)
+            {
+                if (i % 11 == 0)
+                {
+
+                    for (int j = -14; j < 16; j++)
+                    {
+                        if (j == 0 || (j == 7 && i > -11 && i < 22))
+                        {
+                            for (int k = -10; k < 20; k++)
+                            {
+                                if (!(k % 11 == 0))
+                                    spriteBatch.Draw(roadTiles[0], new Vector2(60 * k + offset.X, 540 + 60 * j + (offset.Y)), Color.White);
+                            }
+                            spriteBatch.Draw(roadTiles[1], new Vector2(60 * i + offset.X, 540 + 60 * j + (offset.Y)), Color.White);
+
+                        }
+                        else
+                            spriteBatch.Draw(roadTiles[2], new Vector2(60 * i + offset.X, 540 + 60 * j + (offset.Y)), Color.White);
+                    }
+                    spriteBatch.Draw(roadTiles[1], new Vector2(60 * i + offset.X, 540 + (offset.Y)), Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(roadTiles[0], new Vector2(60 * i + offset.X, 540 + (offset.Y)), Color.White);
+                }
+            }
         }
 
     }
