@@ -17,23 +17,38 @@ namespace BounceAngle
         SpriteFont popUpHeader;
         SpriteFont popUpSubText;
         Texture2D scavenge;
-        Texture2D cancle;
+        Texture2D cancel;
+        Texture2D summary;
         BuildingData tempBuilding;
+        private int setUITime;
+        private int setUIAmmo;
+        private int setUIFood;
+        private int setUISurvivors;
 
-        public int Survivors { get; set; }
-
-        public void setTime(int time)
+        public int SetUITime
         {
-
+            get { return setUITime; }
+            set { setUITime = value; }
         }
 
-        public void setAmmo(int ammo)
+        public int SetUIAmmo
         {
+            get { return setUIAmmo; }
+            set { setUIAmmo = value; }
         }
 
-        public void setFood(int food)
+        public int SetUIFood
         {
+            get { return setUIFood; }
+            set { setUIFood = value; }
         }
+
+        public int SetUISurvivors
+        {
+            get { return setUISurvivors; }
+            set { setUISurvivors = value; }
+        }
+
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -41,6 +56,10 @@ namespace BounceAngle
             foreach (MenuItem item in menuItems)
             {
                 item.Draw(spriteBatch);
+                if (item == menuItems[0])
+                {
+                 //   item.
+                }
             }
 
         }
@@ -52,15 +71,16 @@ namespace BounceAngle
             Texture2D leftUIBox = content.Load<Texture2D>("MenuItems\\leftUI");
             Texture2D rightUIBox = content.Load<Texture2D>("MenuItems\\rightUI");
             scavenge = content.Load<Texture2D>("MenuItems\\scavenge");
-            cancle = content.Load<Texture2D>("MenuItems\\cancle");
+            cancel = content.Load<Texture2D>("MenuItems\\cancel");
             popUpBox = content.Load<Texture2D>("MenuItems\\popUp");
+            summary = content.Load<Texture2D>("MenuItems\\summary");
             SpriteFont UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
             SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
             popUpHeader = content.Load<SpriteFont>("MenuItems\\popUpHeader");
             popUpSubText = content.Load<SpriteFont>("MenuItems\\popUpSubText");
-            string[] timeText = { "Daylight Time Remaining: 10:00" };
-            string[] leftUIText = { "Food: " };
-            string[] rightUIText = { "Survivors: " };
+            string[] timeText = { "Daylight Time Remaining: " +SetUITime };
+            string[] leftUIText = { "Food: " +SetUIFood, "Ammo: " +SetUIAmmo };
+            string[] rightUIText = { "Survivors Remaining: " +SetUISurvivors };
             string[] popUpText = { "", "" };
             string[] blank = { "" };
 
@@ -69,7 +89,8 @@ namespace BounceAngle
             menuItems.Add(new MenuItem(timeBox, UIFont, new Vector2(640 - (timeBox.Width / 2), 0), timeText, new Color(255f, 0f, 0f), true));
             menuItems.Add(new MenuItem(popUpBox, UIFont, new Vector2(640 - (popUpBox.Width / 2), 360 - (popUpBox.Height / 2)), popUpText, new Color(100f, 100f, 100f), false));
             menuItems.Add(new MenuItem(scavenge, UIFont, new Vector2(popUpBox.Width - scavenge.Width, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
-            menuItems.Add(new MenuItem(cancle, UIFont, new Vector2(popUpBox.Width + cancle.Width - 100f, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(cancel, UIFont, new Vector2(popUpBox.Width + cancel.Width - 50f, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(summary, UIFont, new Vector2(popUpBox.Width - summary.Width / 2 , popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
         }
 
         public MenuManagerImp()
@@ -82,20 +103,31 @@ namespace BounceAngle
             throw new NotImplementedException();
         }
 
-        BuildingData MenuManager.getClickCollision(int x, int y)
+        
+
+        MenuClickResult MenuManager.getClickCollision(int x, int y)
         {
             Rectangle checkClick = new Rectangle((int)menuItems[4].Position.X, (int)menuItems[4].Position.Y, scavenge.Width, scavenge.Height);
-            Rectangle checkCancle = new Rectangle((int)menuItems[5].Position.X, (int)menuItems[5].Position.Y, cancle.Width, cancle.Height);
+            Rectangle checkCancle = new Rectangle((int)menuItems[5].Position.X, (int)menuItems[5].Position.Y, cancel.Width, cancel.Height);
+            Rectangle checkSummary = new Rectangle((int)menuItems[6].Position.X, (int)menuItems[6].Position.Y, summary.Width, summary.Height);
 
             if (checkClick.Contains(new Point(x, y)))
             {
+                Console.WriteLine("GO!");
                 hidePopUp();
-                return tempBuilding;
+                return new MenuClickResult(MenuClickResult.clickType.submit, tempBuilding);
             }
             if (checkCancle.Contains(new Point(x, y)))
             {
+                Console.WriteLine("NO!");
                 hidePopUp();
-                return null;
+                return new MenuClickResult(MenuClickResult.clickType.cancel, null);
+            }
+            if (checkSummary.Contains(new Point(x, y)))
+            {
+                Console.WriteLine("COOL!");
+                hidePopUp();
+                return new MenuClickResult(MenuClickResult.clickType.summary, null);
             }
             else
             {
@@ -123,6 +155,20 @@ namespace BounceAngle
             menuItems[3].PopUpImg = null;
             menuItems[4].Alive = false;
             menuItems[5].Alive = false;
+            menuItems[6].Alive = false;
         }
+
+        public void displayScavenge(BuildingData data)
+        {
+            menuItems[6].Alive = true;
+            string[] scavText = { "Suvivors Rescued: " + data.getSurvivors(), "Food Found: " + data.getFood(), "Ammo Found: " + data.getAmmo(), "Scavenge Time: " + data.getScavengeTime() };
+        }
+
+
+        public void displaySummary(int _food, int _ammo, int _zombies, int _survivors)
+        {
+
+        }
+
     }
 }

@@ -55,6 +55,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Images\tile.png">
+      <Name>tile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="MenuItems\default.png">
       <Name>default</Name>
       <Importer>TextureImporter</Importer>
@@ -62,6 +67,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuItems\popUpSubText.spritefont">
+      <Name>popUpSubText</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <Compile Include="MenuItems\UIFont.spritefont">
       <Name>UIFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -176,13 +186,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\tile.png">
-      <Name>tile</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Images\apartments3.png">
       <Name>apartments3</Name>
       <Importer>TextureImporter</Importer>
@@ -230,20 +233,6 @@
       <Name>roadTile</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MenuItems\popUpSubText.spritefont">
-      <Name>popUpSubText</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MenuItems\popUpHeader.spritefont">
-      <Name>popUpHeader</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -297,13 +286,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuItems\cancle.png">
-      <Name>cancle</Name>
+    <Compile Include="Images\apartments2.png">
+      <Name>apartments2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\apartments2.png">
-      <Name>apartments2</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MenuItems\popUpHeader.spritefont">
+      <Name>popUpHeader</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MenuItems\cancel.png">
+      <Name>cancel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MenuItems\summary.png">
+      <Name>summary</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
