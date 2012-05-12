@@ -18,6 +18,7 @@ namespace BounceAngle
 
         public MapManager mapMan;
         public UIManagerIMP uiMan;
+        public DaySimMgr simMgr;
 
         public SoundManager getSoundManager()
         {
@@ -37,6 +38,12 @@ namespace BounceAngle
         public MapManager getMapManager() {
             return mapMan;
         }
+
+        public DaySimMgr getSimMgr()
+        {
+            return simMgr;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             //draw the buildings before the menu
@@ -53,6 +60,7 @@ namespace BounceAngle
             mapMan.LoadMap(content);
             soundManager.playDayMusic();
             uiMan = new UIManagerIMP();
+            simMgr = new DaySimMgrImpl();
         }
 
         public void Update(GameTime gameTime)
@@ -71,6 +79,5 @@ namespace BounceAngle
             }
             return instance;
         }
-
     }
 }

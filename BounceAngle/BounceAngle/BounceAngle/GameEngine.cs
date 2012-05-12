@@ -14,6 +14,7 @@ namespace BounceAngle
         UIManager getUIManager();
         MenuManager getMenuManager();
         MapManager getMapManager();
+        DaySimMgr getSimMgr();
         void Draw(SpriteBatch spriteBatch);
         void Init(ContentManager Content);
         void Update(GameTime gameTime);
