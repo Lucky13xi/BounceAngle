@@ -89,7 +89,7 @@ namespace BounceAngle
 
         public void hidePopUp()
         {
-
+            menuItems[3].Alive = false;
         }
     }
 }

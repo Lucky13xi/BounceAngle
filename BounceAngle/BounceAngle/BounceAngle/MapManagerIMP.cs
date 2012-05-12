@@ -36,12 +36,12 @@ namespace BounceAngle
         public void LoadMap(ContentManager Content)
         {
 
-            addBuilding(new BuildingIMP(new Vector2(950, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "factory", 0, false)));
-            addBuilding(new BuildingIMP(new Vector2(600, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Hospital", 1, false)));
-            addBuilding(new BuildingIMP(new Vector2(200, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street", 2, false)));
-            addBuilding(new BuildingIMP(new Vector2(0, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments0"), 2, 2, 1, "Apartments", 1, false)));
-            addBuilding(new BuildingIMP(new Vector2(50, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church", 1, false)));
-            addBuilding(new BuildingIMP(new Vector2(600, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory1"), 0, 0, 2, "factory", 0, false)));
+            addBuilding(new BuildingIMP(new Vector2(950, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "factory", 0, 6, false)));
+            addBuilding(new BuildingIMP(new Vector2(600, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Hospital", 1, 8, false)));
+            addBuilding(new BuildingIMP(new Vector2(200, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street", 2, 4, false)));
+            addBuilding(new BuildingIMP(new Vector2(0, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments0"), 2, 2, 1, "Apartments", 1, 10, false)));
+            addBuilding(new BuildingIMP(new Vector2(50, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church", 1, 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(600, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory1"), 0, 0, 2, "factory", 7, 6, false)));
 
         }
 
@@ -79,7 +79,6 @@ namespace BounceAngle
             {
                 Rectangle hitRect = new Rectangle((int)buildings[i].location.X + (int)offset.X, (int)buildings[i].location.Y + (int)offset.Y, buildings[i].getBuildingData().getTexture().Width, buildings[i].getBuildingData().getTexture().Height);
                 if (hitRect.Contains(new Point((int)cord.X, (int)cord.Y))) {
-                    //Console.WriteLine("hit"+i);
                     
                     return i;
                     
