@@ -5,6 +5,5 @@
 *.pdb
 *.suo
 
-
 # mstest test results
 TestResults
