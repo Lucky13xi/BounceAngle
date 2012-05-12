@@ -25,13 +25,15 @@ namespace BounceAngle
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
                 // 1. check if any menu was pressed.
                 BuildingData buildingPopup = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
-
+                // if its a building popup, then do this
                 if (buildingPopup != null)
                 {
                     buildingsForQue.Add(buildingPopup);
                     Console.WriteLine("We queued the building " + buildingPopup.getID());
                     return;
                 }
+                // if it is the turn run button, then do this
+                // TODO:
 
                 DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
                 Console.WriteLine("closing all popups ");
