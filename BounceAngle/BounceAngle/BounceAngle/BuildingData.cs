@@ -13,5 +13,6 @@ namespace BounceAngle
         int getSurvivors();
         string getBuildingDescription();
         int getID();
+        Boolean isOver();
     }
 }

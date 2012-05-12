@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 
 namespace BounceAngle
 {
@@ -19,6 +20,7 @@ namespace BounceAngle
 
 
         public MapManager mapMan;
+        public UIManagerIMP uiMan;
 
         public SoundManager getSoundManager()
         {
@@ -56,11 +58,13 @@ namespace BounceAngle
             //menuManager.Init();
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
-
+            uiMan = new UIManagerIMP();
         }
 
         public void Update(GameTime gameTime)
         {
+            MouseState mouseState = Mouse.GetState();
+            uiMan.ProcessMouse(new Vector2(mouseState.X, mouseState.Y));
         }
 
         private DayGameEngineImp() {}

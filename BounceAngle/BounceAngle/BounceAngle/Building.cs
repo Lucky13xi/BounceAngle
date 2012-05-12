@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace BounceAngle
 {
@@ -11,8 +12,8 @@ namespace BounceAngle
         Boolean isSafeHouse();
         Boolean isCollision();
         BuildingData getBuildingData();
-        void setBuildingData(int _ammo, int _food, int _zombies, string _description, int _id);
-        void Draw();
+        void setBuildingData(BuildingData data);
+        void Draw(SpriteBatch spriteBatch);
         void setOffset(Vector2 offset);
     }
 }
