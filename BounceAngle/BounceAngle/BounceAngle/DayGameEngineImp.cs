@@ -13,18 +13,15 @@ namespace BounceAngle
     {
         public static GameEngine instance = null;
 
-        private List<MenuManager> menuManager = new List<MenuManager>();
-
-        Texture2D ammoBox;
-        SpriteFont UIFont;
-
+        private MenuManager menuManager = new MenuManagerImp();
+        private SoundManager soundManager = new SoundManager();
 
         public MapManager mapMan;
         public UIManagerIMP uiMan;
 
         public SoundManager getSoundManager()
         {
-            throw new NotImplementedException();
+            return soundManager;
         }
 
         public UIManager getUIManager()
@@ -42,22 +39,17 @@ namespace BounceAngle
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (MenuManager item in menuManager)
-            {
-                item.Draw(spriteBatch);
-            }
+            menuManager.Draw(spriteBatch);
             mapMan.Draw(spriteBatch);
         }
 
         public void Init(ContentManager content)
         {
-            ammoBox = content.Load<Texture2D>("MenuItems\\timeBox");
-            UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
-            string[] ammoText = {"Daylight Time Remaining: 10:00"};
-            menuManager.Add(new MenuManagerImp(ammoBox, UIFont, new Vector2(640 - (ammoBox.Width / 2), 0), ammoText));
-            //menuManager.Init();
+            soundManager.initializeSounds(content);
+            menuManager.Init(content);
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
+            soundManager.playDayMusic();
             uiMan = new UIManagerIMP();
         }
 
