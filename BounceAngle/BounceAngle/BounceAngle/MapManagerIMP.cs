@@ -22,6 +22,7 @@ namespace BounceAngle
         List<BuildingIMP> buildings;
         Vector2 offset;
         Texture2D backgroundTile;
+        Texture2D[] roadTiles;
 
         public MapManagerIMP()
         {
@@ -37,6 +38,10 @@ namespace BounceAngle
         public void LoadMap(ContentManager Content)
         {
             backgroundTile = Content.Load<Texture2D>("Images//tile");
+            roadTiles = new Texture2D[3];
+            roadTiles[0] = Content.Load<Texture2D>("Images//roadTile");
+            roadTiles[1] = Content.Load<Texture2D>("Images//intersectionTile");
+            roadTiles[2] = Content.Load<Texture2D>("Images//roadTileNS");
             addBuilding(new BuildingIMP(new Vector2(950, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "ACME Industrial", 0, 6, false)));
             addBuilding(new BuildingIMP(new Vector2(600, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Special H Hospital", 1, 8, false)));
             addBuilding(new BuildingIMP(new Vector2(200, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street Strip Mall", 2, 4, false)));
@@ -51,8 +56,13 @@ namespace BounceAngle
             addBuilding(new BuildingIMP(new Vector2(-200, 0), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//lawsociety0"), 10, 0, 4, "Creaky Court House", 0, 7, false)));
             addBuilding(new BuildingIMP(new Vector2(-350, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 3, "Silent Storage", 0, 2, false)));
             addBuilding(new BuildingIMP(new Vector2(1050, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 3, "El Cheapo's Discount Lingerie", 0, 2, false)));
-            addBuilding(new BuildingIMP(new Vector2(1250, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 3, "El Cheapo's Discount Lingerie", 0, 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(1250, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 3, "El Cheapo's Discount Swimware", 0, 2, false)));
+
+            //addRoads();
+
         }
+
+        
 
         public List<Building> getAllBuildings()
         {
@@ -81,8 +91,8 @@ namespace BounceAngle
         public void setOffset(Vector2 _offset)
         {
             offset += _offset;
-            offset.X = MathHelper.Clamp(offset.X, -2500, 2500);
-            offset.Y = MathHelper.Clamp(offset.Y, -2500, 2500);
+            offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
+            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
             
         }
 
@@ -109,12 +119,46 @@ namespace BounceAngle
                 }
             }
 
+
+
             foreach (BuildingIMP building in buildings)
             {
                 building.Draw(spriteBatch);
             }
+            drawRoads(spriteBatch);
 
-            
+
+        }
+
+        private void drawRoads(SpriteBatch spriteBatch)
+        {
+            for (int i = -24; i < 38; i++)
+            {
+                if (i % 11 == 0)
+                {
+
+                    for (int j = -14; j < 16; j++)
+                    {
+                        if (j == 0 || (j == 7 && i > -11 && i < 22))
+                        {
+                            for (int k = -10; k < 20; k++)
+                            {
+                                if (!(k % 11 == 0))
+                                    spriteBatch.Draw(roadTiles[0], new Vector2(60 * k + offset.X, 540 + 60 * j + (offset.Y)), Color.White);
+                            }
+                            spriteBatch.Draw(roadTiles[1], new Vector2(60 * i + offset.X, 540 + 60 * j + (offset.Y)), Color.White);
+
+                        }
+                        else
+                            spriteBatch.Draw(roadTiles[2], new Vector2(60 * i + offset.X, 540 + 60 * j + (offset.Y)), Color.White);
+                    }
+                    spriteBatch.Draw(roadTiles[1], new Vector2(60 * i + offset.X, 540 + (offset.Y)), Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(roadTiles[0], new Vector2(60 * i + offset.X, 540 + (offset.Y)), Color.White);
+                }
+            }
         }
 
     }
