@@ -79,6 +79,14 @@ namespace BounceAngle
             textPos = new Vector2(position.X + ((box.Bounds.Width - width) / 2), position.Y + ((box.Bounds.Height - height) / 2));
         }
 
+        public void leftUIText(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(box, position, Color.White);
+            spriteBatch.DrawString(font, text[0], new Vector2(position.X + 50, 5), fontColor);
+            spriteBatch.DrawString(font, text[1], new Vector2(position.X + 125 * 1.3f, 5), fontColor);
+
+        }
+
         public void popUpHeader()
         {
             height = -5;
