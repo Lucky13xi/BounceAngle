@@ -9,5 +9,6 @@ namespace BounceAngle
     {
         void queueBuildingToScavenge(BuildingData data);
         void runSim();
+        int getNumAvailableSurvivorsToScavenge();
     }
 }

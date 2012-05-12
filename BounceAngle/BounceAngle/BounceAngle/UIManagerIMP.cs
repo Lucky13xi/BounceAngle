@@ -80,19 +80,27 @@ namespace BounceAngle
         private Boolean processMenuClicks(MouseState mouseState)
         {
             // 1. check if any menu was pressed.
-            BuildingData buildingPopup = null;//DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+            MenuClickResult clickResult = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
             // if its a building popup, then do this
-            if (buildingPopup != null)
+            if (clickResult != null)
             {
-                DayGameEngineImp.getGameEngine().getSimMgr().queueBuildingToScavenge(buildingPopup);
-                Console.WriteLine("We queued the building " + buildingPopup.getID());
-                DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
-                return true;
-            }
-            else
-            {
-                DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
-                Console.WriteLine("closing all popups ");
+                if (MenuClickResult.clickType.submit == clickResult.type)
+                {
+                    BuildingData buildingPopup = (BuildingData)clickResult.payLoad;
+                    DayGameEngineImp.getGameEngine().getSimMgr().queueBuildingToScavenge(buildingPopup);
+                    Console.WriteLine("We queued the building " + buildingPopup.getID());
+                    DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
+                    return true;
+                }
+                else if (MenuClickResult.clickType.summary == clickResult.type)
+                {
+                    // TODO: summary button complete clicked
+                }
+                else
+                {
+                    DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
+                    Console.WriteLine("closing all popups ");
+                }
             }
 
 

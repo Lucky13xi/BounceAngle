@@ -15,7 +15,7 @@ namespace BounceAngle
 
         public DaySimMgrImpl() {
             buildingsToScavenge = new List<BuildingData>();
-
+            aliveSurvivors = 1;
         }
 
         public void queueBuildingToScavenge(BuildingData data)
@@ -23,6 +23,10 @@ namespace BounceAngle
             // keep track of all the buildings that we will be scavenging
             buildingsToScavenge.Add(data);
 
+            if (getNumAvailableSurvivorsToScavenge() <= 0)
+            {
+                runSim();
+            }
         }
 
         public void runSim()
@@ -39,6 +43,11 @@ namespace BounceAngle
 
             //clear the buildings scavenged this turn
             buildingsToScavenge = new List<BuildingData>();
+        }
+
+        public int getNumAvailableSurvivorsToScavenge()
+        {
+            return aliveSurvivors - buildingsToScavenge.Count;
         }
     }
 }
