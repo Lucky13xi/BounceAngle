@@ -21,6 +21,7 @@ namespace BounceAngle
 
         List<BuildingIMP> buildings;
         Vector2 offset;
+        Texture2D backgroundTile;
 
         public MapManagerIMP()
         {
@@ -35,7 +36,7 @@ namespace BounceAngle
 
         public void LoadMap(ContentManager Content)
         {
-
+            backgroundTile = Content.Load<Texture2D>("Images//tile");
             addBuilding(new BuildingIMP(new Vector2(950, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "factory", 0, 6, false)));
             addBuilding(new BuildingIMP(new Vector2(600, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Hospital", 1, 8, false)));
             addBuilding(new BuildingIMP(new Vector2(200, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street", 2, 4, false)));
@@ -75,6 +76,9 @@ namespace BounceAngle
         public void setOffset(Vector2 _offset)
         {
             offset += _offset;
+            offset.X = MathHelper.Clamp(offset.X, -2500, 2500);
+            offset.Y = MathHelper.Clamp(offset.Y, -2500, 2500);
+            
         }
 
         public int getCollision(Vector2 cord) {
@@ -92,10 +96,20 @@ namespace BounceAngle
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            for (int i = -1; i * 60 < 1340; i++)
+            {
+                for (int j = -1; j * 60 < 780; j++)
+                {
+                    spriteBatch.Draw(backgroundTile, new Vector2(i * 60 + (offset.X % 60), j * 60 + (offset.Y % 60)), Color.White);
+                }
+            }
+
             foreach (BuildingIMP building in buildings)
             {
                 building.Draw(spriteBatch);
             }
+
+            
         }
 
     }
