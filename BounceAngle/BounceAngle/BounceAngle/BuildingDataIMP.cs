@@ -62,5 +62,16 @@ namespace BounceAngle
         public void setSurvivors(int surv) { survivors = surv;  }
         public void setBuildingDescription(string desc) { description = desc; }
         public void setOver(Boolean over) { isOn = over;  }
+
+
+        public Microsoft.Xna.Framework.Graphics.Texture2D getTexture()
+        {
+            return null;
+        }
+
+        public void setTexture(Microsoft.Xna.Framework.Graphics.Texture2D img)
+        {
+
+        }
     }
 }

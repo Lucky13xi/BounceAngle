@@ -15,9 +15,9 @@ namespace BounceAngle
         void setFood(int food);
         void setResource(int[] resource);
         void Draw(SpriteBatch spriteBatch);
-        void Show();
-        void Hide();
         void Init(ContentManager content);
-        bool getClickCollision(int x, int y);
+        BuildingData getClickCollision(int x, int y);
+        void displayPopUp(BuildingData data);
+        void hidePopUp();
     }
 }

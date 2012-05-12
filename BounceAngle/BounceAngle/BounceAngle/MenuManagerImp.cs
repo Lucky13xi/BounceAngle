@@ -37,14 +37,6 @@ namespace BounceAngle
 
         }
 
-        public void Show()
-        {
-        }
-
-        public void Hide()
-        {
-        }
-
 
         public void Init(ContentManager content)
         {
@@ -78,6 +70,22 @@ namespace BounceAngle
         public bool getClickCollision(int x, int y)
         {
             return false;
+        }
+
+
+        BuildingData MenuManager.getClickCollision(int x, int y)
+        {
+            return null;
+        }
+
+        public void displayPopUp(BuildingData data)
+        {
+
+        }
+
+        public void hidePopUp()
+        {
+
         }
     }
 }

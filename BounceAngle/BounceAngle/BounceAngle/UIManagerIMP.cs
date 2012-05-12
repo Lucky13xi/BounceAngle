@@ -25,7 +25,8 @@ namespace BounceAngle
         private void processClick(MouseState mouseState) {
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
                 // 1. check if any menu was pressed.
-                Boolean isSmack = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+               // Boolean isSmack = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+                Boolean isSmack = false;
                 if (isSmack)
                 {
                     //TODO: updatePlayState
@@ -40,7 +41,8 @@ namespace BounceAngle
                 else
                 {
                     // TODO: close pop up
-                    Console.WriteLine("We close the info for building " + lastBuildingDataClicked.getID());
+                   
+                    //Console.WriteLine("We close the info for building " + lastBuildingDataClicked.getID());
                     lastBuildingDataClicked = null;
                 }
                 int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
