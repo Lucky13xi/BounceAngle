@@ -12,7 +12,11 @@ namespace BounceAngle
     {
         public static GameEngine instance = null;
 
-        private MenuManager menuManager;
+        private List<MenuManager> menuManager = new List<MenuManager>();
+
+        Texture2D ammoBox;
+        SpriteFont UIFont;
+
 
         public MapManager mapMan;
 
@@ -36,16 +40,23 @@ namespace BounceAngle
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            foreach (MenuManager item in menuManager)
+            {
+                item.Draw(spriteBatch);
+            }
             mapMan.Draw(spriteBatch);
-            menuManager.Draw(spriteBatch);
         }
 
-        public void Init(ContentManager Content)
+        public void Init(ContentManager content)
         {
-            menuManager = new MenuManagerImp();
-            menuManager.Init();
+            ammoBox = content.Load<Texture2D>("MenuItems\\default");
+            UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
+            string[] ammoText = {"Ammo: ", "Food: "};
+            menuManager.Add(new MenuManagerImp(ammoBox, UIFont, Vector2.Zero, ammoText));
+            //menuManager.Init();
             mapMan = new MapManagerIMP();
-            mapMan.LoadMap(Content);
+            mapMan.LoadMap(content);
+
         }
 
         public void Update(GameTime gameTime)
@@ -62,5 +73,6 @@ namespace BounceAngle
             }
             return instance;
         }
+
     }
 }

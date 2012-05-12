@@ -11,6 +11,7 @@ namespace BounceAngle
         void setTime(int time);
         void setAmmo(int ammo);
         void setFood(int food);
+        void setResource(int[] resource);
         void Draw(SpriteBatch spriteBatch);
         void Show();
         void Hide();
