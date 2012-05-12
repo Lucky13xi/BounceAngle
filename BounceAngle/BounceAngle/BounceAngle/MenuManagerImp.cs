@@ -12,7 +12,8 @@ namespace BounceAngle
     class MenuManagerImp : MenuManager
     {
 
-        ArrayList menuItems;
+        static List<MenuItem> menuItems = new List<MenuItem>();
+        Texture2D popUpBox;
 
         public void setTime(int time)
         {
@@ -40,20 +41,21 @@ namespace BounceAngle
 
         public void Init(ContentManager content)
         {
-            menuItems = new ArrayList();
             Texture2D timeBox = content.Load<Texture2D>("MenuItems\\timeBox");
             Texture2D leftUIBox = content.Load<Texture2D>("MenuItems\\leftUI");
             Texture2D rightUIBox = content.Load<Texture2D>("MenuItems\\rightUI");
+            popUpBox = content.Load<Texture2D>("MenuItems\\popUp");
             SpriteFont UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
             SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\subUIFont");
             string[] timeText = { "Daylight Time Remaining: 10:00" };
             string[] leftUIText = { "Food: " };
             string[] rightUIText = { "Survivors: " };
+            string[] popUpText = { "" };
 
-
-            menuItems.Add(new MenuItem(leftUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) - leftUIBox.Width *0.9f + 1, 0), leftUIText, new Color(0f, 0f, 0f)));
-            menuItems.Add(new MenuItem(rightUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) + rightUIBox.Width, 0), rightUIText, new Color(0f, 0f, 0f)));
-            menuItems.Add(new MenuItem(timeBox, UIFont, new Vector2(640 - (timeBox.Width / 2), 0), timeText, new Color(255f, 0f, 0f)));
+            menuItems.Add(new MenuItem(leftUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) - leftUIBox.Width *0.9f + 1, 0), leftUIText, new Color(0f, 0f, 0f), true));
+            menuItems.Add(new MenuItem(rightUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) + rightUIBox.Width, 0), rightUIText, new Color(0f, 0f, 0f), true));
+            menuItems.Add(new MenuItem(timeBox, UIFont, new Vector2(640 - (timeBox.Width / 2), 0), timeText, new Color(255f, 0f, 0f), true));
+            menuItems.Add(new MenuItem(popUpBox, UIFont, new Vector2(640 - (popUpBox.Width / 2), 360 - (popUpBox.Height / 2)), popUpText, new Color(100f, 100f, 100f), false)); 
         }
 
         public MenuManagerImp()
@@ -66,7 +68,7 @@ namespace BounceAngle
             throw new NotImplementedException();
         }
 
-
+         
         public bool getClickCollision(int x, int y)
         {
             return false;
@@ -80,6 +82,8 @@ namespace BounceAngle
 
         public void displayPopUp(BuildingData data)
         {
+            menuItems[3].Alive = true;
+            menuItems[3].Text[0] = data.getBuildingDescription();
 
         }
 

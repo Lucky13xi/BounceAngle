@@ -17,15 +17,28 @@ namespace BounceAngle
         private float width = 0f;
         private string[] text;
         private Color fontColor;
+        private bool alive;
 
+        public bool Alive
+        {
+            get { return alive; }
+            set { alive = value; }
+        }
 
-        public MenuItem(Texture2D _box, SpriteFont _font, Vector2 _position, string[] _text, Color _fontColor)
+        public string[] Text
+        {
+            get { return text; }
+            set { text = value; }
+        }
+
+        public MenuItem(Texture2D _box, SpriteFont _font, Vector2 _position, string[] _text, Color _fontColor, bool _alive)
         {
             box = _box;
             font = _font;
             position = _position;
             text = _text;
             fontColor = _fontColor;
+            alive = _alive;
             MeasureText();
         }
 
@@ -46,12 +59,16 @@ namespace BounceAngle
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(box, position, Color.White);
-            Vector2 location = textPos;
-            for (int i = 0; i < text.Length; i++)
+            if (alive)
             {
-                spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), fontColor);
-                //spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+                spriteBatch.Draw(box, position, Color.White);
+                Vector2 location = textPos;
+                for (int i = 0; i < text.Length; i++)
+                {
+                    spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), fontColor);
+                    //spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                }
             }
         }
 

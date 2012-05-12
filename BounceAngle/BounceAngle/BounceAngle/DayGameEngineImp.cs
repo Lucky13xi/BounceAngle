@@ -13,7 +13,7 @@ namespace BounceAngle
     {
         public static GameEngine instance = null;
 
-        private MenuManager menuManager = new MenuManagerImp();
+        private MenuManager menuManager;
         private SoundManager soundManager = new SoundManager();
 
         public MapManager mapMan;
@@ -31,7 +31,7 @@ namespace BounceAngle
 
         public MenuManager getMenuManager()
         {
-            throw new NotImplementedException();
+            return menuManager;
         }
 
         public MapManager getMapManager() {
@@ -39,13 +39,14 @@ namespace BounceAngle
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            menuManager.Draw(spriteBatch);
             mapMan.Draw(spriteBatch);
+            menuManager.Draw(spriteBatch);
         }
 
         public void Init(ContentManager content)
         {
             soundManager.initializeSounds(content);
+            menuManager = new MenuManagerImp();
             menuManager.Init(content);
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);

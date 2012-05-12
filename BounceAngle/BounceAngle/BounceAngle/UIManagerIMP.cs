@@ -54,6 +54,7 @@ namespace BounceAngle
                     lastBuildingDataClicked = b.getBuildingData();
                     //  2a. pop up the building summary
                     //TODO: the popup window
+                    DayGameEngineImp.getGameEngine().getMenuManager().displayPopUp(b.getBuildingData());
                     Console.WriteLine("We popped up the info for building " + lastBuildingDataClicked.getID());
                 }
             }
