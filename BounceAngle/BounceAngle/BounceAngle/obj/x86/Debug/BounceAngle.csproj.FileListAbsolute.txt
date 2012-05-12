@@ -10,3 +10,5 @@ C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\B
 C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.pdb
 C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.exe
 C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.pdb
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\default.xnb
+C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\UIFont.xnb

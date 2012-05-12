@@ -50,7 +50,7 @@ namespace BounceAngle
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             dayGame = new DayGameEngineImp();
-            dayGame.Init();
+            dayGame.Init(Content);
             // TODO: use this.Content to load your game content here
         }
 
