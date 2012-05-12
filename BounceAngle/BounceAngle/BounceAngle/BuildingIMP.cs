@@ -43,7 +43,7 @@ namespace BounceAngle
 
         public void setOffset(Vector2 _offset)
         {
-            offset = _offset;
+            offset += _offset;
         }
 
         public void Draw(SpriteBatch spriteBatch) {

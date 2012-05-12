@@ -45,7 +45,7 @@ namespace BounceAngle
             Texture2D leftUIBox = content.Load<Texture2D>("MenuItems\\leftUI");
             Texture2D rightUIBox = content.Load<Texture2D>("MenuItems\\rightUI");
             SpriteFont UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
-            SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\subUIFont");
+            SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
             string[] timeText = { "Daylight Time Remaining: 10:00" };
             string[] leftUIText = { "Food: " };
             string[] rightUIText = { "Survivors: " };
