@@ -17,7 +17,6 @@ namespace BounceAngle
     {
 
         ArrayList buildings;
-
         Vector2 offset;
 
         public MapManagerIMP()
@@ -60,7 +59,9 @@ namespace BounceAngle
         {
             offset = _offset;
         }
-
+        public int getClickCollision(Vector2 cord) {
+            return 0;
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (BuildingIMP building in buildings)
