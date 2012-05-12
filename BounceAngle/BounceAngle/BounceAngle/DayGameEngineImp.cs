@@ -15,10 +15,10 @@ namespace BounceAngle
 
         private MenuManager menuManager;
         private SoundManager soundManager = new SoundManager();
-
         public MapManager mapMan;
         public UIManagerIMP uiMan;
         public DaySimMgr simMgr;
+        private Boolean isRunning;
 
         public SoundManager getSoundManager()
         {
@@ -44,14 +44,31 @@ namespace BounceAngle
             return simMgr;
         }
 
+        public ZombieManager getZombieManager()
+        {
+            // we don't have zombies during the day
+            return null;
+        }
+
+        public SurvivorManager getSurvivorManager()
+        {
+            // we don't have survivors during the day
+            return null;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            mapMan.Draw(spriteBatch);
-            menuManager.Draw(spriteBatch);
+            if (isRunning)
+            {
+                //draw the buildings before the menu
+                mapMan.Draw(spriteBatch);
+                menuManager.Draw(spriteBatch);
+            }
         }
 
         public void Init(ContentManager content)
         {
+            isRunning = false;
             soundManager.initializeSounds(content);
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
@@ -64,8 +81,11 @@ namespace BounceAngle
 
         public void Update(GameTime gameTime)
         {
-            MouseState mouseState = Mouse.GetState();
-            uiMan.ProcessMouse(mouseState);
+            if (isRunning)
+            {
+                MouseState mouseState = Mouse.GetState();
+                uiMan.ProcessMouse(mouseState);
+            }
         }
 
         private DayGameEngineImp() {}
@@ -77,6 +97,16 @@ namespace BounceAngle
                 instance = new DayGameEngineImp();
             }
             return instance;
+        }
+
+        public void stop()
+        {
+            isRunning = false;
+        }
+
+        public void start()
+        {
+            isRunning = true;
         }
     }
 }
