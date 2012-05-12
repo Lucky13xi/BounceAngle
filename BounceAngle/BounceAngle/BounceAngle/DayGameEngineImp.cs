@@ -39,10 +39,7 @@ namespace BounceAngle
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-<<<<<<< HEAD
-=======
             //draw the buildings before the menu
->>>>>>> 387d3c13c921ec8b3edb43c49e580cb553f11432
             mapMan.Draw(spriteBatch);
             menuManager.Draw(spriteBatch);
         }
@@ -50,10 +47,10 @@ namespace BounceAngle
         public void Init(ContentManager content)
         {
             soundManager.initializeSounds(content);
-            menuManager = new MenuManagerImp();
-            menuManager.Init(content);
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
+            menuManager = new MenuManagerImp();
+            menuManager.Init(content);
             soundManager.playDayMusic();
             uiMan = new UIManagerIMP();
         }

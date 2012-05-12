@@ -70,7 +70,7 @@ namespace BounceAngle
 
         public Microsoft.Xna.Framework.Graphics.Texture2D getTexture()
         {
-            return null;
+            return texture;
         }
 
         public void setTexture(Microsoft.Xna.Framework.Graphics.Texture2D img)

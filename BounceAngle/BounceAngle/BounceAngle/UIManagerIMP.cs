@@ -84,10 +84,10 @@ namespace BounceAngle
                 {
                     Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
 
-                    BuildingData d = b.getBuildingData();
+                    //BuildingData d = b.getBuildingData();
                     //  2a. pop up the building summary
-                    DayGameEngineImp.getGameEngine().getMenuManager().displayPopUp(d);
-                    Console.WriteLine("We popped up the info for building " + d.getID());
+                    DayGameEngineImp.getGameEngine().getMenuManager().displayPopUp(b.getBuildingData());
+                    //Console.WriteLine("We popped up the info for building " + d.getID());
 
                 }
             }

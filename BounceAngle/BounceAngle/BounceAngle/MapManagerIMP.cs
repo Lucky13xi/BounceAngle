@@ -75,16 +75,22 @@ namespace BounceAngle
         }
 
         public int getCollision(Vector2 cord) {
-            for (int i = 0; i < buildings.Count; i++ )
+
+            for (int i = 0; i < buildings.Count; i++)
             {
+
                 Rectangle hitRect = new Rectangle((int)buildings[i].location.X + (int)offset.X, (int)buildings[i].location.Y + (int)offset.Y, buildings[i].getBuildingData().getTexture().Width, buildings[i].getBuildingData().getTexture().Height);
-                if (hitRect.Contains(new Point((int)cord.X, (int)cord.Y))) {
+
+                if (hitRect.Contains(new Point((int)cord.X, (int)cord.Y)))
+                {
                     //Console.WriteLine("hit"+i);
-                    
+
                     return i;
-                    
+
                 }
             }
+                
+          
             return -1;
         }
         public void Draw(SpriteBatch spriteBatch)
