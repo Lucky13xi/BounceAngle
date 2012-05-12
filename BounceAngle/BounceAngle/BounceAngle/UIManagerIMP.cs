@@ -16,10 +16,49 @@ namespace BounceAngle
 
             processBuildingHover(new Vector2(mouseState.X, mouseState.Y));
             processClick(mouseState);
+            processScrolling(mouseState);
             preMouseState = mouseState;
 
         }
-        
+
+        private void processScrolling(MouseState mouseState)
+        {
+            if (mouseState.X < 20)
+            {
+                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(10, 0));
+            }
+            if (mouseState.X > 1060)
+            {
+                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(-10, 0));
+            }
+            if (mouseState.Y < 20)
+            {
+                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(0, 10));
+            }
+            if (mouseState.Y > 700)
+            {
+                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(0, -10));
+            }
+            foreach (BuildingIMP building in DayGameEngineImp.getGameEngine().getMapManager().getAllBuildings())
+            {
+                if (mouseState.X < 20)
+                {
+                    building.setOffset(new Vector2(10, 0));
+                }
+                if (mouseState.X > 1060)
+                {
+                    building.setOffset(new Vector2(-10, 0));
+                }
+                if (mouseState.Y < 20)
+                {
+                    building.setOffset(new Vector2(0, 10));
+                }
+                if (mouseState.Y > 700)
+                {
+                    building.setOffset(new Vector2(0, -10));
+                }
+            }
+        }
 
         private void processClick(MouseState mouseState) {
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {

@@ -71,13 +71,13 @@ namespace BounceAngle
 
         public void setOffset(Vector2 _offset)
         {
-            offset = _offset;
+            offset += _offset;
         }
 
         public int getCollision(Vector2 cord) {
             for (int i = 0; i < buildings.Count; i++ )
             {
-                Rectangle hitRect = new Rectangle((int)buildings[i].location.X, (int)buildings[i].location.Y, buildings[i].getBuildingData().getTexture().Width, buildings[i].getBuildingData().getTexture().Height);
+                Rectangle hitRect = new Rectangle((int)buildings[i].location.X + (int)offset.X, (int)buildings[i].location.Y + (int)offset.Y, buildings[i].getBuildingData().getTexture().Width, buildings[i].getBuildingData().getTexture().Height);
                 if (hitRect.Contains(new Point((int)cord.X, (int)cord.Y))) {
                     //Console.WriteLine("hit"+i);
                     
