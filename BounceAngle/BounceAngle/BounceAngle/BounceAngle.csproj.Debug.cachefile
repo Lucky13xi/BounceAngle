@@ -22,5 +22,11 @@ Content\Audio\shuffling.xnb
 Content\Audio\zombie.xnb
 Content\Audio\zombieDeath.xnb
 Content\Images\tile.xnb
+Content\Images\titleScreen.xnb
+Content\Images\apartments3.xnb
+Content\Images\arena0.xnb
+Content\Images\roadTile.xnb
+Content\Images\intersectionTile.xnb
+Content\Images\roadTileNS.xnb
 Content\Audio\dayOverture.wma
 Content\Audio\nightOverture.wma
