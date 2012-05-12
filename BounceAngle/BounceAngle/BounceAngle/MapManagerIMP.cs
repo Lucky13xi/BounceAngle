@@ -36,9 +36,13 @@ namespace BounceAngle
         public void LoadMap(ContentManager Content)
         {
 
-            addBuilding(new BuildingIMP(new Vector2(200, 200), Content.Load<Texture2D>("Images//factory0"), false, new BuildingDataIMP(buildingCounter++, 0, 4, 1, "factory", 0, false)));
-            addBuilding(new BuildingIMP(new Vector2(800, 200), Content.Load<Texture2D>("Images//hospital0"), false, new BuildingDataIMP(buildingCounter++, 2, 3, 5, "Hospital", 1, false)));
-            addBuilding(new BuildingIMP(new Vector2(1100, 400), Content.Load<Texture2D>("Images//mainStreet0"), false, new BuildingDataIMP(buildingCounter++, 5, 0, 1, "Main Street", 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(950, 200), Content.Load<Texture2D>("Images//factory0"), false, new BuildingDataIMP(buildingCounter++, 0, 4, 1, "factory", 0, false)));
+            addBuilding(new BuildingIMP(new Vector2(600, 200), Content.Load<Texture2D>("Images//hospital0"), false, new BuildingDataIMP(buildingCounter++, 2, 3, 5, "Hospital", 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(200, 300), Content.Load<Texture2D>("Images//mainStreet0"), false, new BuildingDataIMP(buildingCounter++, 5, 0, 1, "Main Street", 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(0, 600), Content.Load<Texture2D>("Images//apartments0"), false, new BuildingDataIMP(buildingCounter++, 2, 2, 1, "Apartments", 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(50, 300), Content.Load<Texture2D>("Images//church0"), false, new BuildingDataIMP(buildingCounter++, 0, 0, 0, "Church", 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(600, 600), Content.Load<Texture2D>("Images//factory1"), false, new BuildingDataIMP(buildingCounter++, 0, 0, 2, "factory", 0, false)));
+
         }
 
         public List<Building> getAllBuildings()

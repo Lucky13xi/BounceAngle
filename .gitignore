@@ -3,6 +3,8 @@
 */obj/*
 *.exe
 *.pdb
+*.suo
+
 
 # mstest test results
 TestResults
