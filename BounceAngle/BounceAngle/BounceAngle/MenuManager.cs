@@ -8,6 +8,7 @@ namespace BounceAngle
 {
     interface MenuManager
     {
+
         void setTime(int time);
         void setAmmo(int ammo);
         void setFood(int food);
@@ -16,5 +17,6 @@ namespace BounceAngle
         void Show();
         void Hide();
         void Init();
+        bool getClickCollision(int x, int y);
     }
 }

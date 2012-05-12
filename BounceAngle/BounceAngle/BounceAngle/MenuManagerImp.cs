@@ -39,7 +39,7 @@ namespace BounceAngle
             Vector2 location = textPos;
             for (int i = 0; i < text.Length; i++)
             {
-                spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), Color.White);
+                spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), Color.Red);
             }
 
         }
@@ -88,6 +88,12 @@ namespace BounceAngle
         public void setResource(int[] resource)
         {
             throw new NotImplementedException();
+        }
+
+
+        public bool getClickCollision(int x, int y)
+        {
+            return false;
         }
     }
 }

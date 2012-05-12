@@ -2,3 +2,4 @@ F:\TOJam\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\ResolveAssembl
 C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\newWorkspace\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\ResolveAssemblyReference.cache

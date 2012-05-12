@@ -50,11 +50,13 @@ namespace BounceAngle
 
         public void Init(ContentManager content)
         {
+
             soundManager.initializeSounds(content);
-            ammoBox = content.Load<Texture2D>("MenuItems\\default");
+
+            ammoBox = content.Load<Texture2D>("MenuItems\\timeBox");
             UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
-            string[] ammoText = {"Ammo: ", "Food: "};
-            menuManager.Add(new MenuManagerImp(ammoBox, UIFont, Vector2.Zero, ammoText));
+            string[] ammoText = {"Daylight Time Remaining: 10:00"};
+            menuManager.Add(new MenuManagerImp(ammoBox, UIFont, new Vector2(640 - (ammoBox.Width / 2), 0), ammoText));
             //menuManager.Init();
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
