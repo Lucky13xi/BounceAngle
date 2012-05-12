@@ -26,12 +26,12 @@ namespace BounceAngle
 
         public UIManager getUIManager()
         {
-            throw new NotImplementedException();
+            return uiMan;
         }
 
         public MenuManager getMenuManager()
         {
-            throw new NotImplementedException();
+            return menuManager;
         }
 
         public MapManager getMapManager() {
