@@ -16,11 +16,10 @@ namespace BounceAngle
         private  Song dayOverture;
         private  Song nightOverture;
         private  SoundEffect gunFire;
-
         private  SoundEffect zombieSound;
+        private SoundEffect shuffling;
+
         private  SoundEffect zombieDeath;
-        private  SoundEffect shuffling;
-        private  SoundEffect scavenging;
 
         private  float sfxVolume;
 
@@ -31,6 +30,9 @@ namespace BounceAngle
             dayOverture = Content.Load<Song>("Audio//dayOverture");
             nightOverture = Content.Load<Song>("Audio//nightOverture");
             gunFire = Content.Load<SoundEffect>("Audio//gunFire");
+            zombieSound = Content.Load<SoundEffect>("Audio//zombie");
+            shuffling = Content.Load<SoundEffect>("Audio//shuffling");
+            zombieDeath = Content.Load<SoundEffect>("Audio//zombieDeath");
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Volume = 0.2f;
@@ -86,10 +88,6 @@ namespace BounceAngle
         public  void playGunFire()
         {
             gunFire.Play(sfxVolume, 0, 0);
-        }
-        public  void playScavenge()
-        {
-            scavenging.Play(sfxVolume, 0, 0);
         }
         public  void playShuffling()
         {
