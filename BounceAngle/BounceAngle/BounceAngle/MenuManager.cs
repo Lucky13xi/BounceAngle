@@ -16,6 +16,7 @@ namespace BounceAngle
         void setResource(int[] resource);
         void Draw(SpriteBatch spriteBatch);
         void Init(ContentManager content);
+        int Survivors { get; set; }
         BuildingData getClickCollision(int x, int y);
         void displayPopUp(BuildingData data);
         void hidePopUp();
