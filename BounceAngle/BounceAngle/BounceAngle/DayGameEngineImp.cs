@@ -10,12 +10,15 @@ namespace BounceAngle
 {
     class DayGameEngineImp : GameEngine
     {
+        public static GameEngine instance = null;
 
         private List<MenuManager> menuManager = new List<MenuManager>();
 
         Texture2D ammoBox;
         SpriteFont UIFont;
 
+
+        public MapManager mapMan;
 
         public SoundManager getSoundManager()
         {
@@ -32,12 +35,16 @@ namespace BounceAngle
             throw new NotImplementedException();
         }
 
+        public MapManager getMapManager() {
+            return mapMan;
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (MenuManager item in menuManager)
             {
                 item.Draw(spriteBatch);
             }
+            mapMan.Draw(spriteBatch);
         }
 
         public void Init(ContentManager content)
@@ -47,15 +54,24 @@ namespace BounceAngle
             string[] ammoText = {"Ammo: ", "Food: "};
             menuManager.Add(new MenuManagerImp(ammoBox, UIFont, Vector2.Zero, ammoText));
             //menuManager.Init();
+            mapMan = new MapManagerIMP();
+            mapMan.LoadMap(content);
+
         }
 
         public void Update(GameTime gameTime)
         {
         }
 
-        public DayGameEngineImp()
+        private DayGameEngineImp() {}
+
+        public static GameEngine getGameEngine()
         {
-  
+            if (null == instance)
+            {
+                instance = new DayGameEngineImp();
+            }
+            return instance;
         }
 
     }

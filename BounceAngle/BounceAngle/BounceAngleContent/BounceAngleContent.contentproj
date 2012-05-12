@@ -42,17 +42,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuItems\default.png">
-      <Name>default</Name>
+    <Folder Include="Sounds\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\factory0.png">
+      <Name>factory0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Images\hospital0.png">
+      <Name>hospital0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+      <Compile Include="MenuItems\default.png">
+        <Name>default</Name>
+        <Importer>TextureImporter</Importer>
+        <Processor>TextureProcessor</Processor>
+      </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuItems\UIFont.spritefont">
       <Name>UIFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\mainStreet0.png">
+      <Name>mainStreet0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

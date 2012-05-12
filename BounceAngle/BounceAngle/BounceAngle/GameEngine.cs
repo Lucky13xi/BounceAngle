@@ -13,8 +13,9 @@ namespace BounceAngle
         SoundManager getSoundManager();
         UIManager getUIManager();
         MenuManager getMenuManager();
+        MapManager getMapManager();
         void Draw(SpriteBatch spriteBatch);
-        void Init(ContentManager content);
+        void Init(ContentManager Content);
         void Update(GameTime gameTime);
         
     }
