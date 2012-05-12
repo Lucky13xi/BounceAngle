@@ -183,7 +183,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-  <Compile Include="Images\apartments3.png">
+    <Compile Include="Images\apartments3.png">
       <Name>apartments3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -259,6 +259,34 @@
     </Compile>
     <Compile Include="Images\roadTileNS.png">
       <Name>roadTileNS</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\stadium0.png">
+      <Name>stadium0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\church1.png">
+      <Name>church1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\hotel0.png">
+      <Name>hotel0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\apartments2.png">
+      <Name>apartments2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
