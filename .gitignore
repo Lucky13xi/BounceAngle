@@ -1,6 +1,8 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-bin
-obj
-
+*/bin/*
+*/obj/*
+*.exe
+*.pdb
+Properties
 # mstest test results
 TestResults

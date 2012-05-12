@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\factory0.xnb</Output>
-      <Time>2012-05-11T23:45:02.8460234-04:00</Time>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\factory0.xnb</Output>
+      <Time>2012-05-12T00:06:12.7342607-04:00</Time>
     </Item>
     <Item>
       <Source>Images\hospital0.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\hospital0.xnb</Output>
-      <Time>2012-05-11T23:45:02.8500236-04:00</Time>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\hospital0.xnb</Output>
+      <Time>2012-05-12T00:06:12.7342607-04:00</Time>
     </Item>
     <Item>
       <Source>MenuItems\default.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\default.xnb</Output>
-      <Time>2012-05-11T19:09:52-04:00</Time>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\default.xnb</Output>
+      <Time>2012-05-12T00:39:40.855986-04:00</Time>
     </Item>
     <Item>
       <Source>Images\mainStreet0.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\mainStreet0.xnb</Output>
-      <Time>2012-05-11T23:45:02.8560239-04:00</Time>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\mainStreet0.xnb</Output>
+      <Time>2012-05-12T00:06:12.7342607-04:00</Time>
     </Item>
     <Item>
       <Source>MenuItems\UIFont.spritefont</Source>
@@ -43,8 +43,55 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\UIFont.xnb</Output>
-      <Time>2012-05-11T22:57:16.50239-04:00</Time>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\MenuItems\UIFont.xnb</Output>
+      <Time>2012-05-12T00:39:40.855986-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\clickSound.wav</Source>
+      <Name>Audio\clickSound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Audio\clickSound.xnb</Output>
+      <Time>2012-05-11T17:58:55.6079616-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\gunFire.wav</Source>
+      <Name>Audio\gunFire</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Audio\gunFire.xnb</Output>
+      <Time>2012-05-11T22:35:39.5946553-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\survivorDeathSound.wav</Source>
+      <Name>Audio\survivorDeathSound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Audio\survivorDeathSound.xnb</Output>
+      <Time>2012-05-11T22:55:30.0687465-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\dayOverture.mp3</Source>
+      <Name>Audio\dayOverture</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Audio\dayOverture.xnb</Output>
+      <Extra>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Audio\dayOverture.wma</Extra>
+      <Time>2012-05-12T00:13:58.535743-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Audio\nightOverture.mp3</Source>
+      <Name>Audio\nightOverture</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Audio\nightOverture.xnb</Output>
+      <Extra>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Audio\nightOverture.wma</Extra>
+      <Time>2012-05-12T00:12:23.2739443-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -52,39 +99,39 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\</RootDirectory>
+      <LoggerRootDirectory>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\</LoggerRootDirectory>
+      <IntermediateDirectory>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngleContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>E:\workspace\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-04:00</Value>
+        <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T12:41:18-04:00</Value>
+        <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-04:00</Value>
+        <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-04:00</Value>
+        <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T12:41:18-04:00</Value>
+        <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T12:41:18-04:00</Value>
+        <Value>2010-08-23T13:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-04-15T14:29:37.0352211-04:00</Value>
+        <Value>2012-01-12T10:55:11.7092351-05:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

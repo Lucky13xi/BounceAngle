@@ -7,24 +7,24 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
 
 
-namespace TOJam
+namespace BounceAngle
 {
     class SoundManager
     {
-        private static SoundEffect click;
-        private static SoundEffect survivorDeath;
-        private static Song dayOverture;
-        private static Song nightOverture;
-        private static SoundEffect gunFire;
+        private  SoundEffect click;
+        private  SoundEffect survivorDeath;
+        private  Song dayOverture;
+        private  Song nightOverture;
+        private  SoundEffect gunFire;
 
-        private static SoundEffect zombieSound;
-        private static SoundEffect zombieDeath;
-        private static SoundEffect shuffling;
-        private static SoundEffect scavenging;
+        private  SoundEffect zombieSound;
+        private  SoundEffect zombieDeath;
+        private  SoundEffect shuffling;
+        private  SoundEffect scavenging;
 
-        private static float sfxVolume;
+        private  float sfxVolume;
 
-        public static void initializeSounds(ContentManager Content)
+        public  void initializeSounds(ContentManager Content)
         {
             click = Content.Load<SoundEffect>("Audio//clickSound");
             survivorDeath = Content.Load<SoundEffect>("Audio//survivorDeathSound");
@@ -38,60 +38,60 @@ namespace TOJam
         
         }
 
-        public static void playDayMusic()
+        public  void playDayMusic()
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(dayOverture);
         }
 
-        public static void stopMusic()
+        public  void stopMusic()
         {
             MediaPlayer.Pause();
         }
-        public static void playNightMusic()
+        public  void playNightMusic()
         {
             MediaPlayer.Stop();
             MediaPlayer.Play(nightOverture);
         }
 
-        public static void volumeDown()
+        public  void volumeDown()
         {
             MediaPlayer.Volume -= 0.1f;
             sfxVolume = Math.Min(1, MediaPlayer.Volume + 0.1f);
         }
 
-        public static void volumeUp()
+        public  void volumeUp()
         {
             MediaPlayer.Volume += 0.1f;
             sfxVolume = Math.Min(1, MediaPlayer.Volume + 0.1f);
         }
 
-        public static void playClick()
+        public  void playClick()
         {
             click.Play(sfxVolume, 0f, 0f);
         }
 
-        public static void playSurvivorDeathSound()
+        public  void playSurvivorDeathSound()
         {
             survivorDeath.Play(sfxVolume, 0f, 0f);
         }
-        public static void playZombieSound()
+        public  void playZombieSound()
         {
             zombieSound.Play(sfxVolume, 0, 0);
         }
-        public static void playZombieDeath()
+        public  void playZombieDeath()
         {
             zombieDeath.Play(sfxVolume, 0, 0);
         }
-        public static void playGunFire()
+        public  void playGunFire()
         {
             gunFire.Play(sfxVolume, 0, 0);
         }
-        public static void playScavenge()
+        public  void playScavenge()
         {
             scavenging.Play(sfxVolume, 0, 0);
         }
-        public static void playShuffling()
+        public  void playShuffling()
         {
             shuffling.Play(sfxVolume, 0, 0);
         }

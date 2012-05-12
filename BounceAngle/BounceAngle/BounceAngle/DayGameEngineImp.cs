@@ -13,6 +13,7 @@ namespace BounceAngle
         public static GameEngine instance = null;
 
         private List<MenuManager> menuManager = new List<MenuManager>();
+        private SoundManager soundManager = new SoundManager();
 
         Texture2D ammoBox;
         SpriteFont UIFont;
@@ -49,6 +50,7 @@ namespace BounceAngle
 
         public void Init(ContentManager content)
         {
+            soundManager.initializeSounds(content);
             ammoBox = content.Load<Texture2D>("MenuItems\\default");
             UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
             string[] ammoText = {"Ammo: ", "Food: "};
@@ -56,7 +58,7 @@ namespace BounceAngle
             //menuManager.Init();
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
-
+            soundManager.playDayMusic();
         }
 
         public void Update(GameTime gameTime)
