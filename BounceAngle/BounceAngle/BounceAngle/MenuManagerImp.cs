@@ -69,7 +69,7 @@ namespace BounceAngle
             menuItems.Add(new MenuItem(timeBox, UIFont, new Vector2(640 - (timeBox.Width / 2), 0), timeText, new Color(255f, 0f, 0f), true));
             menuItems.Add(new MenuItem(popUpBox, UIFont, new Vector2(640 - (popUpBox.Width / 2), 360 - (popUpBox.Height / 2)), popUpText, new Color(100f, 100f, 100f), false));
             menuItems.Add(new MenuItem(scavenge, UIFont, new Vector2(popUpBox.Width - scavenge.Width, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
-            menuItems.Add(new MenuItem(cancle, UIFont, new Vector2(popUpBox.Width + cancle.Width - 100f, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(cancle, UIFont, new Vector2(popUpBox.Width + cancle.Width - 50f, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
         }
 
         public MenuManagerImp()
@@ -89,16 +89,19 @@ namespace BounceAngle
 
             if (checkClick.Contains(new Point(x, y)))
             {
+                Console.WriteLine("GO!");
                 hidePopUp();
                 return tempBuilding;
             }
             if (checkCancle.Contains(new Point(x, y)))
             {
+                Console.WriteLine("NO!");
                 hidePopUp();
                 return null;
             }
             else
             {
+                Console.WriteLine("NOTHING!");
                 return null;
             }
         }
@@ -124,5 +127,11 @@ namespace BounceAngle
             menuItems[4].Alive = false;
             menuItems[5].Alive = false;
         }
+
+        public void displayScavenge(BuildingData data)
+        {
+            string[] scavText = { "Suvivors Rescued: " + data.getSurvivors(), "Food Found: " + data.getFood(), "Ammo Found: " + data.getAmmo(), "Scavenge Time: " + data.getScavengeTime() };
+        }
+
     }
 }
