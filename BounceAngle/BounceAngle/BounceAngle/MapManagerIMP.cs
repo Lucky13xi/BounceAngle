@@ -72,6 +72,9 @@ namespace BounceAngle
         public void setOffset(Vector2 _offset)
         {
             offset += _offset;
+            offset.X = MathHelper.Clamp(offset.X, -2500, 2500);
+            offset.Y = MathHelper.Clamp(offset.Y, -2500, 2500);
+            
         }
 
         public int getCollision(Vector2 cord) {
