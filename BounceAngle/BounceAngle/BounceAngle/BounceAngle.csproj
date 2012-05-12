@@ -116,6 +116,7 @@
     <Compile Include="GameEngine.cs" />
     <Compile Include="MapManager.cs" />
     <Compile Include="MapManagerIMP.cs" />
+    <Compile Include="MenuClickResult.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MenuManagerImp.cs" />

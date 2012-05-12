@@ -80,7 +80,7 @@ namespace BounceAngle
         private Boolean processMenuClicks(MouseState mouseState)
         {
             // 1. check if any menu was pressed.
-            BuildingData buildingPopup = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+            BuildingData buildingPopup = null;//DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
             // if its a building popup, then do this
             if (buildingPopup != null)
             {
