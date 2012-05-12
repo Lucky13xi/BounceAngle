@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace BounceAngle
 {
-    class MenuItem
+    public class MenuItem
     {
         private Texture2D box;
         private SpriteFont font;
