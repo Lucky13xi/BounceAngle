@@ -4,6 +4,7 @@
 *.exe
 *.pdb
 *.suo
+*.cachefile
 
 # mstest test results
 TestResults
