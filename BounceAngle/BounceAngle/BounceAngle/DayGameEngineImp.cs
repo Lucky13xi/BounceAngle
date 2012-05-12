@@ -26,12 +26,12 @@ namespace BounceAngle
 
         public UIManager getUIManager()
         {
-            throw new NotImplementedException();
+            return uiMan;
         }
 
         public MenuManager getMenuManager()
         {
-            throw new NotImplementedException();
+            return menuManager;
         }
 
         public MapManager getMapManager() {
@@ -39,8 +39,9 @@ namespace BounceAngle
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            menuManager.Draw(spriteBatch);
+            //draw the buildings before the menu
             mapMan.Draw(spriteBatch);
+            menuManager.Draw(spriteBatch);
         }
 
         public void Init(ContentManager content)

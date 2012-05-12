@@ -10,7 +10,6 @@ namespace BounceAngle
     class UIManagerIMP : UIManager
     {
         private List<BuildingData> buildingsForQue = new List<BuildingData>();
-        private BuildingData lastBuildingDataClicked;
         private MouseState preMouseState;
         private BuildingData lastHoveredBuildingData;
         public void ProcessMouse(MouseState mouseState) {
@@ -25,36 +24,28 @@ namespace BounceAngle
         private void processClick(MouseState mouseState) {
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
                 // 1. check if any menu was pressed.
-               // Boolean isSmack = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
-                Boolean isSmack = false;
-                if (isSmack)
+                BuildingData buildingPopup = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+
+                if (buildingPopup != null)
                 {
-                    //TODO: updatePlayState
-                    if (lastBuildingDataClicked != null)
-                    {
-                        buildingsForQue.Add(lastBuildingDataClicked);
-                        Console.WriteLine("We queued the building " + lastBuildingDataClicked.getID());
-                        lastBuildingDataClicked = null;
-                        return;
-                    }
+                    buildingsForQue.Add(buildingPopup);
+                    Console.WriteLine("We queued the building " + buildingPopup.getID());
+                    return;
                 }
-                else
-                {
-                    // TODO: close pop up
-                   
-                    //Console.WriteLine("We close the info for building " + lastBuildingDataClicked.getID());
-                    lastBuildingDataClicked = null;
-                }
+
+                DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
+                Console.WriteLine("closing all popups ");
+
                 int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
             
                 // 2. check if any building was pressed 
                 if (buildingId >= 0)
                 {
                     Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
-                    lastBuildingDataClicked = b.getBuildingData();
+                    BuildingData d = b.getBuildingData();
                     //  2a. pop up the building summary
-                    //TODO: the popup window
-                    Console.WriteLine("We popped up the info for building " + lastBuildingDataClicked.getID());
+                    DayGameEngineImp.getGameEngine().getMenuManager().displayPopUp(d);
+                    Console.WriteLine("We popped up the info for building " + d.getID());
                 }
             }
         

@@ -36,9 +36,13 @@ namespace BounceAngle
         public void LoadMap(ContentManager Content)
         {
 
-            addBuilding(new BuildingIMP(new Vector2(200, 200), Content.Load<Texture2D>("Images//factory0"), false, new BuildingDataIMP(buildingCounter++, 0, 4, 1, "factory", 0, false)));
-            addBuilding(new BuildingIMP(new Vector2(800, 200), Content.Load<Texture2D>("Images//hospital0"), false, new BuildingDataIMP(buildingCounter++, 2, 3, 5, "Hospital", 1, false)));
-            addBuilding(new BuildingIMP(new Vector2(1100, 400), Content.Load<Texture2D>("Images//mainStreet0"), false, new BuildingDataIMP(buildingCounter++, 5, 0, 1, "Main Street", 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(950, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "factory", 0, false)));
+            addBuilding(new BuildingIMP(new Vector2(600, 200), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Hospital", 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(200, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street", 2, false)));
+            addBuilding(new BuildingIMP(new Vector2(0, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//apartments0"), 2, 2, 1, "Apartments", 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(50, 300), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church", 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(600, 600), false, new BuildingDataIMP(buildingCounter++, Content.Load<Texture2D>("Images//factory1"), 0, 0, 2, "factory", 0, false)));
+
         }
 
         public List<Building> getAllBuildings()
@@ -73,9 +77,9 @@ namespace BounceAngle
         public int getCollision(Vector2 cord) {
             for (int i = 0; i < buildings.Count; i++ )
             {
-                Rectangle hitRect = new Rectangle((int)buildings[i].location.X, (int)buildings[i].location.Y, buildings[i].texture.Width, buildings[i].texture.Height);
+                Rectangle hitRect = new Rectangle((int)buildings[i].location.X, (int)buildings[i].location.Y, buildings[i].getBuildingData().getTexture().Width, buildings[i].getBuildingData().getTexture().Height);
                 if (hitRect.Contains(new Point((int)cord.X, (int)cord.Y))) {
-                    Console.WriteLine("hit"+i);
+                    //Console.WriteLine("hit"+i);
                     
                     return i;
                     
