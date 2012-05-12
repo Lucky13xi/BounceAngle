@@ -19,6 +19,7 @@ namespace BounceAngle
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameEngine dayGame;
+        GameEngine nightGame;
         private KeyboardState preKeyState; 
 
         public Game1()
@@ -51,10 +52,14 @@ namespace BounceAngle
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // load content for both game engines
             dayGame = DayGameEngineImp.getGameEngine();
-
             dayGame.Init(Content);
-            // TODO: use this.Content to load your game content here
+            nightGame = NightGameEngineImp.getGameEngine();
+            nightGame.Init(Content);
+
+            // start the day game
+            dayGame.start();
         }
 
         /// <summary>
