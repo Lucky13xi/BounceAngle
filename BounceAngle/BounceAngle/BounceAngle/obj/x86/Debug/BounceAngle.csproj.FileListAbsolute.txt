@@ -1,0 +1,6 @@
+F:\TOJam\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.exe
+F:\TOJam\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.pdb
+F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.exe
+F:\TOJam\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.pdb
