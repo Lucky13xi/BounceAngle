@@ -10,3 +10,12 @@ C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\B
 C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.pdb
 C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.exe
 C:\Users\Graphic\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.pdb
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.exe
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\BounceAngle.pdb
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.exe
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\obj\x86\Debug\BounceAngle.pdb
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\factory0.xnb
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\hospital0.xnb
+C:\Users\Graphic\myDir\BounceAngle\BounceAngle\BounceAngle\BounceAngle\BounceAngle\bin\x86\Debug\Content\Images\mainStree0.xnb

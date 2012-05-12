@@ -34,7 +34,7 @@ namespace BounceAngle
         public void LoadMap(ContentManager Content)
         {
 
-            addBuilding(new BuildingIMP(new Vector2(200, 200), Content.Load<Texture2D>("Images//building1"), false, new BuildingDataIMP(0, 4, 1, "factory", 0)));
+            addBuilding(new BuildingIMP(new Vector2(200, 200), Content.Load<Texture2D>("Images//factory0"), false, new BuildingDataIMP(0, 4, 1, "factory", 0)));
         }
 
         public ArrayList getAllBuildings()
