@@ -8,8 +8,8 @@ namespace BounceAngle
     class MenuClickResult
     {
 
-        Object payLoad;
-        clickType type;    
+        public Object payLoad;
+        public clickType type;    
 
         public enum clickType
         {
