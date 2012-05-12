@@ -55,5 +55,12 @@ namespace BounceAngle
         {
             return id;
         }
+
+        public void setAmmo(int a) { ammo = a; }
+        public void setFood(int f) { food = f; }
+        public void setZombies(int z) { zombies = z;  }
+        public void setSurvivors(int surv) { survivors = surv;  }
+        public void setBuildingDescription(string desc) { description = desc; }
+        public void setOver(Boolean over) { isOn = over;  }
     }
 }
