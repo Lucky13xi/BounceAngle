@@ -3,47 +3,84 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace BounceAngle
 {
     class UIManagerIMP : UIManager
     {
-
+        private List<BuildingData> buildingsForQue = new List<BuildingData>();
+        private BuildingData lastBuildingDataClicked;
+        private MouseState preMouseState;
         private BuildingData lastHoveredBuildingData;
-        public void ProcessMouse(Vector2 mousePos) {
+        public void ProcessMouse(MouseState mouseState) {
 
-            processBuildingHover(mousePos);
+            processBuildingHover(new Vector2(mouseState.X, mouseState.Y));
+            processClick(mouseState);
+            preMouseState = mouseState;
+
         }
+        
 
+        private void processClick(MouseState mouseState) {
+            if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
+                // 1. check if any menu was pressed.
+                Boolean isSmack = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+                if (isSmack)
+                {
+                    //TODO: updatePlayState
+                    if (lastBuildingDataClicked != null)
+                    {
+                        buildingsForQue.Add(lastBuildingDataClicked);
+                        Console.WriteLine("We queued the building " + lastBuildingDataClicked.getID());
+                        lastBuildingDataClicked = null;
+                        return;
+                    }
+                }
+                else
+                {
+                    // TODO: close pop up
+                    Console.WriteLine("We close the info for building " + lastBuildingDataClicked.getID());
+                    lastBuildingDataClicked = null;
+                }
+                int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
+            
+                // 2. check if any building was pressed 
+                if (buildingId >= 0)
+                {
+                    Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
+                    lastBuildingDataClicked = b.getBuildingData();
+                    //  2a. pop up the building summary
+                    //TODO: the popup window
+                    Console.WriteLine("We popped up the info for building " + lastBuildingDataClicked.getID());
+                }
+            }
+        
+        }
         private void processBuildingHover(Vector2 mousePos)
         {
 
-            int building = DayGameEngineImp.getGameEngine().getMapManager().getCollision(mousePos);
+            int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(mousePos);
 
-            if (building >= 0)
+            if (buildingId >= 0)
             {
-                Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(building);
-                if ((null != lastHoveredBuildingData) && (lastHoveredBuildingData.getID() != b.getBuildingData().getID()))
+                if ((null != lastHoveredBuildingData) && (lastHoveredBuildingData.getID() != buildingId))
                 {
                     // remove the hover from the last building
-                    Building c = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(lastHoveredBuildingData.getID());
-                    BuildingData d = lastHoveredBuildingData;
-                    c.setBuildingData(new BuildingDataIMP(d.getID(), d.getAmmo(), d.getFood(), d.getZombies(), d.getBuildingDescription(), d.getSurvivors(), false));
+                    lastHoveredBuildingData.setOver(false);
                     lastHoveredBuildingData = null;
                 }
                 // add the hover to the next hover
-                BuildingData e = b.getBuildingData();
-                b.setBuildingData(new BuildingDataIMP(e.getID(), e.getAmmo(), e.getFood(), e.getZombies(), e.getBuildingDescription(), e.getSurvivors(), true));
+                Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
                 lastHoveredBuildingData = b.getBuildingData();
+                lastHoveredBuildingData.setOver(true);
             }
             else
             {
                 // removing the hover
                 if (null != lastHoveredBuildingData)
                 {
-                    Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(lastHoveredBuildingData.getID());
-                    BuildingData d = lastHoveredBuildingData;
-                    b.setBuildingData(new BuildingDataIMP(d.getID(), d.getAmmo(), d.getFood(), d.getZombies(), d.getBuildingDescription(), d.getSurvivors(), false));
+                    lastHoveredBuildingData.setOver(false); 
                     lastHoveredBuildingData = null;
                 }
             }

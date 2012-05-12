@@ -12,7 +12,6 @@ namespace BounceAngle
         Boolean isSafeHouse();
         Boolean isCollision();
         BuildingData getBuildingData();
-        void setBuildingData(BuildingData data);
         void Draw(SpriteBatch spriteBatch);
         void setOffset(Vector2 offset);
     }

@@ -40,10 +40,6 @@ namespace BounceAngle
             return buildingData;
 
         }
-        public void setBuildingData(BuildingData data)
-        {
-            buildingData = data;
-        }
 
         public void setOffset(Vector2 _offset)
         {
