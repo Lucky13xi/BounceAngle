@@ -23,7 +23,7 @@ namespace BounceAngle
 
         public SoundManager getSoundManager()
         {
-            throw new NotImplementedException();
+            return soundManager;
         }
 
         public UIManager getUIManager()
@@ -63,6 +63,7 @@ namespace BounceAngle
 
         public void Update(GameTime gameTime)
         {
+
         }
 
         private DayGameEngineImp() {}
