@@ -17,7 +17,7 @@ namespace BounceAngle
         private float height = 0f;
         private float width = 0f;
         private string[] text;
-
+        private Color fontColor;
 
         public void setTime(int time)
         {
@@ -39,7 +39,8 @@ namespace BounceAngle
             Vector2 location = textPos;
             for (int i = 0; i < text.Length; i++)
             {
-                spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), Color.Red);
+                spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), fontColor);
+                //spriteBatch.DrawString(font, text[i], location + new Vector2(0, 15 * i), Color.Red, 0f, location + new Vector2(0, 15 * i), 0.5f, SpriteEffects.None, 0f);
             }
 
         }
@@ -58,12 +59,13 @@ namespace BounceAngle
  
         }
 
-        public MenuManagerImp(Texture2D _box, SpriteFont _font, Vector2 _position, string[] _text)
+        public MenuManagerImp(Texture2D _box, SpriteFont _font, Vector2 _position, string[] _text, Color _fontColor)
         {
             box = _box;
             font = _font;
             position = _position;
             text = _text;
+            fontColor = _fontColor;
             MeasureText();
         }
 

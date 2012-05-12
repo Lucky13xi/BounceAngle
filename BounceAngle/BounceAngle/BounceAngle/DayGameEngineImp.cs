@@ -14,7 +14,7 @@ namespace BounceAngle
 
         private List<MenuManager> menuManager = new List<MenuManager>();
 
-        Texture2D ammoBox;
+        Texture2D timeBox;
         SpriteFont UIFont;
 
 
@@ -49,10 +49,10 @@ namespace BounceAngle
 
         public void Init(ContentManager content)
         {
-            ammoBox = content.Load<Texture2D>("MenuItems\\timeBox");
+            timeBox = content.Load<Texture2D>("MenuItems\\timeBox");
             UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
-            string[] ammoText = {"Daylight Time Remaining: 10:00"};
-            menuManager.Add(new MenuManagerImp(ammoBox, UIFont, new Vector2(640 - (ammoBox.Width / 2), 0), ammoText));
+            string[] timeText = {"Daylight Time Remaining: 10:00"};
+            menuManager.Add(new MenuManagerImp(timeBox, UIFont, new Vector2(640 - (timeBox.Width / 2), 0), timeText, new Color(255f, 0f, 0f)));
             //menuManager.Init();
             mapMan = new MapManagerIMP();
             mapMan.LoadMap(content);
