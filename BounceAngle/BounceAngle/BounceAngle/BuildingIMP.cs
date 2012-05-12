@@ -9,11 +9,10 @@ namespace BounceAngle
 {
     class BuildingIMP : Building
     {
-
         public Vector2 location;
         public Texture2D texture;
         public Boolean safeHouse;
-        BuildingDataIMP buildingData;
+        BuildingData buildingData;
         Vector2 offset;
 
 
@@ -41,9 +40,9 @@ namespace BounceAngle
             return buildingData;
 
         }
-        public void setBuildingData(int _ammo, int _food, int _zombies, string _description, int _id)
+        public void setBuildingData(BuildingData data)
         {
-            buildingData = new BuildingDataIMP(_ammo, _food, _zombies, _description, _id);
+            buildingData = data;
         }
 
         public void setOffset(Vector2 _offset)
@@ -51,11 +50,15 @@ namespace BounceAngle
             offset = _offset;
         }
 
-        public void Draw() { }
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-
-            spriteBatch.Draw(texture, location + offset, Color.White);
+        public void Draw(SpriteBatch spriteBatch) {
+            if (buildingData.isOver())
+            {
+                spriteBatch.Draw(texture, location + offset, Color.Red);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, location + offset, Color.White);
+            }
         }
 
     }

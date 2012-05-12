@@ -123,6 +123,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="UIManager.cs" />
+    <Compile Include="UIManagerIMP.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

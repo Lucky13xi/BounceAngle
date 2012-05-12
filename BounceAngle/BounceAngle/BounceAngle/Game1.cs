@@ -37,7 +37,7 @@ namespace BounceAngle
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -74,8 +74,6 @@ namespace BounceAngle
         {
             // Allows the game to exit
             dayGame.Update(gameTime);
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }

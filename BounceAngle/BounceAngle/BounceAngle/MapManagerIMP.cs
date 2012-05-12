@@ -16,12 +16,15 @@ namespace BounceAngle
     class MapManagerIMP : MapManager
     {
 
-        ArrayList buildings;
+
+        private static int buildingCounter = 0;
+
+        List<BuildingIMP> buildings;
         Vector2 offset;
 
         public MapManagerIMP()
         {
-            buildings = new ArrayList();
+            buildings = new List<BuildingIMP>();
             offset = Vector2.Zero;
         }
 
@@ -33,41 +36,60 @@ namespace BounceAngle
         public void LoadMap(ContentManager Content)
         {
 
-            addBuilding(new BuildingIMP(new Vector2(200, 200), Content.Load<Texture2D>("Images//factory0"), false, new BuildingDataIMP(0, 4, 1, "factory", 0)));
-            addBuilding(new BuildingIMP(new Vector2(800, 200), Content.Load<Texture2D>("Images//hospital0"), false, new BuildingDataIMP(2, 3, 5, "Hospital", 1)));
-            addBuilding(new BuildingIMP(new Vector2(1100, 400), Content.Load<Texture2D>("Images//mainStreet0"), false, new BuildingDataIMP(5, 0, 1, "Main Street", 2)));
+            addBuilding(new BuildingIMP(new Vector2(200, 200), Content.Load<Texture2D>("Images//factory0"), false, new BuildingDataIMP(buildingCounter++, 0, 4, 1, "factory", 0, false)));
+            addBuilding(new BuildingIMP(new Vector2(800, 200), Content.Load<Texture2D>("Images//hospital0"), false, new BuildingDataIMP(buildingCounter++, 2, 3, 5, "Hospital", 1, false)));
+            addBuilding(new BuildingIMP(new Vector2(1100, 400), Content.Load<Texture2D>("Images//mainStreet0"), false, new BuildingDataIMP(buildingCounter++, 5, 0, 1, "Main Street", 2, false)));
         }
 
-        public ArrayList getAllBuildings()
+        public List<Building> getAllBuildings()
         {
-            return buildings;
+            List<Building> aList = new List<Building>();
+            foreach (BuildingIMP building in buildings) {
+                aList.Add(building);
+            }
+            return aList;
         }
 
         public Building getBuildingByID(int id)
         {
 
-            return (Building)buildings[id];
+            foreach (BuildingIMP building in buildings)
+            {
+                if (building.getBuildingData().getID() == id)
+                {
+                    return building;
+                }
+            }
+            return null;
         }
 
-        public int findClosestBuildingID(Vector2 cord)
-        {
-            //TODO: find the closest building to the point.
-            return 0;
-        }
+       
 
         public void setOffset(Vector2 _offset)
         {
             offset = _offset;
         }
-        public int getClickCollision(Vector2 cord) {
-            return 0;
+
+        public int getCollision(Vector2 cord) {
+            for (int i = 0; i < buildings.Count; i++ )
+            {
+                Rectangle hitRect = new Rectangle((int)buildings[i].location.X, (int)buildings[i].location.Y, buildings[i].texture.Width, buildings[i].texture.Height);
+                if (hitRect.Contains(new Point((int)cord.X, (int)cord.Y))) {
+                    Console.WriteLine("hit"+i);
+                    
+                    return i;
+                    
+                }
+            }
+            return -1;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (BuildingIMP building in buildings)
             {
-                spriteBatch.Draw(building.texture, building.location + offset, Color.White);
+                building.Draw(spriteBatch);
             }
         }
+
     }
 }

@@ -7,25 +7,27 @@ namespace BounceAngle
 {
     class BuildingDataIMP : BuildingData
     {
-        private static int buildingCounter = 0;
+        private int ammo;
+        private int food;
+        private int zombies;
+        private string description;
+        private int id;
+        private int survivors;
+        private Boolean isOn;
 
-        int ammo;
-        int food;
-        int zombies;
-        string description;
-        int id;
-        int survivors;
-
-        public BuildingDataIMP(int _ammo, int _food, int _zombies, string _description, int _survivors)
+        public BuildingDataIMP(int _id, int _ammo, int _food, int _zombies, string _description, int _survivors, Boolean _isOn)
         {
-            id = ++buildingCounter;
+            id = _id;
             ammo = _ammo;
             food = _food;
             zombies = _zombies;
             description = _description;
             survivors = _survivors;
+            isOn = _isOn;
         }
-
+        public Boolean isOver() {
+            return isOn;
+        }
         public int getAmmo()
         {
             return ammo;
