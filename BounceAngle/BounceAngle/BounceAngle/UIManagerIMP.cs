@@ -88,24 +88,19 @@ namespace BounceAngle
                 {
                     BuildingData buildingPopup = (BuildingData)clickResult.payLoad;
                     DayGameEngineImp.getGameEngine().getSimMgr().queueBuildingToScavenge(buildingPopup);
-                    Console.WriteLine("We queued the building " + buildingPopup.getID());
                     DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
-                    return true;
                 }
                 else if (MenuClickResult.clickType.summary == clickResult.type)
                 {
-                    // TODO: summary button complete clicked
+                    DayGameEngineImp.getGameEngine().getSimMgr().onSummaryPopupOkay();
                 }
                 else
                 {
                     DayGameEngineImp.getGameEngine().getMenuManager().hidePopUp();
                     Console.WriteLine("closing all popups ");
                 }
+                return true;
             }
-
-
-            // if it is the turn run button, then do this
-            // TODO: DayGameEngineImp.getGameEngine().getSimMgr().runSim();
 
             return false;
         }

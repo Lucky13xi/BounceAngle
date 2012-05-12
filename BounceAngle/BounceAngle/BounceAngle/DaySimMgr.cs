@@ -7,8 +7,10 @@ namespace BounceAngle
 {
     interface DaySimMgr
     {
+        void init();
         void queueBuildingToScavenge(BuildingData data);
         void runSim();
         int getNumAvailableSurvivorsToScavenge();
+        void onSummaryPopupOkay();
     }
 }
