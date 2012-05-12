@@ -10,15 +10,16 @@ namespace BounceAngle
     interface MenuManager
     {
 
-        void setTime(int time);
-        void setAmmo(int ammo);
-        void setFood(int food);
+        int SetUITime { get; set; }
+        int SetUIAmmo { get; set; }
+        int SetUIFood { get; set; }
+        int SetUISurvivors { get; set; }
         void setResource(int[] resource);
         void Draw(SpriteBatch spriteBatch);
         void Init(ContentManager content);
-        int Survivors { get; set; }
-        BuildingData getClickCollision(int x, int y);
+        MenuClickResult getClickCollision(int x, int y);
         void displayPopUp(BuildingData data);
+        void displaySummary(int _food, int _ammo, int _zombies, int _survivors);
         void hidePopUp();
     }
 }
