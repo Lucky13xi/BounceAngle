@@ -59,8 +59,8 @@ namespace BounceAngle
             nightGame.Init(Content);
 
             // start the day game
-            //dayGame.start();
-            nightGame.start();
+            dayGame.start();
+            //nightGame.start();
         }
 
         /// <summary>

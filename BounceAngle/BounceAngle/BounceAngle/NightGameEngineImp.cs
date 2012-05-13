@@ -19,9 +19,7 @@ namespace BounceAngle
         private ZombieManager zombieMgr;
         private SurvivorManager survivorMgr;
         private EffectsManager effectsMgr;
-
-        private const int SPAWN_DELAY = 1000;
-        private float spawnCounter;
+        private NightSimMgr nightSimMgr;
 
         public SoundManager getSoundManager()       { return soundMgr; }
         public UIManager getUIManager()             { return uiMgr; }
@@ -31,22 +29,25 @@ namespace BounceAngle
         public ZombieManager getZombieManager()     { return zombieMgr; }
         public SurvivorManager getSurvivorManager() { return survivorMgr; }
         public EffectsManager getEffectsMgr()       { return effectsMgr; }
+        public NightSimMgr getNightSimMgr()         { return nightSimMgr; }
+
         public void Init(ContentManager content)
         {
             isRunning = false;
             soundMgr = DayGameEngineImp.getGameEngine().getSoundManager();
             soundMgr.playNightMusic();
             uiMgr = new NightUiManagerImpl();
-            menuMgr = null;
+            menuMgr = DayGameEngineImp.getGameEngine().getMenuManager();
             mapMgr = DayGameEngineImp.getGameEngine().getMapManager();
-            spawnCounter = 0;
             zombieMgr = new ZombieManagerImplementation();
             effectsMgr = new EffectsManagerImp();
             survivorMgr = new SurvivorManagerIMP();
+            nightSimMgr = new NightSimMgrImpl();
 
+            nightSimMgr.init();
             effectsMgr.Init(content);
-            //uiMgr.init();
-            //menuMgr.Init(content);
+            uiMgr.init();
+            //menuMgr.Init(content);    // gets init in the daygameengine
             //mapMgr.Init();
             zombieMgr.init(content);
             survivorMgr.init(content);
@@ -55,7 +56,7 @@ namespace BounceAngle
         {
             if (isRunning)
             {
-                //menuMgr.draw(spriteBatch);
+                menuMgr.Draw(spriteBatch);
                 mapMgr.Draw(spriteBatch);
                 zombieMgr.draw(spriteBatch);
                 effectsMgr.Draw(spriteBatch);
@@ -68,20 +69,14 @@ namespace BounceAngle
 
             if (isRunning)
             {
-                spawnCounter += gameTime.ElapsedGameTime.Milliseconds;
-                if (spawnCounter > SPAWN_DELAY)
-                {
-                    zombieMgr.addZombie(new ZombieDataImp(getZombieManager().getZombieTextures()[0]));
-                    spawnCounter = 0;
-                }
-
                 MouseState mouseState = Mouse.GetState();
                 uiMgr.ProcessMouse(mouseState);
-                //menuMgr.update(gameTime);
+                menuMgr.Update(gameTime);
                 //mapMgr.update(gameTime);
                 zombieMgr.update(gameTime);
                 effectsMgr.Update(gameTime);
                 survivorMgr.update(gameTime);
+                nightSimMgr.update(gameTime);
             }
         }
 
@@ -93,7 +88,7 @@ namespace BounceAngle
         public void start()
         {
             isRunning = true;
-            // TODO: may need some special reset code here
+            nightSimMgr.resetMode();
         }
 
         private static GameEngine instance = null;
