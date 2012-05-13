@@ -172,6 +172,7 @@ namespace BounceAngle
                 int collission2 = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(anotherPossibleLocation2);
                 /*
                 Console.WriteLine("Survivor: " + survivor.getId()
+                    + " collided=" + buildingCollision
                     + " currLoc=" + survivor.getCurrentLocation()
                     + " wantToGo=" + wantToGoHereLocation
                     + " possible1=" + (anotherPossibleLocation1)
@@ -270,7 +271,7 @@ namespace BounceAngle
                 if (survivorsData[i].getId() == survivorDataId)
                 {
                     activeSurvivor = survivorsData[i];
-                    break;
+                    return;
                 }
             }
             activeSurvivor = null;

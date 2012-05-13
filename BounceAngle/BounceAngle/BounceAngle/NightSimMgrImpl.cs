@@ -10,10 +10,14 @@ namespace BounceAngle
     {
         private const int SPAWN_DELAY = 1000;
         private float spawnCounter;
+        private int screenHeight;
+        private int screenWidth;
 
         public void init()
         {
             spawnCounter = 0;
+            screenHeight = 720;
+            screenWidth = 1280;
         }
 
         public void resetMode()
@@ -54,6 +58,21 @@ namespace BounceAngle
 
             // display all the survivor icons
             NightGameEngineImp.getGameEngine().getMenuManager().displaySurvivorIcons(NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors());
+
+            updateScreenLocation();
+        }
+
+        private void updateScreenLocation()
+        {
+            SurvivorData sd = NightGameEngineImp.getGameEngine().getSurvivorManager().getActiveSurvivor();
+            if (null != sd)
+            {
+                // update the screen offsets to follow the active survivor
+                Vector2 centeringOffset = new Vector2(screenWidth / 2, screenHeight / 2);
+                Vector2 worldToScreenOffset = -sd.getCurrentLocation() + centeringOffset;
+                //Console.WriteLine("Screen worldToScreenOffset:" + worldToScreenOffset + " survivor:" + sd.getCurrentLocation() + " centering=" + centeringOffset);
+                NightGameEngineImp.getGameEngine().getMapManager().setScreenWorldOffset(worldToScreenOffset);
+            }
         }
     }
 }

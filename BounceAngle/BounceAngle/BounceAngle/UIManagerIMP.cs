@@ -12,12 +12,10 @@ namespace BounceAngle
         private MouseState preMouseState;
         private BuildingData lastHoveredBuildingData;
         private Vector2 worldToScreenOffset;
-        private Vector2 previousOffsetChange;
         
         public void init()
         {
             worldToScreenOffset = Vector2.Zero;
-            previousOffsetChange = Vector2.Zero;
         }
 
         public void ProcessMouse(MouseState mouseState) {
@@ -27,43 +25,34 @@ namespace BounceAngle
             processScrolling(mouseState);
             preMouseState = mouseState;
 
-            // update the final offset
-            worldToScreenOffset += previousOffsetChange;
-            worldToScreenOffset.X = MathHelper.Clamp(worldToScreenOffset.X, -1500, 1500);
-            worldToScreenOffset.Y = MathHelper.Clamp(worldToScreenOffset.Y, -900, 500);
-
-        }
-
-        public Vector2 getCurrentWorldToScreenOffset()
-        {
-            return worldToScreenOffset;
-        }
-
-        public Vector2 getPreviousWorldToScreenOffsetDifference()
-        {
-            return previousOffsetChange;
         }
 
         private void processScrolling(MouseState mouseState)
         {
-            previousOffsetChange = Vector2.Zero;
+            Vector2 changeOffset = Vector2.Zero;
             if (mouseState.X < 20)
             {
-                previousOffsetChange = new Vector2(10, 0);
+                changeOffset = new Vector2(10, 0);  // right
             }
             if (mouseState.X > 1060)
             {
-                previousOffsetChange = new Vector2(-10, 0);
+                changeOffset = new Vector2(-10, 0); // left
             }
             if (mouseState.Y < 20)
             {
-                previousOffsetChange = new Vector2(0, 10);
+                changeOffset = new Vector2(0, 10);  // down
             }
             if (mouseState.Y > 700)
             {
-                previousOffsetChange = new Vector2(0, -10);
+                changeOffset = new Vector2(0, -10); // up
             }
-            DayGameEngineImp.getGameEngine().getMapManager().setScreenWorldOffset(getCurrentWorldToScreenOffset());
+
+            // update the final offset
+            worldToScreenOffset += changeOffset;
+            worldToScreenOffset.X = MathHelper.Clamp(worldToScreenOffset.X, -1500, 1500);
+            worldToScreenOffset.Y = MathHelper.Clamp(worldToScreenOffset.Y, -900, 500);
+
+            DayGameEngineImp.getGameEngine().getMapManager().setScreenWorldOffset(worldToScreenOffset);
         }
 
         private void processClick(MouseState mouseState) {
