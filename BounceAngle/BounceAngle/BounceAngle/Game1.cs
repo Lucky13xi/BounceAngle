@@ -86,7 +86,7 @@ namespace BounceAngle
         public void restartGame()
         {
             DayGameEngineImp.getGameEngine().getSimMgr().init();
-
+            
             // start the day game
             nightGame.stop();
             dayGame.start();
