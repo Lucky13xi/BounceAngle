@@ -40,6 +40,7 @@ namespace BounceAngle
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
+            graphics.ToggleFullScreen();
         }
 
         /// <summary>
