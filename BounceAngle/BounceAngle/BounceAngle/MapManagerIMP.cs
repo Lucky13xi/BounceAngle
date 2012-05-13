@@ -126,6 +126,25 @@ namespace BounceAngle
             return -1;
         }
 
+        public int getCollision(Vector2 cord, Vector2 off)
+        {
+
+            for (int i = 0; i < buildings.Count; i++)
+            {
+                Vector2 location = buildings[i].getBuildingData().getLocation();
+                Rectangle hitRect = new Rectangle((int)location.X + (int)offset.X, (int)location.Y + (int)offset.Y, buildings[i].getBuildingData().getTexture().Width, buildings[i].getBuildingData().getTexture().Height);
+
+                if (hitRect.Contains(new Point((int)cord.X + (int)off.X, (int)cord.Y + (int)off.Y)))
+                {
+                    //Console.WriteLine("hit"+i);
+
+                    return i;
+
+                }
+            }
+            return -1;
+        }
+
         public int getSafehouseBuildingId()
         {
             return safehouseId;
