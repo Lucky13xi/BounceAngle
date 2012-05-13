@@ -12,18 +12,20 @@ namespace BounceAngle
         int food;
         int ammo;
         int aliveSurvivors;
-        int time;
+        int daysAlive;
         Random random = new Random();
 
 
         public void init() {
             buildingsToScavenge = new List<BuildingData>();
             aliveSurvivors = 1;
-            //time = 8 *60;
+            food = 0;
+            ammo = 0;
+            daysAlive = 0;
 
             DayGameEngineImp.getGameEngine().getMenuManager().SetUIAmmo = ammo;
             DayGameEngineImp.getGameEngine().getMenuManager().SetUIFood = food;
-            DayGameEngineImp.getGameEngine().getMenuManager().SetUITime = 12; // time + 12 * 60;
+            DayGameEngineImp.getGameEngine().getMenuManager().SetUITime = daysAlive;
             DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors = aliveSurvivors;
             DayGameEngineImp.getGameEngine().getMenuManager().SetUIScavenges = aliveSurvivors;
         }
@@ -84,7 +86,7 @@ namespace BounceAngle
              // use _ammo & _food & _aliveSurvivors for the sub total of the day
             //Console.WriteLine("Food gathered: " + _food + " Ammo gathered: " + _ammo + " Survivors Found: " + _aliveSurvivors);
             //DayGameEngineImp.getGameEngine().getMenuManager().displaySummary(_food, _ammo, _zombies, _aliveSurvivors);
-            DayGameEngineImp.getGameEngine().getMenuManager().displaySummary(_food, _ammo, _aliveSurvivors, _time);
+            DayGameEngineImp.getGameEngine().getMenuManager().displaySummary(_food, _ammo, _aliveSurvivors, daysAlive);
             
         }
 
@@ -105,6 +107,7 @@ namespace BounceAngle
             // clear our building list
             NightGameEngineImp.getGameEngine().getMenuManager().hideSurvivorIcon();
             buildingsToScavenge.Clear();
+            ++daysAlive;
         }
     }
 }

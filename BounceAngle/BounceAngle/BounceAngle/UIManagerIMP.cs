@@ -145,8 +145,11 @@ namespace BounceAngle
                 }
                 // add the hover to the next hover
                 Building b = DayGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingId);
-                lastHoveredBuildingData = b.getBuildingData();
-                lastHoveredBuildingData.setOver(true);
+                if (b != null)
+                {
+                    lastHoveredBuildingData = b.getBuildingData();
+                    lastHoveredBuildingData.setOver(true);
+                }
             }
             else
             {
