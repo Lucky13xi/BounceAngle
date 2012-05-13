@@ -58,16 +58,21 @@ namespace BounceAngle
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-600, 600), false, Content.Load<Texture2D>("Images//arena0"), 10, 1, 0, "Air Canada Center", 0, 7, false, new Vector2(0.5f, -0.1f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-275, 0), false, Content.Load<Texture2D>("Images//apartments3"), 0, 1, 0, "Dirty End Motel", 0, 5, false, new Vector2(0.5f, 1.1f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-610, 330), false, Content.Load<Texture2D>("Images//apartments1"), 7, 2, 0, "Dark Night Co-op", 0, 4, false, new Vector2(-0.1f, 0.5f))));
-            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(725, 275), true, Content.Load<Texture2D>("Images//office0"), 0, 0, 0, "Louis Inc", 1, 2, false, new Vector2(0.5f, 1))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(725, 275), true, Content.Load<Texture2D>("Images//office0"), 0, 0, 0, "Safe House", 0, 2, false, new Vector2(0.5f, 1))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(75, 350), false, Content.Load<Texture2D>("Images//lawsociety0"), 10, 0, 0, "Creaky Court House", 0, 7, false, new Vector2(0.5f, 1.1f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-350, 600), false, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 0, "Silent Storage", 0, 2, false, new Vector2(0.5f, -0.1f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(1400, 600), false, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 0, "El Cheapo's Discount Lingerie", 0, 2, false, new Vector2(0.5f, -0.1f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(1200, 600), false, Content.Load<Texture2D>("Images//warehouse1"), 0, 0, 0, "El Cheapo's Discount Swimware", 0, 2, false, new Vector2(0.5f, -0.1f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-1225, 600), false, Content.Load<Texture2D>("Images//stadium0"), 4, 3, 0, "Black & Blue Stadium", 0, 4, false, new Vector2(0.5f, -0.1f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(1150, 800), false, Content.Load<Texture2D>("Images//church1"), 0, 1, 0, "Redeption Church", 0, 1, false, new Vector2(0.5f, 1.1f))));
-            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(450, 0), false, Content.Load<Texture2D>("Images//hotel0"), 2, 2, 1, "Carlin Hotel", 0, 3, false, new Vector2(1.1f, 0.5f))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(450, 0), false, Content.Load<Texture2D>("Images//hotel0"), 2, 2, 0, "Carlin Hotel", 0, 3, false, new Vector2(1.1f, 0.5f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(60,-100), false, Content.Load<Texture2D>("Images//apartments2"), 5, 0, 0, "FunTimes Rental Suits", 2, 4, false, new Vector2(-0.1f, 0.5f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(60, 1025), false, Content.Load<Texture2D>("Images//factory1"), 0, 0, 0, "Rusty Rivet Mill", 1, 5, false, new Vector2(-0.1f, 0.5f))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(1400, 1025), false, Content.Load<Texture2D>("Images//fare1"), 0, 3, 0, "Hell on Wheels Farground", 1, 5, false, new Vector2(-0.1f, 0.5f))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(1400, 50), false, Content.Load<Texture2D>("Images//library1"), 1, 0, 0, "Bibliotheque Library", 1, 5, false, new Vector2(-0.1f, 0.5f))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(1600, 300), false, Content.Load<Texture2D>("Images//school0"), 0, 1, 0, "Humger School of Lithography", 1, 5, false, new Vector2(0.5f, 1.1f))));
+            
+            
             //addRoads();
             
         }
