@@ -195,5 +195,10 @@ namespace BounceAngle
             menuItems[6].Alive = false;
         }
 
+
+
+        public void displaySurvivorIcons(List<SurvivorData> data)
+        {
+        }
     }
 }
