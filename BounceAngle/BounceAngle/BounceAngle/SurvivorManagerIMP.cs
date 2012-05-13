@@ -13,16 +13,18 @@ namespace BounceAngle
         //use this when creating new survivorID's
         public static int survivorCounter = 0;
         private List<SurvivorData> survivorsData;
-        private List<SurvivorData> removeFromListQueue;
+        private List<int> removeFromListQueue;
+        private SurvivorData activeSurvivor;
         public Texture2D survivorTexture1, survivorTexture2;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
-            removeFromListQueue = new List<SurvivorData>();
+            removeFromListQueue = new List<int>();
         }
 
         public void addSurvivor(SurvivorData survivor) {
             survivorsData.Add(survivor);
+            activeSurvivor = survivor;
         }
 
         public List<SurvivorData> getAllSurvivors(){
@@ -45,27 +47,8 @@ namespace BounceAngle
         }
 
         public void init(ContentManager content) {
-            // TODO: get the survivor start locations from the list of buildings visited in the day
-            //addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                 //   new Vector2(70, 70), Vector2.Zero,
-                                   // content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            /*addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(600, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(600, 700), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(1100, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(100, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-             */
             survivorTexture1 = content.Load<Texture2D>("Images//survivor0");
             survivorTexture2 = content.Load<Texture2D>("Images//survivor1");
-        }
-        public void reset() {
         }
 
         public void update(GameTime gameTime) { 
@@ -109,9 +92,9 @@ namespace BounceAngle
             }
 
             // if something reached the safe house, remove it here
-            foreach (SurvivorData removeData in removeFromListQueue)
+            foreach (int removeSurvivorId in removeFromListQueue)
             {
-                survivorsData.Remove(removeData);
+                killSurvivor(removeSurvivorId, false);
             }
             removeFromListQueue.Clear();
         }
@@ -236,9 +219,43 @@ namespace BounceAngle
 
         private void survivorReachedSafehouse(SurvivorData survivor)
         {
-            // TODO:
             Console.WriteLine("Survivor: " + survivor.getId() + " reached safehouse.");
-            removeFromListQueue.Add(survivor);
+            removeFromListQueue.Add(survivor.getId());
+        }
+
+        public void killSurvivor(int survivorDataId, Boolean isViolentDeath)
+        {
+            for (int i = 0; i < survivorsData.Count; ++i)
+            {
+                if (survivorsData[i].getId() == survivorDataId)
+                {
+                    if (survivorsData[i].getId() == activeSurvivor.getId())
+                    {
+                        // the activeSurvivor just died, find another survivor
+                        if (i > 0)
+                        {
+                            // just set the previous survivor in the list as active since we know it exists
+                            activeSurvivor = survivorsData[i - 1];
+                        }
+                        else
+                        {
+                            activeSurvivor = null;
+                        }
+                    }
+
+                    survivorsData.RemoveAt(i);
+                    break;
+                }
+            }
+            if (isViolentDeath)
+            {
+                NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
+            }
+        }
+
+        public SurvivorData getActiveSurvivor()
+        {
+            return activeSurvivor;
         }
     }
 }

@@ -87,10 +87,8 @@ namespace BounceAngle
                         if ((Zombies[i].getCurrentLocation() - survivors.getAllSurvivors()[j].getCurrentLocation()).Length() < 20)
                         {
                             this.addZombie(new ZombieDataImp(zombieTextures[0]), survivors.getAllSurvivors()[j].getCurrentLocation());
-                            survivors.getAllSurvivors().RemoveAt(j);
-                            NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
-                            //Zombies.RemoveAt(i);
-                            
+                            NightGameEngineImp.getGameEngine().getSurvivorManager().killSurvivor(survivors.getAllSurvivors()[j].getId(), true);
+                            //Zombies.RemoveAt(i);                            
                         }
                     }
                     catch (Exception e) {
