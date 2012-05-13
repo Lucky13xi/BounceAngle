@@ -15,7 +15,7 @@ namespace BounceAngle
         private List<SurvivorData> survivorsData;
         private List<int> removeFromListQueue;
         private SurvivorData activeSurvivor;
-        public Texture2D survivorTexture1, survivorTexture2;
+        public Texture2D survivorTexture1, survivorTexture2, destTexture;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
@@ -49,6 +49,7 @@ namespace BounceAngle
         public void init(ContentManager content) {
             survivorTexture1 = content.Load<Texture2D>("Images//survivor0");
             survivorTexture2 = content.Load<Texture2D>("Images//survivor1");
+            destTexture = content.Load<Texture2D>("Images//survivor");
         }
 
         public void update(GameTime gameTime) { 
@@ -114,6 +115,9 @@ namespace BounceAngle
 
                 spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation() + screenOffset, null,
                     Color.White, facing, new Vector2(survivor.getTexture().Width/2,survivor.getTexture().Height/2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 1);
+
+                // draw the destination target for debugging
+                spriteBatch.Draw(destTexture, survivor.getDestination() + screenOffset, Color.White);
             }
         }
 
