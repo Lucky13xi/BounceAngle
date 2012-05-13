@@ -50,7 +50,7 @@ namespace BounceAngle
 
             nightSimMgr.init();
             effectsMgr.Init(content);
-            uiMgr.init();
+            //uiMgr.init();
             //menuMgr.Init(content);    // gets init in the daygameengine
             //mapMgr.Init();
             zombieMgr.init(content);

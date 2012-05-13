@@ -15,6 +15,7 @@ namespace BounceAngle
         int SetUIAmmo { get; set; }
         int SetUIFood { get; set; }
         int SetUISurvivors { get; set; }
+        int SetUIScavenges { get; set; }
         void Draw(SpriteBatch spriteBatch);
         void Update(GameTime gameTime);
         void Init(ContentManager content);

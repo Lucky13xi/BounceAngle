@@ -85,7 +85,7 @@ namespace BounceAngle
             soundManager.initializeSounds(content);
             mapMan.LoadMap(content);
             menuManager.Init(content);
-            uiMan.init();
+            //uiMan.init();
             simMgr.init();
 
             soundManager.playDayMusic();

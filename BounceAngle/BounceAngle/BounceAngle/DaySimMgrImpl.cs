@@ -24,6 +24,7 @@ namespace BounceAngle
             DayGameEngineImp.getGameEngine().getMenuManager().SetUIFood = food;
             DayGameEngineImp.getGameEngine().getMenuManager().SetUITime = 12; // time + 12 * 60;
             DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors = aliveSurvivors;
+            DayGameEngineImp.getGameEngine().getMenuManager().SetUIScavenges = aliveSurvivors;
         }
 
         public void queueBuildingToScavenge(BuildingData data)
