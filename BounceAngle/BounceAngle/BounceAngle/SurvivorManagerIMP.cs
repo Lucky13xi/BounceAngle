@@ -246,15 +246,7 @@ namespace BounceAngle
                         if (survivorsData[i].getId() == activeSurvivor.getId())
                         {
                             // the activeSurvivor just died, find another survivor
-                            if (i > 0)
-                            {
-                                // just set the previous survivor in the list as active since we know it exists
-                                setActiveSurvivor(survivorsData[i - 1].getId());
-                            }
-                            else
-                            {
-                                setActiveSurvivor(-1);
-                            }
+                            setActiveSurvivor(-1);
                         }
                     }
                     if (isViolentDeath)
@@ -278,12 +270,28 @@ namespace BounceAngle
 
         public void setActiveSurvivor(int survivorDataId)
         {
-            for (int i = 0; i < survivorsData.Count; ++i)
+            if (survivorDataId < 0)
             {
-                if (survivorsData[i].getId() == survivorDataId)
+                // this is a bad index, find a random one that is alive
+                for (int i = 0; i < survivorsData.Count; ++i)
                 {
-                    activeSurvivor = survivorsData[i];
-                    return;
+                    setActiveSurvivor(i);
+                    if (null != activeSurvivor)
+                    {
+                        // if we successfully found another survivor to set, then we're done
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < survivorsData.Count; ++i)
+                {
+                    if (survivorsData[i].getId() == survivorDataId)
+                    {
+                        activeSurvivor = survivorsData[i];
+                        return;
+                    }
                 }
             }
             activeSurvivor = null;
