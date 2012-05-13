@@ -110,6 +110,12 @@ namespace BounceAngle
         {
             KeyboardState keyState = Keyboard.GetState();
             MouseState mstate = Mouse.GetState();
+            //togglefullscreen
+            if (keyState.IsKeyDown(Keys.F11) && preKeyState.IsKeyUp(Keys.F11))
+            {
+                graphics.ToggleFullScreen();
+            }
+            
             //Volume Control
             if (keyState.IsKeyDown(Keys.Subtract) && preKeyState.IsKeyUp(Keys.Subtract))
             {
