@@ -54,15 +54,21 @@ namespace BounceAngle
             {
 
                 for (int j = 0; j < survivors.getAllSurvivors().Count; j++){
-                    if ((Zombies[i].getCurrentLocation() - survivors.getSurvivorById(j).getCurrentLocation()).Length() < 350
-                        && (Zombies[i].getCurrentLocation() - survivors.getSurvivorById(j).getCurrentLocation()).Length() > 30)
+                    try
                     {
-                        Zombies[i].setDestination(survivors.getSurvivorById(j).getCurrentLocation());
+                        if ((Zombies[i].getCurrentLocation() - survivors.getAllSurvivors()[j].getCurrentLocation()).Length() < 350
+                            && (Zombies[i].getCurrentLocation() - survivors.getAllSurvivors()[j].getCurrentLocation()).Length() > 30)
+                        {
+                            Zombies[i].setDestination(survivors.getAllSurvivors()[j].getCurrentLocation());
+                        }
+                        //TODO: "Hit" detection
+                        if ((Zombies[i].getCurrentLocation() - survivors.getAllSurvivors()[j].getCurrentLocation()).Length() < 20)
+                        {
+                            Zombies.RemoveAt(i);
+                        }
                     }
-                    //TODO: "Hit" detection
-                    if ((Zombies[i].getCurrentLocation() - survivors.getSurvivorById(j).getCurrentLocation()).Length() < 20)
-                    {
-                        Zombies.RemoveAt(i);
+                    catch (Exception e) {
+                        break;
                     }
                 }
                 try

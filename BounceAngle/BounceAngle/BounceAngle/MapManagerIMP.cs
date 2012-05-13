@@ -103,7 +103,9 @@ namespace BounceAngle
             offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
             
         }
-
+        public Vector2 getOffset() {
+            return offset;
+        }
 
         public int getCollision(Vector2 cord)
         {
