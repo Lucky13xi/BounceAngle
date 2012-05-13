@@ -20,10 +20,8 @@ namespace BounceAngle
         private SurvivorManager survivorMgr;
         private EffectsManager effectsMgr;
         private NightSimMgr nightSimMgr;
-        private Texture2D nightTimeClouds1;
-        private Vector2 ntc1pos;
-        private Texture2D nightTimeClouds2;
-        private Vector2 ntc2pos;
+        private Texture2D nightview;
+        
 
         public SoundManager getSoundManager()       { return soundMgr; }
         public UIManager getUIManager()             { return uiMgr; }
@@ -55,10 +53,8 @@ namespace BounceAngle
             //mapMgr.Init();
             zombieMgr.init(content);
             survivorMgr.init(content);
-            nightTimeClouds1 = content.Load<Texture2D>("Images//nightClouds");
-            ntc1pos = new Vector2(0, 0);
-            nightTimeClouds2 = content.Load<Texture2D>("Images//nightClouds");
-            ntc2pos = new Vector2(-1280, 0);
+            nightview = content.Load<Texture2D>("Images//nightclouds");
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -68,9 +64,9 @@ namespace BounceAngle
                 zombieMgr.draw(spriteBatch);
                 effectsMgr.Draw(spriteBatch);
                 survivorMgr.draw(spriteBatch);
-                spriteBatch.Draw(nightTimeClouds1, ntc1pos, Color.White);
-                spriteBatch.Draw(nightTimeClouds1, ntc2pos, Color.White);
+                spriteBatch.Draw(nightview, new Vector2(0,0), Color.White);
                 menuMgr.Draw(spriteBatch);
+
             }
         }
 
@@ -88,21 +84,7 @@ namespace BounceAngle
                 survivorMgr.update(gameTime);
                 nightSimMgr.update(gameTime);
 
-                //night clouds
-                if (ntc1pos.X >= 1280)
-                {
-                    ntc1pos.X = -1280;
-                }
                 
-                    ntc1pos.X += 1f;
-
-                if (ntc2pos.X >= 1280)
-                {
-                    ntc2pos.X = -1280;
-                }
-
-               
-                    ntc2pos.X += 1f;
 
                 
 
