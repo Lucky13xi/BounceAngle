@@ -23,6 +23,7 @@ namespace BounceAngle
         void displayPopUp(BuildingData data);
         void displaySummary(int _food, int _ammo, int _survivors, int _time);
         void displaySurvivorIcons(List<SurvivorData> data);
+        void hideSurvivorIcon();
         void hidePopUp();
     }
 }
