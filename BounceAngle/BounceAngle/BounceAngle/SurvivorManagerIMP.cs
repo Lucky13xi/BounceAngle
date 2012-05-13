@@ -122,7 +122,7 @@ namespace BounceAngle
                     Color.White, facing, new Vector2(survivor.getTexture().Width/2,survivor.getTexture().Height/2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 1);
 
                 // draw the destination target for debugging
-                spriteBatch.Draw(destTexture, survivor.getDestination() + screenOffset, null, Color.White, 0, Vector2.Zero, 0.25f, SpriteEffects.None,0 );
+                spriteBatch.Draw(destTexture, survivor.getDestination() + screenOffset, Color.White);
             }
         }
 
