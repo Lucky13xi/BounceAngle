@@ -95,7 +95,7 @@ namespace BounceAngle
                             //Zombies.RemoveAt(i);                            
                         }
                     }
-                    catch (Exception e) {
+                    catch (Exception) {
                         break;
                     }
                 }
