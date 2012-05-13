@@ -11,7 +11,5 @@ namespace BounceAngle
     {
         void init();
         void ProcessMouse(MouseState mouseState);
-        Vector2 getCurrentWorldToScreenOffset();
-        Vector2 getPreviousWorldToScreenOffsetDifference();
     }
 }
