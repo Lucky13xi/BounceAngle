@@ -24,6 +24,7 @@ namespace BounceAngle
             speed = (float)random.NextDouble();
             rotation = 0f;
             setDestination(Vector2.Zero);
+            offset = Vector2.Zero;
         }
         public void setRotation(float rot)
         {
@@ -35,6 +36,10 @@ namespace BounceAngle
             offset += _offset;
             offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
             offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
+        }
+        public Vector2 getOffset()
+        {
+            return offset;
         }
 
         public float getRotation()
@@ -64,7 +69,7 @@ namespace BounceAngle
 
         public void setCurrentLocation(Vector2 loc)
         {
-            location = loc + offset;
+            location = loc;
         }
         public void setDestination(Vector2 loc)
         {

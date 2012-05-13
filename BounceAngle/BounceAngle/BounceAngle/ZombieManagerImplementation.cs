@@ -129,7 +129,7 @@ namespace BounceAngle
         {
             foreach (ZombieData zombie in Zombies)
             {
-                spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation(), null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2),1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + zombie.getOffset(), null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2),1f, SpriteEffects.None, 0f);
                 //spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation(), Color.White);
             }
         }
