@@ -31,6 +31,7 @@ namespace BounceAngle
             mainMenu,
             playing,
             instructions,
+            gameOver,
             quit
         }
 
@@ -228,7 +229,17 @@ namespace BounceAngle
             {
                 dayGame.Draw(spriteBatch);
                 nightGame.Draw(spriteBatch);
+                if (DayGameEngineImp.getGameEngine().getSimMgr().getAliveSurvivors() <= 0)
+                {
+                    gameState = GameState.gameOver;
+                }
             }
+            if (gameState == GameState.gameOver)
+            {
+                spriteBatch.Draw(Content.Load<Texture2D>("Images//gameOver"), Vector2.Zero, Color.White);
+                spriteBatch.DrawString(Content.Load<SpriteFont>("MenuItems\\UIFont"), "You survived " + DayGameEngineImp.getGameEngine().getMenuManager().SetUITime + " days.", new Vector2(400, 400), Color.Black);
+            }
+
             if (gameState == GameState.instructions)
             {
                 spriteBatch.Draw(Content.Load<Texture2D>("Images//instructionsScreen"), Vector2.Zero, Color.White);

@@ -15,5 +15,7 @@ namespace BounceAngle
         void runSim();
         int getNumAvailableSurvivorsToScavenge();
         void onSummaryPopupOkay();
+        int getAliveSurvivors();
+        void killSurvivor();
     }
 }

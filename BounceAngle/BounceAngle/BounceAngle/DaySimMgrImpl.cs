@@ -110,5 +110,16 @@ namespace BounceAngle
             // clear survivor icons
             DayGameEngineImp.getGameEngine().getMenuManager().hideSurvivorIcon();
         }
+
+
+        public int getAliveSurvivors()
+        {
+            return aliveSurvivors;
+        }
+
+        public void killSurvivor()
+        {
+            aliveSurvivors--;
+        }
     }
 }
