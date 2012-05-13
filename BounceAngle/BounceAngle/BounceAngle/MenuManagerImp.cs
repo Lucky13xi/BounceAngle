@@ -184,7 +184,7 @@ namespace BounceAngle
             menuItems[3].Text[0] = data.getBuildingDescription();
             menuItems[3].popUpHeader();
             menuItems[3].PopUpImg = data.getTexture();
-            string[] subText = {"Estimated Finds", "Suvivors: " + data.getSurvivors(), "Food: " + data.getFood(), "Ammo: " + data.getAmmo() };
+            string[] subText = {"Estimated Totals", "Suvivors: " + data.getSurvivors(), "Food: " + data.getFood(), "Ammo: " + data.getAmmo() };
             if (data.isSafehouse())
             {
                 subText = new string[] { "SafeHouse: No Supplies" };
