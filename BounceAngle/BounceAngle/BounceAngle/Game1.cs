@@ -20,7 +20,19 @@ namespace BounceAngle
         SpriteBatch spriteBatch;
         GameEngine dayGame;
         GameEngine nightGame;
-        private KeyboardState preKeyState; 
+        SpriteFont menuFont;
+        MenuScreen menuScreen;
+        Texture2D startMenu;
+        private KeyboardState preKeyState;
+        MouseState preMouseState;
+        GameState gameState;
+        public enum GameState
+        {
+            mainMenu,
+            playing,
+            instructions,
+            quit
+        }
 
         public Game1()
         {
@@ -38,8 +50,16 @@ namespace BounceAngle
         /// </summary>
         protected override void Initialize()
         {
+            gameState = GameState.mainMenu;
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
+
+            //menu
+            string[] menuItems = { "Play", "Instructions", "Quit" };
+            menuFont = Content.Load<SpriteFont>("MenuItems\\menuFont");
+            menuScreen = new MenuScreen(graphics, menuFont, menuItems);
+            startMenu = Content.Load<Texture2D>("Images\\gameScreen");
+
             base.Initialize();
         }
 
@@ -79,32 +99,84 @@ namespace BounceAngle
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
-            
-            dayGame.Update(gameTime);
-            nightGame.Update(gameTime);
-            KeyboardState keyState = Keyboard.GetState();
-           
-            if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape)) {
-                //TODO: exit the game on escape
-                this.Exit();
+            if (gameState == GameState.mainMenu)
+            {
+                UpdateInput(gameTime);
             }
-            preKeyState = keyState;
-        
+
+            if (gameState == GameState.playing)
+            {
+                dayGame.Update(gameTime);
+                nightGame.Update(gameTime);
+                KeyboardState keyState = Keyboard.GetState();
+
+                if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
+                {
+                    //TODO: exit the game on escape
+                    this.Exit();
+                }
+                preKeyState = keyState;
+            }
             base.Update(gameTime);
+        }
+
+        public void UpdateInput(GameTime gameTime)
+        {
+            MouseState mouseState = Mouse.GetState();
+            if (gameState == GameState.mainMenu)
+            {
+                menuScreen.Update();
+                Rectangle start = new Rectangle(199, 325, 100, 35);
+                Rectangle instr = new Rectangle(199, 360, 150, 35);
+                Rectangle exit = new Rectangle(199, 395, 100, 35);
+
+                if (start.Contains(mouseState.X, mouseState.Y))
+                {
+                    menuScreen.SelectedIndex = 0;
+                }
+                if (instr.Contains(mouseState.X, mouseState.Y))
+                {
+                    menuScreen.SelectedIndex = 1;
+                }
+                if (exit.Contains(mouseState.X, mouseState.Y))
+                {
+                    menuScreen.SelectedIndex = 2;
+                }
+
+                if ((exit.Contains(new Point(mouseState.X, mouseState.Y)) && preMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released))
+                {
+                    this.Exit();
+                }
+                if ((instr.Contains(new Point(mouseState.X, mouseState.Y)) && preMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released))
+                {
+                    gameState = GameState.instructions;
+                }
+                if ((start.Contains(new Point(mouseState.X, mouseState.Y)) && preMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released))
+                {
+                    gameState = GameState.playing;
+                }
+            }
+            preMouseState = mouseState;
         }
 
         /// <summary>
         /// This is called when the game should draw itself.
-        /// </summary>
+        /// </summary>bbh
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.LightGray);
             spriteBatch.Begin();
-
-            dayGame.Draw(spriteBatch);
-            nightGame.Draw(spriteBatch);
+            if (gameState == GameState.mainMenu)
+            {
+                spriteBatch.Draw(startMenu, Vector2.Zero, Color.White);
+                menuScreen.Draw(spriteBatch);
+            }
+            if (gameState == GameState.playing)
+            {
+                dayGame.Draw(spriteBatch);
+                nightGame.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
