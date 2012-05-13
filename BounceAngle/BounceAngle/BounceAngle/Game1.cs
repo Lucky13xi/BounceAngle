@@ -239,7 +239,7 @@ namespace BounceAngle
             if (gameState == GameState.gameOver)
             {
                 spriteBatch.Draw(Content.Load<Texture2D>("Images//gameOver"), Vector2.Zero, Color.White);
-                spriteBatch.DrawString(Content.Load<SpriteFont>("MenuItems\\UIFont"), "You survived " + DayGameEngineImp.getGameEngine().getMenuManager().SetUITime + " days.", new Vector2(400, 400), Color.Black);
+                spriteBatch.DrawString(Content.Load<SpriteFont>("MenuItems//UIFont"), "You survived " + DayGameEngineImp.getGameEngine().getMenuManager().SetUITime + " days.", new Vector2(400, 400), Color.Black);
             }
 
             if (gameState == GameState.instructions)
