@@ -31,6 +31,7 @@ namespace BounceAngle
             mainMenu,
             playing,
             instructions,
+            gameOver,
             quit
         }
 
@@ -108,6 +109,7 @@ namespace BounceAngle
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
+            MouseState mstate = Mouse.GetState();
             //Volume Control
             if (keyState.IsKeyDown(Keys.Subtract) && preKeyState.IsKeyUp(Keys.Subtract))
             {
@@ -121,7 +123,8 @@ namespace BounceAngle
             }
             if (gameState == GameState.instructions)
             {
-                if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
+                if ((keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
+                    || (mstate.LeftButton == ButtonState.Pressed))
                 {
                     gameState = GameState.mainMenu;
                 }
@@ -228,7 +231,17 @@ namespace BounceAngle
             {
                 dayGame.Draw(spriteBatch);
                 nightGame.Draw(spriteBatch);
+                if (DayGameEngineImp.getGameEngine().getSimMgr().getAliveSurvivors() <= 0)
+                {
+                    gameState = GameState.gameOver;
+                }
             }
+            if (gameState == GameState.gameOver)
+            {
+                spriteBatch.Draw(Content.Load<Texture2D>("Images//gameOver"), Vector2.Zero, Color.White);
+                spriteBatch.DrawString(Content.Load<SpriteFont>("MenuItems//UIFont"), "You survived " + DayGameEngineImp.getGameEngine().getMenuManager().SetUITime + " days.", new Vector2(400, 400), Color.Black);
+            }
+
             if (gameState == GameState.instructions)
             {
                 spriteBatch.Draw(Content.Load<Texture2D>("Images//instructionsScreen"), Vector2.Zero, Color.White);

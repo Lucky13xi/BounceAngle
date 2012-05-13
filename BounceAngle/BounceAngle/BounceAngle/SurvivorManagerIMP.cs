@@ -17,11 +17,20 @@ namespace BounceAngle
         private SurvivorData activeSurvivor;
         public List<Texture2D> survivorTextures { get; set; }
         private Texture2D destTexture;
+        private List<SurvivorData> deadSurvivors;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
             survivorTextures = new List<Texture2D>();
             removeFromListQueue = new List<int>();
+            deadSurvivors = new List<SurvivorData>();
+        }
+
+        public void resetRound()
+        {
+            survivorsData.Clear();
+            removeFromListQueue.Clear();
+            deadSurvivors.Clear();
         }
 
         public void addSurvivor(SurvivorData survivor) {
@@ -31,7 +40,6 @@ namespace BounceAngle
 
         public List<SurvivorData> getAllSurvivors(){
             return survivorsData;
-            
         }
 
         public SurvivorData getSurvivorById(int id) {
@@ -44,10 +52,10 @@ namespace BounceAngle
         }
 
         public void init(ContentManager content) {
-            survivorTextures.Add(content.Load<Texture2D>("Images//survivor0"));
-            survivorTextures.Add(content.Load<Texture2D>("Images//survivor1"));
-            survivorTextures.Add(content.Load<Texture2D>("Images//survivor2"));
-            destTexture = content.Load<Texture2D>("Images//survivor");
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor0")); // alive image
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor1")); // alive image
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor2")); // death image
+            destTexture = content.Load<Texture2D>("Images//survivor");  // x marks the spot image
         }
 
         public void update(GameTime gameTime) { 
@@ -123,6 +131,11 @@ namespace BounceAngle
 
                 // draw the destination target for debugging
                 spriteBatch.Draw(destTexture, survivor.getDestination() + screenOffset, Color.White);
+            }
+
+            foreach (SurvivorData spot in deadSurvivors)
+            {
+                spriteBatch.Draw(survivorTextures[2], spot.getCurrentLocation() + screenOffset, Color.White);
             }
         }
 
@@ -226,19 +239,12 @@ namespace BounceAngle
         private void zombieTooCloseDoSomething(int survivorId, int zombieId)
         {
             // TODO:
-            Console.WriteLine("Survivor: " + survivorId + " got swarmed by zombie: " + zombieId);
         }
 
         private void survivorReachedSafehouse(SurvivorData survivor)
         {
             Console.WriteLine("Survivor: " + survivor.getId() + " reached safehouse.");
             removeFromListQueue.Add(survivor.getId());
-
-            // set a new active one if the active reached the safehouse
-            if (survivor.getId() == activeSurvivor.getId())
-            {
-                setActiveSurvivor(-1);
-            }
         }
 
         public void killSurvivor(int survivorDataId, Boolean isViolentDeath)
@@ -255,17 +261,17 @@ namespace BounceAngle
                             setActiveSurvivor(-1);
                         }
                     }
+
                     if (isViolentDeath)
                     {
-                        survivorsData[i].setTexture(getTextures()[2]);
-                        survivorsData[i].setMoveSpeed(0);
-                    }else survivorsData.RemoveAt(i);
+                        Console.WriteLine("Survivor: " + survivorDataId + " got violently killed");
+                        NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
+                        deadSurvivors.Add(survivorsData[i]);
+                    }
+                    DayGameEngineImp.getGameEngine().getSimMgr().killSurvivor();
+                    survivorsData.RemoveAt(i);
                     break;
                 }
-            }
-            if (isViolentDeath)
-            {
-                NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
             }
         }
 
@@ -278,14 +284,14 @@ namespace BounceAngle
         {
             if (survivorDataId < 0)
             {
-                // this is a bad index, find a random one that is alive
-                for (int i = 0; i < survivorsData.Count; ++i)
+                // -1 is a special index, it means find a random survivor to make active
+                foreach (SurvivorData s in survivorsData)
                 {
-                    setActiveSurvivor(i);
+                    setActiveSurvivor(s.getId());
                     if (null != activeSurvivor)
                     {
                         // if we successfully found another survivor to set, then we're done
-                        break;
+                        return;
                     }
                 }
             }
@@ -297,11 +303,11 @@ namespace BounceAngle
                     {
                         if (null != activeSurvivor)
                         {
-                            Console.WriteLine("From active survivor from " + activeSurvivor.getId() + " to: " + survivorsData[i].getId());
+                            Console.WriteLine("Switching active survivor from " + activeSurvivor.getId() + " to: " + survivorsData[i].getId());
                         }
                         else
                         {
-                            Console.WriteLine("Switching active survivor to: " + survivorsData[i].getId());
+                            Console.WriteLine("Set active survivor to: " + survivorsData[i].getId());
                         }
                         activeSurvivor = survivorsData[i];
                         return;

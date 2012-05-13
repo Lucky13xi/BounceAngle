@@ -12,16 +12,21 @@ namespace BounceAngle
         private float spawnCounter;
         private int screenHeight;
         private int screenWidth;
+        private int currentActiveSurvivorId;
 
         public void init()
         {
             spawnCounter = 0;
             screenHeight = 720;
             screenWidth = 1280;
+            currentActiveSurvivorId = -1;
         }
 
         public void resetMode()
         {
+            // clear all the stuff from last round
+            NightGameEngineImp.getGameEngine().getSurvivorManager().resetRound();
+
             // reset hover effect
             foreach (Building b in NightGameEngineImp.getGameEngine().getMapManager().getAllBuildings())
             {
@@ -78,6 +83,20 @@ namespace BounceAngle
                 Vector2 worldToScreenOffset = -sd.getCurrentLocation() + centeringOffset;
                 //Console.WriteLine("Screen worldToScreenOffset:" + worldToScreenOffset + " survivor:" + sd.getCurrentLocation() + " centering=" + centeringOffset);
                 NightGameEngineImp.getGameEngine().getMapManager().setScreenWorldOffset(worldToScreenOffset);
+
+                if (currentActiveSurvivorId != sd.getId())
+                {
+                    Console.WriteLine("Survivor focus from: " + currentActiveSurvivorId + " to " + sd.getId());
+                }
+                currentActiveSurvivorId = sd.getId();
+            }
+            else
+            {
+                if (currentActiveSurvivorId != -1)
+                {
+                    Console.WriteLine("Survivor focus from: " + currentActiveSurvivorId + " to none");
+                }
+                currentActiveSurvivorId = -1;
             }
         }
     }
