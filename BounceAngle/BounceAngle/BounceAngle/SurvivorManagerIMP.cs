@@ -12,10 +12,12 @@ namespace BounceAngle
     {
         //use this when creating new survivorID's
         private static int survivorCounter = 0;
-        List<SurvivorData> survivorsData;
+        private List<SurvivorData> survivorsData;
+        private List<SurvivorData> removeFromListQueue;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
+            removeFromListQueue = new List<SurvivorData>();
         }
 
         public void addSurvivor(SurvivorData survivor) {
@@ -39,7 +41,7 @@ namespace BounceAngle
         public void init(ContentManager content) {
             // TODO: get the survivor start locations from the list of buildings visited in the day
             addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(70, 70), Vector2.Zero,
+                                    new Vector2(10, 70), Vector2.Zero,
                                     content.Load<Texture2D>("Images//survivor"), 1.0f));
         }
 
@@ -54,6 +56,13 @@ namespace BounceAngle
 
             foreach (SurvivorData survivor in survivorsData)
             {
+                Vector2 toDest = survivor.getDestination() - survivor.getCurrentLocation();
+                if (toDest.LengthSquared() < 1)
+                {
+                    // the survivor practically reached its destination
+                    survivor.setDestination(Vector2.Zero);
+                }
+
                 if (Vector2.Zero == survivor.getDestination())
                 {
                     Vector2 safehouseLocation = NightGameEngineImp.getGameEngine().getMapManager().getBuildingByID(safehouseBuildingId).getBuildingData().getLocation();
@@ -71,8 +80,15 @@ namespace BounceAngle
                 Vector2 newNextLocation = checkBuildingCollission(survivor, nextLocation, safehouseBuildingId);
 
                 survivor.setCurrentLocation(newNextLocation);
-                Console.WriteLine("Survivor: " + survivor.getId() + " at position: (" + newNextLocation.X + "," + newNextLocation.Y + ")");
+                //Console.WriteLine("Survivor: " + survivor.getId() + " at position: (" + newNextLocation.X + "," + newNextLocation.Y + ")");
             }
+
+            // if something reached the safe house, remove it here
+            foreach (SurvivorData removeData in removeFromListQueue)
+            {
+                survivorsData.Remove(removeData);
+            }
+            removeFromListQueue.Clear();
         }
 
         public void draw(SpriteBatch spriteBatch) {
@@ -93,25 +109,72 @@ namespace BounceAngle
 
             if (buildingCollision >= 0)
             {
-                Console.WriteLine("Survivor: " + survivor.getId() + " collided with building: " + buildingCollision);
-                
-                /* THIS doesn't work yet
                 // we collided into this building
-                Vector2 direction = wantToGoHereLocation - survivor.getCurrentLocation();
-                for (float angle = 15.0f; angle < 360; angle += 15.0f)
+                Console.WriteLine("Survivor: " + survivor.getId() + " collided with building: " + buildingCollision);
+
+                Boolean isWantToLeftOfCurrLocation = wantToGoHereLocation.X < survivor.getCurrentLocation().X;
+                Boolean isWantToAboveOfCurrLocation = wantToGoHereLocation.Y > survivor.getCurrentLocation().Y;
+                float magnitudeScalar = Math.Max((wantToGoHereLocation - survivor.getCurrentLocation()).Length(), 1.0f);
+                Vector2 anotherPossibleLocation1 = survivor.getCurrentLocation();
+                Vector2 anotherPossibleLocation2 = survivor.getCurrentLocation();
+
+                if (isWantToLeftOfCurrLocation)
                 {
-                    Vector2 anotherPossibleDirection = Vector2.Transform(direction, Matrix.CreateRotationX(angle));
-                    anotherPossibleDirection = anotherPossibleDirection * 2.0f;
-                    Vector2 anotherPossibleLocation = anotherPossibleDirection + survivor.getCurrentLocation();
-                    int buildingCollisionId = NightGameEngineImp.getGameEngine().getMapManager().getCollision(anotherPossibleLocation);
-                    if (buildingCollision < 0) {
-                        // yay, we found a non-colliding direction
-                        return anotherPossibleLocation;
+                    if (isWantToAboveOfCurrLocation)
+                    {
+                        // we wanted to go up and to the left, but there is something in the way
+                        anotherPossibleLocation1 += new Vector2(0, 1) * magnitudeScalar;    // up
+                        anotherPossibleLocation2 += new Vector2(-1, 0) * magnitudeScalar;   // left
+                    }
+                    else
+                    {
+                        // we wanted to go down and to the left, but there is something in the way, so just go left
+                        anotherPossibleLocation1 += new Vector2(0, -1) * magnitudeScalar;   // down
+                        anotherPossibleLocation2 += new Vector2(-1, 0) * magnitudeScalar;   // left
                     }
                 }
-                 */
+                else
+                {
+                    if (isWantToAboveOfCurrLocation)
+                    {
+                        // we want to go up and to the right
+                        anotherPossibleLocation1 += new Vector2(0, 1) * magnitudeScalar;   // up
+                        anotherPossibleLocation2 += new Vector2(1, 0) * magnitudeScalar;   // right
+                    }
+                    else
+                    {
+                        // we want to go down and to the right
+                        anotherPossibleLocation1 += new Vector2(0, -1) * magnitudeScalar;   // down
+                        anotherPossibleLocation2 += new Vector2(1, 0) * magnitudeScalar;   // right
+                    }
+                }
 
-                // we keep hitting a wall in every direction we go now, so just don't move anymore
+                int collission1 = NightGameEngineImp.getGameEngine().getMapManager().getCollision(anotherPossibleLocation1);
+                int collission2 = NightGameEngineImp.getGameEngine().getMapManager().getCollision(anotherPossibleLocation2);
+                /*
+                Console.WriteLine("Survivor: " + survivor.getId()
+                    + " currLoc=" + survivor.getCurrentLocation()
+                    + " wantToGo=" + wantToGoHereLocation
+                    + " possible1=" + (anotherPossibleLocation1)
+                    + " possible2=" + (anotherPossibleLocation2)
+                    + " collission1=" + collission1
+                    + " collission2=" + collission2);
+                */
+                BuildingData bd = NightGameEngineImp.getGameEngine().getMapManager().getBuildingByID(buildingCollision).getBuildingData();
+                if (collission1 < 0)
+                {
+                    float newMagOnCollision = 1.1f * (bd.getTexture().Height);
+                    survivor.setDestination(((anotherPossibleLocation1 - survivor.getCurrentLocation()) * newMagOnCollision) + survivor.getCurrentLocation());
+                    return anotherPossibleLocation1;
+                }
+
+                if (collission2 < 0)
+                {
+                    float newMagOnCollision = 1.1f * (bd.getTexture().Width);
+                    survivor.setDestination(((anotherPossibleLocation2 - survivor.getCurrentLocation()) * newMagOnCollision) + survivor.getCurrentLocation());
+                    return anotherPossibleLocation2;
+                }
+
             }
             
             // we did not collide into any building, so the input location is safe
@@ -141,6 +204,7 @@ namespace BounceAngle
         {
             // TODO:
             Console.WriteLine("Survivor: " + survivor.getId() + " reached safehouse.");
+            removeFromListQueue.Add(survivor);
         }
     }
 }
