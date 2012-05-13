@@ -49,7 +49,12 @@ namespace BounceAngle
             set { setUISurvivors = value; }
         }
 
-
+        public void Update(GameTime gameTime)
+        {
+            menuItems[2].Text = new string[] { "Daylight Hours Remaining: " + SetUITime };
+            menuItems[0].Text = new string[] { "Food: " + SetUIFood, "Ammo: " + SetUIAmmo };
+            menuItems[1].Text = new string[] { "Survivors Remaining: " + SetUISurvivors };
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -81,7 +86,7 @@ namespace BounceAngle
             SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
             popUpHeader = content.Load<SpriteFont>("MenuItems\\popUpHeader");
             popUpSubText = content.Load<SpriteFont>("MenuItems\\popUpSubText");
-            string[] timeText = { "Daylight Time Remaining: " +SetUITime };
+            string[] timeText = { "Daylight Hours Remaining: " +SetUITime };
             string[] leftUIText = { "Food: " +SetUIFood, "Ammo: " +SetUIAmmo };
             string[] rightUIText = { "Survivors Remaining: " +SetUISurvivors };
             string[] popUpText = { "", "" };
@@ -93,7 +98,8 @@ namespace BounceAngle
             menuItems.Add(new MenuItem(popUpBox, UIFont, new Vector2(640 - (popUpBox.Width / 2), 360 - (popUpBox.Height / 2)), popUpText, new Color(100f, 100f, 100f), false));
             menuItems.Add(new MenuItem(scavenge, UIFont, new Vector2(popUpBox.Width - scavenge.Width, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
             menuItems.Add(new MenuItem(cancel, UIFont, new Vector2(popUpBox.Width + cancel.Width - 50f, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
-            menuItems.Add(new MenuItem(summary, UIFont, new Vector2(popUpBox.Width - summary.Width / 2 , popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(popUpBox, UIFont, new Vector2(640 - (popUpBox.Width / 2), 360 - (popUpBox.Height / 2)), popUpText, new Color(100f, 100f, 100f), false));
+            menuItems.Add(new MenuItem(summary, UIFont, new Vector2(popUpBox.Width + summary.Width - 185, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
         }
 
         public MenuManagerImp()
@@ -101,40 +107,29 @@ namespace BounceAngle
 
         }
 
-        public void setResource(int[] resource)
-        {
-            throw new NotImplementedException();
-        }
-
-        
-
         MenuClickResult MenuManager.getClickCollision(int x, int y)
         {
             Rectangle checkClick = new Rectangle((int)menuItems[4].Position.X, (int)menuItems[4].Position.Y, scavenge.Width, scavenge.Height);
             Rectangle checkCancle = new Rectangle((int)menuItems[5].Position.X, (int)menuItems[5].Position.Y, cancel.Width, cancel.Height);
-            Rectangle checkSummary = new Rectangle((int)menuItems[6].Position.X, (int)menuItems[6].Position.Y, summary.Width, summary.Height);
+            Rectangle checkSummary = new Rectangle((int)menuItems[7].Position.X, (int)menuItems[7].Position.Y, summary.Width, summary.Height);
 
-            if (checkClick.Contains(new Point(x, y)))
+            if (checkClick.Contains(new Point(x, y)) && menuItems[4].Alive)
             {
-                Console.WriteLine("GO!");
                 hidePopUp();
                 return new MenuClickResult(MenuClickResult.clickType.submit, tempBuilding);
             }
-            if (checkCancle.Contains(new Point(x, y)))
+            if (checkCancle.Contains(new Point(x, y)) && menuItems[5].Alive)
             {
-                Console.WriteLine("NO!");
                 hidePopUp();
                 return new MenuClickResult(MenuClickResult.clickType.cancel, null);
             }
-            if (checkSummary.Contains(new Point(x, y)))
+            if (checkSummary.Contains(new Point(x, y)) && menuItems[7].Alive)
             {
-                Console.WriteLine("COOL!");
-                hidePopUp();
+                hideSummary();
                 return new MenuClickResult(MenuClickResult.clickType.summary, null);
             }
             else
             {
-                Console.WriteLine("NOTHING!");
                 return null;
             }
         }
@@ -159,19 +154,32 @@ namespace BounceAngle
             menuItems[3].PopUpImg = null;
             menuItems[4].Alive = false;
             menuItems[5].Alive = false;
-            menuItems[6].Alive = false;
         }
 
-        public void displayScavenge(BuildingData data)
+        public void displaySummary(int _food, int _ammo, int _survivors, int _time)
         {
             menuItems[6].Alive = true;
-            string[] scavText = { "Suvivors Rescued: " + data.getSurvivors(), "Food Found: " + data.getFood(), "Ammo Found: " + data.getAmmo(), "Scavenge Time: " + data.getScavengeTime() };
+            menuItems[7].Alive = true;
+            menuItems[6].Text[0] = tempBuilding.getBuildingDescription();
+            menuItems[6].popUpHeader();
+            menuItems[6].PopUpImg = tempBuilding.getTexture();
+            string[] scavText = { "Suvivors Rescued: " +_survivors, "Food Found: " +_food, "Ammo Found: " +_ammo };
+            SetUISurvivors += _survivors;
+            SetUIAmmo += _ammo;
+            SetUIFood += _food;
+            SetUITime -= _time;
+            if (SetUITime <= 0)
+            {
+                SetUITime = 0;
+            }
+            menuItems[6].popUpSub(popUpSubText, scavText);
         }
 
-
-        public void displaySummary(int _food, int _ammo, int _zombies, int _survivors)
+        public void hideSummary()
         {
-
+            menuItems[7].Alive = false;
+            menuItems[6].PopUpImg = null;
+            menuItems[6].Alive = false;
         }
 
     }

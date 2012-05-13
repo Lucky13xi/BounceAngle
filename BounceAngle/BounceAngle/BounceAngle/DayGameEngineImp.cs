@@ -88,6 +88,7 @@ namespace BounceAngle
             {
                 MouseState mouseState = Mouse.GetState();
                 uiMan.ProcessMouse(mouseState);
+                menuManager.Update(gameTime);
             }
         }
 
