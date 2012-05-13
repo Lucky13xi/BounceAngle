@@ -38,6 +38,7 @@ namespace BounceAngle
             if (0 == NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors().Count)
             {
                 NightGameEngineImp.getGameEngine().stop();
+                DayGameEngineImp.getGameEngine().getMenuManager().SetUIScavenges = DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors;
                 DayGameEngineImp.getGameEngine().start();
             }
         }
