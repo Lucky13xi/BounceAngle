@@ -42,12 +42,26 @@ namespace BounceAngle
             // TODO: get the survivor start locations from the list of buildings visited in the day
             addSurvivor(new SurvivorDataIMP(survivorCounter++,
                                     new Vector2(10, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor"), 1.0f));
+                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
+            addSurvivor(new SurvivorDataIMP(survivorCounter++,
+                                    new Vector2(600, 70), Vector2.Zero,
+                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
+            addSurvivor(new SurvivorDataIMP(survivorCounter++,
+                                    new Vector2(600, 700), Vector2.Zero,
+                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
+            addSurvivor(new SurvivorDataIMP(survivorCounter++,
+                                    new Vector2(1100, 70), Vector2.Zero,
+                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
+            addSurvivor(new SurvivorDataIMP(survivorCounter++,
+                                    new Vector2(100, 70), Vector2.Zero,
+                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
         }
 
         public void update(GameTime gameTime) { 
             // loop through each survivor
-            //  - if it has a destination, move the survivor closer to that survivor
+            //  - if you have a destination and you reach it then reset it
+            //  - if you hit the safehouse, you're finished
+            //  - if it has a destination, move the survivor closer to that destination
             //    - else if it has no destination, set the destination to the safehouse go to the get the safe house location
             //  - if there is a zombie near it, then shoot or die or some AI
             //  - check if i collide into any walls and move around it
@@ -57,7 +71,7 @@ namespace BounceAngle
             foreach (SurvivorData survivor in survivorsData)
             {
                 Vector2 toDest = survivor.getDestination() - survivor.getCurrentLocation();
-                if (toDest.LengthSquared() < 1)
+                if (toDest.LengthSquared() <= 3)
                 {
                     // the survivor practically reached its destination
                     survivor.setDestination(Vector2.Zero);
@@ -65,7 +79,7 @@ namespace BounceAngle
 
                 if (Vector2.Zero == survivor.getDestination())
                 {
-                    Vector2 safehouseLocation = NightGameEngineImp.getGameEngine().getMapManager().getBuildingByID(safehouseBuildingId).getBuildingData().getLocation();
+                    Vector2 safehouseLocation = NightGameEngineImp.getGameEngine().getMapManager().getBuildingByID(safehouseBuildingId).getBuildingData().getLocation() + new Vector2(50, 50) +NightGameEngineImp.getGameEngine().getMapManager().getOffset();
                     // TODO: offset the safehouse location to the middle of the building
                     survivor.setDestination(safehouseLocation);
                 }
@@ -91,10 +105,19 @@ namespace BounceAngle
             removeFromListQueue.Clear();
         }
 
+        public float VectorToAngle(Vector2 vector)
+        {
+            return (float)Math.Atan2(vector.Y, vector.X);
+        }
+
         public void draw(SpriteBatch spriteBatch) {
             foreach (SurvivorData survivor in survivorsData) {
 
-                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation(), Color.White);
+                //  spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation(), Color.White);
+                float facing = VectorToAngle(survivor.getDestination()- survivor.getCurrentLocation());
+                
+                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation(), null,
+                    Color.White, facing, new Vector2(survivor.getTexture().Width/2,survivor.getTexture().Height/2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 1);
             }
         }
 
@@ -112,8 +135,8 @@ namespace BounceAngle
                 // we collided into this building
                 Console.WriteLine("Survivor: " + survivor.getId() + " collided with building: " + buildingCollision);
 
-                Boolean isWantToLeftOfCurrLocation = wantToGoHereLocation.X < survivor.getCurrentLocation().X;
-                Boolean isWantToAboveOfCurrLocation = wantToGoHereLocation.Y > survivor.getCurrentLocation().Y;
+                Boolean isWantToLeftOfCurrLocation = wantToGoHereLocation.X <= survivor.getCurrentLocation().X;
+                Boolean isWantToAboveOfCurrLocation = wantToGoHereLocation.Y <= survivor.getCurrentLocation().Y;
                 float magnitudeScalar = Math.Max((wantToGoHereLocation - survivor.getCurrentLocation()).Length(), 1.0f);
                 Vector2 anotherPossibleLocation1 = survivor.getCurrentLocation();
                 Vector2 anotherPossibleLocation2 = survivor.getCurrentLocation();
@@ -123,13 +146,13 @@ namespace BounceAngle
                     if (isWantToAboveOfCurrLocation)
                     {
                         // we wanted to go up and to the left, but there is something in the way
-                        anotherPossibleLocation1 += new Vector2(0, 1) * magnitudeScalar;    // up
+                        anotherPossibleLocation1 += new Vector2(0, -1) * magnitudeScalar;    // up
                         anotherPossibleLocation2 += new Vector2(-1, 0) * magnitudeScalar;   // left
                     }
                     else
                     {
                         // we wanted to go down and to the left, but there is something in the way, so just go left
-                        anotherPossibleLocation1 += new Vector2(0, -1) * magnitudeScalar;   // down
+                        anotherPossibleLocation1 += new Vector2(0, 1) * magnitudeScalar;   // down
                         anotherPossibleLocation2 += new Vector2(-1, 0) * magnitudeScalar;   // left
                     }
                 }
@@ -138,13 +161,13 @@ namespace BounceAngle
                     if (isWantToAboveOfCurrLocation)
                     {
                         // we want to go up and to the right
-                        anotherPossibleLocation1 += new Vector2(0, 1) * magnitudeScalar;   // up
+                        anotherPossibleLocation1 += new Vector2(0, -1) * magnitudeScalar;   // up
                         anotherPossibleLocation2 += new Vector2(1, 0) * magnitudeScalar;   // right
                     }
                     else
                     {
                         // we want to go down and to the right
-                        anotherPossibleLocation1 += new Vector2(0, -1) * magnitudeScalar;   // down
+                        anotherPossibleLocation1 += new Vector2(0, 1) * magnitudeScalar;   // down
                         anotherPossibleLocation2 += new Vector2(1, 0) * magnitudeScalar;   // right
                     }
                 }

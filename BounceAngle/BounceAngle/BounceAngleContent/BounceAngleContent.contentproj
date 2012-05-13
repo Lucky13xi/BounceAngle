@@ -330,7 +330,7 @@
   <ItemGroup>
     <Compile Include="Images\nightclouds.png">
       <Name>nightclouds</Name>
-	    <Importer>TextureImporter</Importer>
+      <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
     <Compile Include="Images\survivor.png">
@@ -347,6 +347,18 @@
     </Compile>
     <Compile Include="Images\zombie1.png">
       <Name>zombie1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\survivor0.png">
+      <Name>survivor0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\survivor1.png">
+      <Name>survivor1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
