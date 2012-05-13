@@ -13,9 +13,11 @@ namespace BounceAngle
         void addSurvivor(SurvivorData survivor);
         List<SurvivorData> getAllSurvivors();
         SurvivorData getSurvivorById(int id);
-
+        Texture2D getTexture();
+        void reset();
         void init(ContentManager content);
         void update(GameTime gameTime);
         void draw(SpriteBatch spriteBatch);
+        
     }
 }

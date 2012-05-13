@@ -20,6 +20,7 @@ namespace BounceAngle
         int getScavengeTime();
         Vector2 getLocation();
         Boolean isSafehouse();
+        Vector2 getSpawnLocation();
         
         void setAmmo(int ammo);
         void setFood(int food);
