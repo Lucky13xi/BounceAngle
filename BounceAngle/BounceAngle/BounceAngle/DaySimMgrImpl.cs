@@ -124,6 +124,7 @@ namespace BounceAngle
             {
                 aliveSurvivors--;
             }
+            DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors = aliveSurvivors;
         }
     }
 }
