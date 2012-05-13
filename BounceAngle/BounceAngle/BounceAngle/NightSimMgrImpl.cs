@@ -10,10 +10,14 @@ namespace BounceAngle
     {
         private const int SPAWN_DELAY = 1000;
         private float spawnCounter;
+        private int screenHeight;
+        private int screenWidth;
 
         public void init()
         {
             spawnCounter = 0;
+            screenHeight = 720;
+            screenWidth = 1280;
         }
 
         public void resetMode()
@@ -25,7 +29,7 @@ namespace BounceAngle
                 NightGameEngineImp.getGameEngine().getSurvivorManager().addSurvivor(
                     new SurvivorDataIMP(
                         SurvivorManagerIMP.survivorCounter++,
-                        DayGameEngineImp.getGameEngine().getMapManager().getOffset() + spawnLocs[i].getSpawnLocation(),
+                        NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset() + spawnLocs[i].getSpawnLocation(),
                         Vector2.Zero,
                         NightGameEngineImp.getGameEngine().getSurvivorManager().getTextures()[0],
                         1f));
@@ -45,14 +49,30 @@ namespace BounceAngle
                 spawnCounter = 0;
             }
 
-
             if (0 == NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors().Count)
             {
                 NightGameEngineImp.getGameEngine().stop();
                 DayGameEngineImp.getGameEngine().getMenuManager().SetUIScavenges = DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors;
                 DayGameEngineImp.getGameEngine().start();
             }
+
+            // display all the survivor icons
             NightGameEngineImp.getGameEngine().getMenuManager().displaySurvivorIcons(NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors());
+
+            updateScreenLocation();
+        }
+
+        private void updateScreenLocation()
+        {
+            SurvivorData sd = NightGameEngineImp.getGameEngine().getSurvivorManager().getActiveSurvivor();
+            if (null != sd)
+            {
+                // update the screen offsets to follow the active survivor
+                Vector2 centeringOffset = new Vector2(screenWidth / 2, screenHeight / 2);
+                Vector2 worldToScreenOffset = -sd.getCurrentLocation() + centeringOffset;
+                //Console.WriteLine("Screen worldToScreenOffset:" + worldToScreenOffset + " survivor:" + sd.getCurrentLocation() + " centering=" + centeringOffset);
+                NightGameEngineImp.getGameEngine().getMapManager().setScreenWorldOffset(worldToScreenOffset);
+            }
         }
     }
 }

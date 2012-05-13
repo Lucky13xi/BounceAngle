@@ -13,7 +13,6 @@ namespace BounceAngle
         Vector2 location;
         Vector2 destination;
         Texture2D texture;
-        Vector2 offset;
         //TODO: animations! 
         private float animationStep;
         bool dead;
@@ -42,17 +41,6 @@ namespace BounceAngle
 
         public Texture2D getTexture() {
             return texture;
-        }
-
-        public void setOffset(Vector2 _offset)
-        {
-            offset += _offset;
-            offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
-            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
-        }
-        public Vector2 getOffset()
-        {
-            return offset;
         }
 
         public float getMoveSpeed() {
