@@ -45,6 +45,11 @@ namespace BounceAngle
             return moveSpeed;   
         }
 
+        public float getCollisionRadius()
+        {
+            return 25;
+        }
+
         public void setCurrentLocation(Vector2 loc) {
             location = loc;
         }
