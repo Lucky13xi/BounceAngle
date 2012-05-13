@@ -11,14 +11,15 @@ namespace BounceAngle
     class SurvivorManagerIMP : SurvivorManager
     {
         //use this when creating new survivorID's
-        private static int survivorCounter = 0;
+        public static int survivorCounter = 0;
         private List<SurvivorData> survivorsData;
-        private List<SurvivorData> removeFromListQueue;
+        private List<int> removeFromListQueue;
         private SurvivorData activeSurvivor;
+        public Texture2D survivorTexture1, survivorTexture2;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
-            removeFromListQueue = new List<SurvivorData>();
+            removeFromListQueue = new List<int>();
         }
 
         public void addSurvivor(SurvivorData survivor) {
@@ -31,6 +32,11 @@ namespace BounceAngle
             
         }
 
+        public Texture2D getTexture()
+        {
+            return survivorTexture1;
+        }
+
         public SurvivorData getSurvivorById(int id) {
             foreach (SurvivorData survivor in survivorsData) {
                 if (survivor.getId() == id) {
@@ -41,22 +47,8 @@ namespace BounceAngle
         }
 
         public void init(ContentManager content) {
-            // TODO: get the survivor start locations from the list of buildings visited in the day
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(10, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(600, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(600, 700), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(1100, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
-            addSurvivor(new SurvivorDataIMP(survivorCounter++,
-                                    new Vector2(100, 70), Vector2.Zero,
-                                    content.Load<Texture2D>("Images//survivor0"), 1.0f));
+            survivorTexture1 = content.Load<Texture2D>("Images//survivor0");
+            survivorTexture2 = content.Load<Texture2D>("Images//survivor1");
         }
 
         public void update(GameTime gameTime) { 
@@ -100,9 +92,9 @@ namespace BounceAngle
             }
 
             // if something reached the safe house, remove it here
-            foreach (SurvivorData removeData in removeFromListQueue)
+            foreach (int removeSurvivorId in removeFromListQueue)
             {
-                survivorsData.Remove(removeData);
+                killSurvivor(removeSurvivorId, false);
             }
             removeFromListQueue.Clear();
         }
@@ -227,12 +219,11 @@ namespace BounceAngle
 
         private void survivorReachedSafehouse(SurvivorData survivor)
         {
-            // TODO:
             Console.WriteLine("Survivor: " + survivor.getId() + " reached safehouse.");
-            removeFromListQueue.Add(survivor);
+            removeFromListQueue.Add(survivor.getId());
         }
 
-        public void violentlyKillSurvivor(int survivorDataId, Boolean isViolentDeath)
+        public void killSurvivor(int survivorDataId, Boolean isViolentDeath)
         {
             for (int i = 0; i < survivorsData.Count; ++i)
             {
@@ -255,6 +246,10 @@ namespace BounceAngle
                     survivorsData.RemoveAt(i);
                     break;
                 }
+            }
+            if (isViolentDeath)
+            {
+                NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
             }
         }
 

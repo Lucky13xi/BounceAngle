@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace BounceAngle
 {
@@ -38,6 +39,11 @@ namespace BounceAngle
             {
                 runSim();
             }
+        }
+
+        public List<BuildingData> getQueuedBuildings()
+        {
+            return buildingsToScavenge;
         }
 
         public void runSim()
@@ -79,8 +85,7 @@ namespace BounceAngle
             //Console.WriteLine("Food gathered: " + _food + " Ammo gathered: " + _ammo + " Survivors Found: " + _aliveSurvivors);
             //DayGameEngineImp.getGameEngine().getMenuManager().displaySummary(_food, _ammo, _zombies, _aliveSurvivors);
             DayGameEngineImp.getGameEngine().getMenuManager().displaySummary(_food, _ammo, _aliveSurvivors, _time);
-            //clear the buildings scavenged this turn
-            buildingsToScavenge = new List<BuildingData>();
+            
         }
 
         public int getNumAvailableSurvivorsToScavenge()
@@ -97,6 +102,8 @@ namespace BounceAngle
 
         public void resetMode()
         {
+            // clear our building list
+            buildingsToScavenge.Clear();
         }
     }
 }
