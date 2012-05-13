@@ -84,11 +84,23 @@ namespace BounceAngle
                             Zombies[i].setDestination(survivors.getAllSurvivors()[j].getCurrentLocation());
                         }
                         //TODO: "Hit" detection
-                        if ((Zombies[i].getCurrentLocation() - survivors.getAllSurvivors()[j].getCurrentLocation()).Length() < 20)
+                        if (!Zombies[i].getDead() && (Zombies[i].getCurrentLocation() - survivors.getAllSurvivors()[j].getCurrentLocation()).Length() < 20)
                         {
-                            this.addZombie(new ZombieDataImp(zombieTextures[0]), survivors.getAllSurvivors()[j].getCurrentLocation());
-                            NightGameEngineImp.getGameEngine().getSurvivorManager().killSurvivor(survivors.getAllSurvivors()[j].getId(), true);
-                            //Zombies.RemoveAt(i);                            
+                            if (NightGameEngineImp.getGameEngine().getMenuManager().SetUIAmmo > 0)
+                            {
+                                Zombies[i].setDead(true);
+                                NightGameEngineImp.getGameEngine().getMenuManager().SetUIAmmo--;
+                                NightGameEngineImp.getGameEngine().getSoundManager().playGunFire();
+                            }
+                            else
+                            {
+                                if (random.Next(1, 11) > 5)
+                                {
+                                    NightGameEngineImp.getGameEngine().getSurvivorManager().killSurvivor(survivors.getAllSurvivors()[j].getId(), false);
+                                    this.addZombie(new ZombieDataImp(zombieTextures[0]), survivors.getAllSurvivors()[j].getCurrentLocation());
+                                }
+                                else NightGameEngineImp.getGameEngine().getSurvivorManager().killSurvivor(survivors.getAllSurvivors()[j].getId(), true);
+                            }//Zombies.RemoveAt(i);                            
                         }
                     }
                     catch (Exception) {
@@ -100,11 +112,12 @@ namespace BounceAngle
                     Vector2 zombieToMove = Zombies[i].getDestination() - Zombies[i].getCurrentLocation();
                     zombieToMove.Normalize();
 
-                    if (Zombies[i].getDestination() != Vector2.Zero)
+                    if (Zombies[i].getDestination() != Vector2.Zero && !Zombies[i].getDead())
                     {
 
                         Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() + zombieToMove * Zombies[i].getMoveSpeed());
                         Zombies[i].setRotation((float)Math.Atan2(Zombies[i].getDestination().Y - Zombies[i].getCurrentLocation().Y, Zombies[i].getDestination().X - Zombies[i].getCurrentLocation().X));
+
                         foreach (Building building in NightGameEngineImp.getGameEngine().getMapManager().getAllBuildings())
                         {
                             Vector2 zomCollisionPoint = Zombies[i].getCurrentLocation() + new Vector2(Zombies[i].getTexture().Width/2,Zombies[i].getTexture().Height/2); 
@@ -125,14 +138,15 @@ namespace BounceAngle
                                 else if (zomCollisionPoint.Y > buildingBounds.Top
                                     && zomCollisionPoint.Y < buildingBounds.Bottom)
                                 {
-                                        //Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() + zombieToMove * Zombies[i].getMoveSpeed()  * -2f);
-                                        if (zomCollisionPoint.X < buildingBounds.Left)
-                                        {
-                                            Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() + new Vector2(-10, 0));
-                                        }
-                                        else Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() + new Vector2(10, 0));
+                                    //Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() + zombieToMove * Zombies[i].getMoveSpeed()  * -2f);
+                                    if (zomCollisionPoint.X < buildingBounds.Left)
+                                    {
+                                        Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() + new Vector2(-10, 0));
+                                    }
+                                    else Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() + new Vector2(10, 0));
                                 }
-                                
+                                else { Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() - zombieToMove * Zombies[i].getMoveSpeed()); }
+
                             }
                         }
                     }
@@ -154,7 +168,9 @@ namespace BounceAngle
             Vector2 screenOffset = NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset();
             foreach (ZombieData zombie in Zombies)
             {
-                spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + screenOffset, null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2),0.5f, SpriteEffects.None, 0f);
+                if (zombie.getDead())
+                    spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + screenOffset, null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2), 1f, SpriteEffects.None, 0f);
+                else spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + screenOffset, null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2), 0.5f, SpriteEffects.None, 0f);
                 //spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation(), Color.White);
             }
         }
