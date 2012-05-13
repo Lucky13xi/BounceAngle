@@ -22,7 +22,13 @@ namespace BounceAngle
 
         public void resetMode()
         {
-            // 1. add all the survivors to the proper start locations from the DaySimMgr
+            // reset hover effect
+            foreach (Building b in NightGameEngineImp.getGameEngine().getMapManager().getAllBuildings())
+            {
+                b.getBuildingData().setOver(false);
+            }
+
+            // add all the survivors to the proper start locations from the DaySimMgr
             List<BuildingData> spawnLocs = DayGameEngineImp.getGameEngine().getSimMgr().getQueuedBuildings();
             for (int i = 0; i < spawnLocs.Count; i++)
             {
