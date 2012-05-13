@@ -75,6 +75,25 @@ namespace BounceAngle
                     zom.setOffset(new Vector2(0, -10));
                 }
             }
+            foreach (SurvivorData surv in NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors())
+            {
+                if (mouseState.X < 20)
+                {
+                    surv.setOffset(new Vector2(10, 0));
+                }
+                if (mouseState.X > 1060)
+                {
+                    surv.setOffset(new Vector2(-10, 0));
+                }
+                if (mouseState.Y < 20)
+                {
+                    surv.setOffset(new Vector2(0, 10));
+                }
+                if (mouseState.Y > 700)
+                {
+                    surv.setOffset(new Vector2(0, -10));
+                }
+            }
 
         }
     }
