@@ -66,6 +66,7 @@ namespace BounceAngle
 
         private void processClick(MouseState mouseState) {
             if (mouseState.LeftButton == ButtonState.Released && preMouseState.LeftButton == ButtonState.Pressed) {
+                DayGameEngineImp.getGameEngine().getSoundManager().playClick();
                 // 1. check if the building go button was clicked
 
                 // at this point no buttons or a cancel button was clicked

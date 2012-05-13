@@ -24,15 +24,32 @@ namespace BounceAngle
 
         public void addZombie(ZombieData zombie)
         {
-            NightGameEngineImp.getGameEngine().getSoundManager().playZombieSound();
+            if (random.Next(1,11) > 9)
+                NightGameEngineImp.getGameEngine().getSoundManager().playZombieSound();
             Vector2 spawnLocation = new Vector2(random.Next(-500, 1600), random.Next(-300, 1000));
-            while(NightGameEngineImp.getGameEngine().getMapManager().getCollision(spawnLocation) >= 0){
+            while(NightGameEngineImp.getGameEngine().getMapManager().getCollision(spawnLocation, zombie.getOffset()) >= 0){
                 spawnLocation = new Vector2(random.Next(-500, 1600), random.Next(-300, 1000));
             }
             zombie.setCurrentLocation(spawnLocation);
-
+            if(Zombies.Count > 0)
+                zombie.setOffset(Zombies[0].getOffset());
             Zombies.Add(zombie);
         }
+
+        public void addZombie(ZombieData zombie, Vector2 _spawnLocation)
+        {
+            NightGameEngineImp.getGameEngine().getSoundManager().playZombieSound();
+            Vector2 spawnLocation = _spawnLocation;
+            while (NightGameEngineImp.getGameEngine().getMapManager().getCollision(spawnLocation, zombie.getOffset()) >= 0)
+            {
+                spawnLocation = new Vector2(random.Next(-500, 1600), random.Next(-300, 1000));
+            }
+            zombie.setCurrentLocation(spawnLocation);
+            if (Zombies.Count > 0)
+                zombie.setOffset(Zombies[0].getOffset());
+            Zombies.Add(zombie);
+        }
+
         public List<ZombieData> getAllZombies(){
             return Zombies;
         }
@@ -69,7 +86,11 @@ namespace BounceAngle
                         //TODO: "Hit" detection
                         if ((Zombies[i].getCurrentLocation() - survivors.getAllSurvivors()[j].getCurrentLocation()).Length() < 20)
                         {
-                            Zombies.RemoveAt(i);
+                            this.addZombie(new ZombieDataImp(zombieTextures[0]), survivors.getAllSurvivors()[j].getCurrentLocation());
+                            survivors.getAllSurvivors().RemoveAt(j);
+                            NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
+                            //Zombies.RemoveAt(i);
+                            
                         }
                     }
                     catch (Exception e) {
@@ -89,7 +110,7 @@ namespace BounceAngle
                         foreach (Building building in NightGameEngineImp.getGameEngine().getMapManager().getAllBuildings())
                         {
                             Vector2 zomCollisionPoint = Zombies[i].getCurrentLocation() + new Vector2(Zombies[i].getTexture().Width/2,Zombies[i].getTexture().Height/2); 
-                            int bId = NightGameEngineImp.getGameEngine().getMapManager().getCollision(zomCollisionPoint);
+                            int bId = NightGameEngineImp.getGameEngine().getMapManager().getCollision(zomCollisionPoint, Zombies[i].getOffset());
 
                             if( bId >= 0){
                                 Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() - zombieToMove * Zombies[i].getMoveSpeed());

@@ -88,7 +88,7 @@ namespace BounceAngle
             //uiMan.init();
             simMgr.init();
 
-            soundManager.playDayMusic();
+            //soundManager.playDayMusic();
         }
 
         public void Update(GameTime gameTime)
@@ -120,6 +120,7 @@ namespace BounceAngle
         public void start()
         {
             isRunning = true;
+            soundManager.playDayMusic();
             simMgr.resetMode();
         }
     }
