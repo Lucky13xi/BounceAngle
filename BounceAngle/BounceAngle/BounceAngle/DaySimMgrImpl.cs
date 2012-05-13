@@ -89,9 +89,13 @@ namespace BounceAngle
 
         public void onSummaryPopupOkay()
         {
-            // TODO: go to night mode?
-            
             Console.WriteLine("Summary popup submitted");
+            DayGameEngineImp.getGameEngine().stop();
+            NightGameEngineImp.getGameEngine().start();
+        }
+
+        public void resetMode()
+        {
         }
     }
 }
