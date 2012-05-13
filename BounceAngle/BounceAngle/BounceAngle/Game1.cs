@@ -41,7 +41,7 @@ namespace BounceAngle
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
         }
 
         /// <summary>
@@ -109,6 +109,7 @@ namespace BounceAngle
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
+            MouseState mstate = Mouse.GetState();
             //Volume Control
             if (keyState.IsKeyDown(Keys.Subtract) && preKeyState.IsKeyUp(Keys.Subtract))
             {
@@ -122,7 +123,8 @@ namespace BounceAngle
             }
             if (gameState == GameState.instructions)
             {
-                if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
+                if ((keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
+                    || (mstate.LeftButton == ButtonState.Pressed))
                 {
                     gameState = GameState.mainMenu;
                 }
