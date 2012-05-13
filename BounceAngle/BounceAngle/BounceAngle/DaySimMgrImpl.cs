@@ -78,7 +78,7 @@ namespace BounceAngle
                 data.setAmmo((int)data.getAmmo() / 2 + random.Next(1));
                 data.setFood((int)data.getFood() / 2 + random.Next(1));
                 data.setSurvivors((int)data.getSurvivors() / 2 + random.Next(1));
-                data.setZombies((int)data.getZombies() / 2 + random.Next(1));
+                data.setZombies(0);
             
             }
              // use _ammo & _food & _aliveSurvivors for the sub total of the day
