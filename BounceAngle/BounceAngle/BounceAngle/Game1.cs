@@ -111,12 +111,20 @@ namespace BounceAngle
                 DayGameEngineImp.getGameEngine().getSoundManager().volumeUp();
                 //NightGameEngineImp.getGameEngine().getSoundManager().volumeUp();
             }
+            if (gameState == GameState.instructions)
+            {
+                if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
+                {
+                    gameState = GameState.mainMenu;
+                }
+                preKeyState = keyState;
+            }
             if (gameState == GameState.mainMenu)
             {
                 UpdateInput(gameTime);
-                
-               
             }
+
+            
 
             if (gameState == GameState.playing)
             {
@@ -139,7 +147,7 @@ namespace BounceAngle
         {
             KeyboardState keyState = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
-
+            
             
             if (gameState == GameState.mainMenu)
             {
@@ -202,7 +210,10 @@ namespace BounceAngle
                 dayGame.Draw(spriteBatch);
                 nightGame.Draw(spriteBatch);
             }
-
+            if (gameState == GameState.instructions)
+            {
+                spriteBatch.Draw(Content.Load<Texture2D>("Images//instructionsScreen"), Vector2.Zero, Color.White);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }

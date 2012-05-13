@@ -14,6 +14,8 @@ namespace BounceAngle
         Vector2 destination;
         Texture2D texture;
         //TODO: animations! 
+        private float animationStep;
+        bool dead;
 
         float moveSpeed;
 
@@ -61,6 +63,29 @@ namespace BounceAngle
         public void setMoveSpeed(float speed)
         {
             moveSpeed = speed;
+        }
+        public void updateAnimations()
+        {
+            if (!dead)
+            {
+                animationStep += getMoveSpeed();
+                if (animationStep > 15)
+                {
+                    if (getTexture().Equals(NightGameEngineImp.getGameEngine().getSurvivorManager().getTextures()[0]))
+                    {
+                        setTexture(NightGameEngineImp.getGameEngine().getSurvivorManager().getTextures()[1]);
+                    }
+                    else
+                    {
+                        setTexture(NightGameEngineImp.getGameEngine().getSurvivorManager().getTextures()[0]);
+                    }
+                    animationStep = 0;
+                }
+            }
+        }
+        public void setTexture(Texture2D _tex)
+        {
+            texture = _tex;
         }
     }
 }

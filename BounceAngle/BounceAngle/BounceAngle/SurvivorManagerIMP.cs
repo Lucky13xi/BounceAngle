@@ -15,10 +15,12 @@ namespace BounceAngle
         private List<SurvivorData> survivorsData;
         private List<int> removeFromListQueue;
         private SurvivorData activeSurvivor;
-        public Texture2D survivorTexture1, survivorTexture2;
+        public List<Texture2D> survivorTextures { get; set; }
+        //private Texture2D texture;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
+            survivorTextures = new List<Texture2D>();
             removeFromListQueue = new List<int>();
         }
 
@@ -32,10 +34,10 @@ namespace BounceAngle
             
         }
 
-        public Texture2D getTexture()
+        /*public Texture2D getTexture()
         {
-            return survivorTexture1;
-        }
+            return texture;
+        }*/
 
         public SurvivorData getSurvivorById(int id) {
             foreach (SurvivorData survivor in survivorsData) {
@@ -47,8 +49,9 @@ namespace BounceAngle
         }
 
         public void init(ContentManager content) {
-            survivorTexture1 = content.Load<Texture2D>("Images//survivor0");
-            survivorTexture2 = content.Load<Texture2D>("Images//survivor1");
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor0"));
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor1"));
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor2"));
         }
 
         public void update(GameTime gameTime) { 
@@ -89,6 +92,7 @@ namespace BounceAngle
                 Vector2 newNextLocation = checkBuildingCollission(survivor, nextLocation, safehouseBuildingId);
 
                 survivor.setCurrentLocation(newNextLocation);
+                survivor.updateAnimations();
                 //Console.WriteLine("Survivor: " + survivor.getId() + " at position: (" + newNextLocation.X + "," + newNextLocation.Y + ")");
             }
 
@@ -98,6 +102,12 @@ namespace BounceAngle
                 killSurvivor(removeSurvivorId, false);
             }
             removeFromListQueue.Clear();
+            
+        }
+
+        public List<Texture2D> getTextures()
+        {
+            return survivorTextures;
         }
 
         public float VectorToAngle(Vector2 vector)
