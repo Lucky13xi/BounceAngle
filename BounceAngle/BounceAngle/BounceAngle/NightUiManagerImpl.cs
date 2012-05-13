@@ -28,7 +28,10 @@ namespace BounceAngle
                 if (MenuClickResult.clickType.player == clickResult.type)
                 {
                     SurvivorData sd = (SurvivorData)clickResult.payLoad;
-                    //NightGameEngineImp.getGameEngine().getSurvivorManager().setActiveSurvivor(sd.getId());
+                    if (null != sd)
+                    {
+                        NightGameEngineImp.getGameEngine().getSurvivorManager().setActiveSurvivor(sd.getId());
+                    }
                 }
                 return true;
             }
