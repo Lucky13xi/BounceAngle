@@ -15,26 +15,23 @@ namespace BounceAngle
         private List<SurvivorData> survivorsData;
         private List<int> removeFromListQueue;
         private SurvivorData activeSurvivor;
-        public Texture2D survivorTexture1, survivorTexture2;
+        public List<Texture2D> survivorTextures { get; set; }
+        private Texture2D destTexture;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
+            survivorTextures = new List<Texture2D>();
             removeFromListQueue = new List<int>();
         }
 
         public void addSurvivor(SurvivorData survivor) {
             survivorsData.Add(survivor);
-            activeSurvivor = survivor;
+            setActiveSurvivor(survivor.getId());
         }
 
         public List<SurvivorData> getAllSurvivors(){
             return survivorsData;
             
-        }
-
-        public Texture2D getTexture()
-        {
-            return survivorTexture1;
         }
 
         public SurvivorData getSurvivorById(int id) {
@@ -47,8 +44,10 @@ namespace BounceAngle
         }
 
         public void init(ContentManager content) {
-            survivorTexture1 = content.Load<Texture2D>("Images//survivor0");
-            survivorTexture2 = content.Load<Texture2D>("Images//survivor1");
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor0"));
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor1"));
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor2"));
+            destTexture = content.Load<Texture2D>("Images//survivor");
         }
 
         public void update(GameTime gameTime) { 
@@ -73,8 +72,9 @@ namespace BounceAngle
 
                 if (Vector2.Zero == survivor.getDestination())
                 {
-                    Vector2 safehouseLocation = NightGameEngineImp.getGameEngine().getMapManager().getBuildingByID(safehouseBuildingId).getBuildingData().getLocation() + new Vector2(50, 50) +NightGameEngineImp.getGameEngine().getMapManager().getOffset();
-                    // TODO: offset the safehouse location to the middle of the building
+                    Vector2 safehouseLocation = NightGameEngineImp.getGameEngine().getMapManager().getBuildingByID(safehouseBuildingId).getBuildingData().getLocation();
+                    // offset the safehouse location to the middle of the building
+                    safehouseLocation += new Vector2(50, 50);
                     survivor.setDestination(safehouseLocation);
                 }
 
@@ -88,6 +88,7 @@ namespace BounceAngle
                 Vector2 newNextLocation = checkBuildingCollission(survivor, nextLocation, safehouseBuildingId);
 
                 survivor.setCurrentLocation(newNextLocation);
+                survivor.updateAnimations();
                 //Console.WriteLine("Survivor: " + survivor.getId() + " at position: (" + newNextLocation.X + "," + newNextLocation.Y + ")");
             }
 
@@ -97,6 +98,12 @@ namespace BounceAngle
                 killSurvivor(removeSurvivorId, false);
             }
             removeFromListQueue.Clear();
+            
+        }
+
+        public List<Texture2D> getTextures()
+        {
+            return survivorTextures;
         }
 
         public float VectorToAngle(Vector2 vector)
@@ -105,19 +112,23 @@ namespace BounceAngle
         }
 
         public void draw(SpriteBatch spriteBatch) {
+            Vector2 screenOffset = NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset();
             foreach (SurvivorData survivor in survivorsData) {
 
                 //  spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation(), Color.White);
                 float facing = VectorToAngle(survivor.getDestination()- survivor.getCurrentLocation());
-                
-                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation() + survivor.getOffset(), null,
+
+                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation() + screenOffset, null,
                     Color.White, facing, new Vector2(survivor.getTexture().Width/2,survivor.getTexture().Height/2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 1);
+
+                // draw the destination target for debugging
+                spriteBatch.Draw(destTexture, survivor.getDestination() + screenOffset, Color.White);
             }
         }
 
         private Vector2 checkBuildingCollission(SurvivorData survivor, Vector2 wantToGoHereLocation, int safehouseId)
         {
-            int buildingCollision = NightGameEngineImp.getGameEngine().getMapManager().getCollision(wantToGoHereLocation, survivor.getOffset());
+            int buildingCollision = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(wantToGoHereLocation);
             if (buildingCollision == safehouseId)
             {
                 survivorReachedSafehouse(survivor);
@@ -166,10 +177,11 @@ namespace BounceAngle
                     }
                 }
 
-                int collission1 = NightGameEngineImp.getGameEngine().getMapManager().getCollision(anotherPossibleLocation1);
-                int collission2 = NightGameEngineImp.getGameEngine().getMapManager().getCollision(anotherPossibleLocation2);
+                int collission1 = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(anotherPossibleLocation1);
+                int collission2 = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(anotherPossibleLocation2);
                 /*
                 Console.WriteLine("Survivor: " + survivor.getId()
+                    + " collided=" + buildingCollision
                     + " currLoc=" + survivor.getCurrentLocation()
                     + " wantToGo=" + wantToGoHereLocation
                     + " possible1=" + (anotherPossibleLocation1)
@@ -229,17 +241,20 @@ namespace BounceAngle
             {
                 if (survivorsData[i].getId() == survivorDataId)
                 {
-                    if (survivorsData[i].getId() == activeSurvivor.getId())
+                    if (null != activeSurvivor)
                     {
-                        // the activeSurvivor just died, find another survivor
-                        if (i > 0)
+                        if (survivorsData[i].getId() == activeSurvivor.getId())
                         {
-                            // just set the previous survivor in the list as active since we know it exists
-                            activeSurvivor = survivorsData[i - 1];
-                        }
-                        else
-                        {
-                            activeSurvivor = null;
+                            // the activeSurvivor just died, find another survivor
+                            if (i > 0)
+                            {
+                                // just set the previous survivor in the list as active since we know it exists
+                                setActiveSurvivor(survivorsData[i - 1].getId());
+                            }
+                            else
+                            {
+                                setActiveSurvivor(-1);
+                            }
                         }
                     }
 
@@ -256,6 +271,19 @@ namespace BounceAngle
         public SurvivorData getActiveSurvivor()
         {
             return activeSurvivor;
+        }
+
+        public void setActiveSurvivor(int survivorDataId)
+        {
+            for (int i = 0; i < survivorsData.Count; ++i)
+            {
+                if (survivorsData[i].getId() == survivorDataId)
+                {
+                    activeSurvivor = survivorsData[i];
+                    return;
+                }
+            }
+            activeSurvivor = null;
         }
     }
 }

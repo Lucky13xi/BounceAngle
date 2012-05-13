@@ -16,8 +16,9 @@ namespace BounceAngle
 
         void killSurvivor(int survivorDataId, Boolean isViolentDeath);
         SurvivorData getActiveSurvivor();
+        void setActiveSurvivor(int survivorDataId);
 
-        Texture2D getTexture();
+        List<Texture2D> getTextures();
         void init(ContentManager content);
         void update(GameTime gameTime);
         void draw(SpriteBatch spriteBatch);
