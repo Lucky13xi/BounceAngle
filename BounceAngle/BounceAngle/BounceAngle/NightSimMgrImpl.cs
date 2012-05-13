@@ -43,7 +43,7 @@ namespace BounceAngle
                         spawnLocs[i].getSpawnLocation(),
                         Vector2.Zero,
                         NightGameEngineImp.getGameEngine().getSurvivorManager().getTextures()[0],
-                        1f));
+                        2.5f));
             }
         }
 
