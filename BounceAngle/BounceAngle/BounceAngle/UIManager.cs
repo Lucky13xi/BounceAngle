@@ -9,6 +9,7 @@ namespace BounceAngle
 {
     interface UIManager
     {
+        void init();
         void ProcessMouse(MouseState mouseState);
     }
 }
