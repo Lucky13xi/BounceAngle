@@ -86,12 +86,12 @@ namespace BounceAngle
             else if(dead)
             {
                 animationStep += 1;
-                if (animationStep > 600)
+                if (animationStep > 200)
                 {
                     NightGameEngineImp.getGameEngine().getZombieManager().getAllZombies().Remove(this);
-                }else if (animationStep > 150){
-                    setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[4]);
                 }else if (animationStep > 50){
+                    setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[4]);
+                }else if (animationStep > 25){
                     setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[3]);
                 }else setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[2]);                    
             }
