@@ -64,13 +64,13 @@ namespace BounceAngle
         {
             if (isRunning)
             {
-                menuMgr.Draw(spriteBatch);
                 mapMgr.Draw(spriteBatch);
                 zombieMgr.draw(spriteBatch);
                 effectsMgr.Draw(spriteBatch);
                 survivorMgr.draw(spriteBatch);
                 spriteBatch.Draw(nightTimeClouds1, ntc1pos, Color.White);
                 spriteBatch.Draw(nightTimeClouds1, ntc2pos, Color.White);
+                menuMgr.Draw(spriteBatch);
             }
         }
 

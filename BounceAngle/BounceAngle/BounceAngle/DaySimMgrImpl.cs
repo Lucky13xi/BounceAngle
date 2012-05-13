@@ -104,6 +104,7 @@ namespace BounceAngle
         {
             // clear our building list
             buildingsToScavenge.Clear();
+
             // clear survivor icons
             DayGameEngineImp.getGameEngine().getMenuManager().hideSurvivorIcon();
         }

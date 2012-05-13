@@ -37,7 +37,7 @@ namespace BounceAngle
             // 1. handle spawning zombies
             // 2. handle end game state when all the suvivors are gone from the survivor manager
             //     - flip back into the day mode
-
+ 
             spawnCounter += gameTime.ElapsedGameTime.Milliseconds;
             if (spawnCounter > SPAWN_DELAY)
             {
