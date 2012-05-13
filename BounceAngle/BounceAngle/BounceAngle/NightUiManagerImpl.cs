@@ -7,6 +7,10 @@ namespace BounceAngle
 {
     class NightUiManagerImpl : UIManager
     {
+        public void init()
+        {
+        }
+
         public void ProcessMouse(Microsoft.Xna.Framework.Input.MouseState mouseState)
         {
             // process in night mode
