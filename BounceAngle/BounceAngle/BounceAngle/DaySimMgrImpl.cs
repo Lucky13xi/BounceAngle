@@ -119,7 +119,10 @@ namespace BounceAngle
 
         public void killSurvivor()
         {
-            aliveSurvivors--;
+            if (aliveSurvivors > 0)
+            {
+                aliveSurvivors--;
+            }
         }
     }
 }
