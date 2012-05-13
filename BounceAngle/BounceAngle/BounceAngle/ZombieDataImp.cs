@@ -14,12 +14,23 @@ namespace BounceAngle
         Vector2 location;
         int id;
         float speed;
+        float rotation;
         Random random = new Random();
 
         public ZombieDataImp(Texture2D _texture)
         {
             texture = _texture;
             speed = (float)random.NextDouble();
+            rotation = 0f;
+            setDestination(Vector2.Zero);
+        }
+        public void setRotation(float rot)
+        {
+            rotation = rot;
+        }
+        public float getRotation()
+        {
+            return rotation;
         }
         public int getId()
         {
