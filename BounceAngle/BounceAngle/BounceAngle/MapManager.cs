@@ -21,8 +21,8 @@ namespace BounceAngle
         void setScreenWorldOffset(Vector2 offset);
         List<Building> getAllBuildings();
         Building getBuildingByID(int id);
-        int getCollision(Vector2 cord);
-        int getCollision(Vector2 cord, Vector2 off);
+        int getScreenCollision(Vector2 coord);
+        int getWorldCollision(Vector2 coord);
         int getSafehouseBuildingId();
     }
 }

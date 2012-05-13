@@ -12,7 +12,6 @@ namespace BounceAngle
         Texture2D texture;
         Vector2 destination;
         Vector2 location;
-        Vector2 offset;
         int id;
         float speed;
         float rotation;
@@ -24,22 +23,10 @@ namespace BounceAngle
             speed = (float)random.NextDouble();
             rotation = 0f;
             setDestination(Vector2.Zero);
-            offset = Vector2.Zero;
         }
         public void setRotation(float rot)
         {
             rotation = rot;
-        }
-
-        public void setOffset(Vector2 _offset)
-        {
-            offset += _offset;
-            offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
-            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
-        }
-        public Vector2 getOffset()
-        {
-            return offset;
         }
 
         public float getRotation()

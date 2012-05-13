@@ -116,7 +116,7 @@ namespace BounceAngle
 
         private void processBuildingClick(MouseState mouseState)
         {
-            int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(new Vector2(mouseState.X, mouseState.Y));
+            int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getScreenCollision(new Vector2(mouseState.X, mouseState.Y));
 
             // 2. check if any building was pressed 
             if (buildingId >= 0)
@@ -133,7 +133,7 @@ namespace BounceAngle
         private void processBuildingHover(Vector2 mousePos)
         {
 
-            int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getCollision(mousePos);
+            int buildingId = DayGameEngineImp.getGameEngine().getMapManager().getScreenCollision(mousePos);
 
             if (buildingId >= 0)
             {

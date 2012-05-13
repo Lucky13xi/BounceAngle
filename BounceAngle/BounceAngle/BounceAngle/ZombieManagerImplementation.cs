@@ -27,12 +27,10 @@ namespace BounceAngle
             if (random.Next(1,11) > 9)
                 NightGameEngineImp.getGameEngine().getSoundManager().playZombieSound();
             Vector2 spawnLocation = new Vector2(random.Next(-500, 1600), random.Next(-300, 1000));
-            while(NightGameEngineImp.getGameEngine().getMapManager().getCollision(spawnLocation, zombie.getOffset()) >= 0){
+            while(NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(spawnLocation) >= 0){
                 spawnLocation = new Vector2(random.Next(-500, 1600), random.Next(-300, 1000));
             }
             zombie.setCurrentLocation(spawnLocation);
-            if(Zombies.Count > 0)
-                zombie.setOffset(Zombies[0].getOffset());
             Zombies.Add(zombie);
         }
 
@@ -40,13 +38,11 @@ namespace BounceAngle
         {
             NightGameEngineImp.getGameEngine().getSoundManager().playZombieSound();
             Vector2 spawnLocation = _spawnLocation;
-            while (NightGameEngineImp.getGameEngine().getMapManager().getCollision(spawnLocation, zombie.getOffset()) >= 0)
+            while (NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(spawnLocation) >= 0)
             {
                 spawnLocation = new Vector2(random.Next(-500, 1600), random.Next(-300, 1000));
             }
             zombie.setCurrentLocation(spawnLocation);
-            if (Zombies.Count > 0)
-                zombie.setOffset(Zombies[0].getOffset());
             Zombies.Add(zombie);
         }
 
@@ -108,7 +104,7 @@ namespace BounceAngle
                         foreach (Building building in NightGameEngineImp.getGameEngine().getMapManager().getAllBuildings())
                         {
                             Vector2 zomCollisionPoint = Zombies[i].getCurrentLocation() + new Vector2(Zombies[i].getTexture().Width/2,Zombies[i].getTexture().Height/2); 
-                            int bId = NightGameEngineImp.getGameEngine().getMapManager().getCollision(zomCollisionPoint, Zombies[i].getOffset());
+                            int bId = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(zomCollisionPoint);
 
                             if( bId >= 0){
                                 Zombies[i].setCurrentLocation(Zombies[i].getCurrentLocation() - zombieToMove * Zombies[i].getMoveSpeed());
@@ -146,9 +142,10 @@ namespace BounceAngle
         }
         public void draw(SpriteBatch spriteBatch)
         {
+            Vector2 screenOffset = NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset();
             foreach (ZombieData zombie in Zombies)
             {
-                spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + zombie.getOffset(), null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2),1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + screenOffset, null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2), 1f, SpriteEffects.None, 0f);
                 //spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation(), Color.White);
             }
         }

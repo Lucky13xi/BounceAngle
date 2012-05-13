@@ -106,19 +106,20 @@ namespace BounceAngle
         }
 
         public void draw(SpriteBatch spriteBatch) {
+            Vector2 screenOffset = NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset();
             foreach (SurvivorData survivor in survivorsData) {
 
                 //  spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation(), Color.White);
                 float facing = VectorToAngle(survivor.getDestination()- survivor.getCurrentLocation());
-                
-                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation() + getOffset(), null,
+
+                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation() + screenOffset, null,
                     Color.White, facing, new Vector2(survivor.getTexture().Width/2,survivor.getTexture().Height/2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 1);
             }
         }
 
         private Vector2 checkBuildingCollission(SurvivorData survivor, Vector2 wantToGoHereLocation, int safehouseId)
         {
-            int buildingCollision = NightGameEngineImp.getGameEngine().getMapManager().getCollision(wantToGoHereLocation, getOffset());
+            int buildingCollision = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(wantToGoHereLocation);
             if (buildingCollision == safehouseId)
             {
                 survivorReachedSafehouse(survivor);
@@ -167,8 +168,8 @@ namespace BounceAngle
                     }
                 }
 
-                int collission1 = NightGameEngineImp.getGameEngine().getMapManager().getCollision(anotherPossibleLocation1);
-                int collission2 = NightGameEngineImp.getGameEngine().getMapManager().getCollision(anotherPossibleLocation2);
+                int collission1 = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(anotherPossibleLocation1);
+                int collission2 = NightGameEngineImp.getGameEngine().getMapManager().getWorldCollision(anotherPossibleLocation2);
                 /*
                 Console.WriteLine("Survivor: " + survivor.getId()
                     + " currLoc=" + survivor.getCurrentLocation()
@@ -273,11 +274,6 @@ namespace BounceAngle
                 }
             }
             activeSurvivor = null;
-        }
-
-        private Vector2 getOffset()
-        {
-            return NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset();
         }
     }
 }
