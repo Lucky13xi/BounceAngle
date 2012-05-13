@@ -17,7 +17,7 @@ namespace BounceAngle
         float rotation;
         Random random = new Random();
         private float animationStep;
-        bool dead;
+        public bool dead;
 
         public ZombieDataImp(Texture2D _texture)
         {
@@ -27,6 +27,14 @@ namespace BounceAngle
             setDestination(Vector2.Zero);
             animationStep = 0;
             dead = false;
+        }
+        public void setDead(bool value)
+        {
+            dead = value;
+        }
+        public bool getDead()
+        {
+            return dead;
         }
         public void setRotation(float rot)
         {
@@ -81,9 +89,9 @@ namespace BounceAngle
                 if (animationStep > 600)
                 {
                     NightGameEngineImp.getGameEngine().getZombieManager().getAllZombies().Remove(this);
-                }else if (animationStep > 300){
+                }else if (animationStep > 150){
                     setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[4]);
-                }else if (animationStep > 100){
+                }else if (animationStep > 50){
                     setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[3]);
                 }else setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[2]);                    
             }
