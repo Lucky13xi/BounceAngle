@@ -12,7 +12,7 @@ namespace BounceAngle
         int food;
         int ammo;
         int aliveSurvivors;
-        int time;
+        //time int;
         Random random = new Random();
 
 
