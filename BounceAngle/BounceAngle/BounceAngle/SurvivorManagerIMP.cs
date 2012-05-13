@@ -103,7 +103,7 @@ namespace BounceAngle
             // if something reached the safe house, remove it here
             foreach (int removeSurvivorId in removeFromListQueue)
             {
-                killSurvivor(removeSurvivorId, false);
+                removeSurvivor(removeSurvivorId, false);
             }
             removeFromListQueue.Clear();
             
@@ -247,7 +247,7 @@ namespace BounceAngle
             removeFromListQueue.Add(survivor.getId());
         }
 
-        public void killSurvivor(int survivorDataId, Boolean isViolentDeath)
+        public void removeSurvivor(int survivorDataId, Boolean isViolentDeath)
         {
             for (int i = 0; i < survivorsData.Count; ++i)
             {
@@ -267,8 +267,8 @@ namespace BounceAngle
                         Console.WriteLine("Survivor: " + survivorDataId + " got violently killed");
                         NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
                         deadSurvivors.Add(survivorsData[i]);
+                        DayGameEngineImp.getGameEngine().getSimMgr().killSurvivor();
                     }
-                    DayGameEngineImp.getGameEngine().getSimMgr().killSurvivor();
                     survivorsData.RemoveAt(i);
                     break;
                 }

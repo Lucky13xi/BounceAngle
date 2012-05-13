@@ -135,7 +135,15 @@ namespace BounceAngle
                 UpdateInput(gameTime);
             }
 
-            
+            if (gameState == GameState.gameOver)
+            {
+                if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape) || mstate.LeftButton == ButtonState.Pressed)
+                {
+                    restartGame();
+                    gameState = GameState.mainMenu;
+                }
+                preKeyState = keyState;
+            }
 
             if (gameState == GameState.playing)
             {
@@ -145,7 +153,6 @@ namespace BounceAngle
 
                 if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
                 {
-                    //TODO: exit the game on escape
                     gameState = GameState.mainMenu;
                 }
                 
@@ -239,7 +246,7 @@ namespace BounceAngle
             if (gameState == GameState.gameOver)
             {
                 spriteBatch.Draw(Content.Load<Texture2D>("Images//gameOver"), Vector2.Zero, Color.White);
-                spriteBatch.DrawString(Content.Load<SpriteFont>("MenuItems//UIFont"), "You survived " + DayGameEngineImp.getGameEngine().getMenuManager().SetUITime + " days.", new Vector2(400, 400), Color.Black);
+                spriteBatch.DrawString(Content.Load<SpriteFont>("MenuItems//UIFont"), "You survived " + DayGameEngineImp.getGameEngine().getMenuManager().SetUITime + " days.", new Vector2(555, 400), Color.Black);
             }
 
             if (gameState == GameState.instructions)
