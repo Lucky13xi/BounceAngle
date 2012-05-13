@@ -57,5 +57,10 @@ namespace BounceAngle
         public void setDestination(Vector2 loc) {
             destination = loc;
         }
+
+        public void setMoveSpeed(float speed)
+        {
+            moveSpeed = speed;
+        }
     }
 }
