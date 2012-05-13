@@ -132,6 +132,9 @@ namespace BounceAngle
             Rectangle checkCancle = new Rectangle((int)menuItems[5].Position.X, (int)menuItems[5].Position.Y, cancel.Width, cancel.Height);
             Rectangle checkSummary = new Rectangle((int)menuItems[7].Position.X, (int)menuItems[7].Position.Y, summary.Width, summary.Height);
             Rectangle playerCheck = new Rectangle((int)menuItems[9].Position.X, (int)menuItems[9].Position.Y, playerIcon.Width, playerIcon.Height);
+            Rectangle playerCheck1 = new Rectangle((int)menuItems[10].Position.X, (int)menuItems[10].Position.Y, playerIcon.Width, playerIcon.Height);
+            Rectangle playerCheck2 = new Rectangle((int)menuItems[11].Position.X, (int)menuItems[11].Position.Y, playerIcon.Width, playerIcon.Height);
+            Rectangle playerCheck3 = new Rectangle((int)menuItems[12].Position.X, (int)menuItems[12].Position.Y, playerIcon.Width, playerIcon.Height);
 
             if (checkClick.Contains(new Point(x, y)) && menuItems[4].Alive)
             {
@@ -151,22 +154,18 @@ namespace BounceAngle
             }
             if (playerCheck.Contains(new Point(x, y)) && menuItems[9].Alive)
             {
-                menuItems[9].Alive = false;
                 return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[0]);
             }
-            if (playerCheck.Contains(new Point(x, y)) && menuItems[10].Alive)
+            if (playerCheck1.Contains(new Point(x, y)) && menuItems[10].Alive)
             {
-                menuItems[10].Alive = false;
                 return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[1]);
             }
-            if (playerCheck.Contains(new Point(x, y)) && menuItems[11].Alive)
+            if (playerCheck2.Contains(new Point(x, y)) && menuItems[11].Alive)
             {
-                menuItems[11].Alive = false;
                 return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[2]);
             }
-            if (playerCheck.Contains(new Point(x, y)) && menuItems[12].Alive)
+            if (playerCheck3.Contains(new Point(x, y)) && menuItems[12].Alive)
             {
-                menuItems[12].Alive = false;
                 return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[3]);
             }
             else
