@@ -50,9 +50,9 @@ namespace BounceAngle
             roadTiles[2] = Content.Load<Texture2D>("Images//roadTileNS");
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(975, 275), false, Content.Load<Texture2D>("Images//factory0"), 0, 4, 1, "ACME Industrial", 0, 6, false, new Vector2(0.5f, 1))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-980, 200), false, Content.Load<Texture2D>("Images//hospital0"), 2, 3, 5, "Special H Hospital", 1, 8, false, new Vector2(0.5f, 1))));
-            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(360, 340), false, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street Strip Mall", 2, 4, false, new Vector2(0.5f, 0))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(360, 340), false, Content.Load<Texture2D>("Images//mainStreet0"), 5, 0, 1, "Main Street Strip Mall", 0, 4, false, new Vector2(0.5f, 1))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(75, 600), false, Content.Load<Texture2D>("Images//apartments0"), 2, 2, 1, "Mega Block Apartments", 1, 10, false, new Vector2(0.5f, 1))));
-            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-400, 800), false, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church of the Flying Spagetti Monster", 1, 2, false, new Vector2(0.5f, 1))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-400, 800), false, Content.Load<Texture2D>("Images//church0"), 0, 0, 0, "Church of the Flying Spagetti Monster", 0, 2, false, new Vector2(0.5f, 1))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-300, 600), false, Content.Load<Texture2D>("Images//groceryStore0"), 2, 5, 0, "Grey Matter Grocery Store", 0, 3, false, new Vector2(0.5f, 0))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(725, 600), false, Content.Load<Texture2D>("Images//warehouse0"), 3, 0, 1, "Warehouse 52", 0, 4, false, new Vector2(0, 0.5f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-600, 600), false, Content.Load<Texture2D>("Images//arena0"), 10, 1, 7, "Air Canada Center", 0, 7, false, new Vector2(0.5f, 0))));
@@ -66,7 +66,7 @@ namespace BounceAngle
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(-1225, 600), false, Content.Load<Texture2D>("Images//stadium0"), 4, 3, 2, "Black & Blue Stadium", 0, 4, false, new Vector2(0.5f, 0))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(275, 400), false, Content.Load<Texture2D>("Images//church1"), 0, 1, 0, "Redeption Church", 0, 1, false, new Vector2(0.5f, 1))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(450, 100), false, Content.Load<Texture2D>("Images//hotel0"), 2, 2, 1, "Carlin Hotel", 0, 3, false, new Vector2(1, 0.5f))));
-            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(60, 0), false, Content.Load<Texture2D>("Images//apartments2"), 5, 0, 2, "FunTimes Rental Suits", 8, 4, false, new Vector2(0, 0.5f))));
+            addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(60, 0), false, Content.Load<Texture2D>("Images//apartments2"), 5, 0, 2, "FunTimes Rental Suits", 2, 4, false, new Vector2(0, 0.5f))));
             addBuilding(new BuildingIMP(new BuildingDataIMP(buildingCounter++, new Vector2(60, 1025), false, Content.Load<Texture2D>("Images//factory1"), 0, 0, 8, "Rusty Rivet Mill", 1, 5, false, new Vector2(0, 0.5f))));
             //addRoads();
             

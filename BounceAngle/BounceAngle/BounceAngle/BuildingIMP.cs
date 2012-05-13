@@ -30,7 +30,14 @@ namespace BounceAngle
         public void Draw(SpriteBatch spriteBatch, Vector2 offset) {
             if (buildingData.isOver())
             {
-                spriteBatch.Draw(buildingData.getTexture(), buildingData.getLocation() + offset, Color.Red);
+                if (buildingData.isSafehouse())
+                {
+                    spriteBatch.Draw(buildingData.getTexture(), buildingData.getLocation() + offset, Color.GreenYellow);
+                }
+                else
+                {
+                    spriteBatch.Draw(buildingData.getTexture(), buildingData.getLocation() + offset, Color.Red);
+                }
             }
             else
             {
