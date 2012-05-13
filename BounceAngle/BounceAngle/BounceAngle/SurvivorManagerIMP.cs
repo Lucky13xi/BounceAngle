@@ -14,6 +14,7 @@ namespace BounceAngle
         private static int survivorCounter = 0;
         private List<SurvivorData> survivorsData;
         private List<SurvivorData> removeFromListQueue;
+        private SurvivorData activeSurvivor;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
@@ -22,6 +23,7 @@ namespace BounceAngle
 
         public void addSurvivor(SurvivorData survivor) {
             survivorsData.Add(survivor);
+            activeSurvivor = survivor;
         }
 
         public List<SurvivorData> getAllSurvivors(){
@@ -228,6 +230,37 @@ namespace BounceAngle
             // TODO:
             Console.WriteLine("Survivor: " + survivor.getId() + " reached safehouse.");
             removeFromListQueue.Add(survivor);
+        }
+
+        public void violentlyKillSurvivor(int survivorDataId, Boolean isViolentDeath)
+        {
+            for (int i = 0; i < survivorsData.Count; ++i)
+            {
+                if (survivorsData[i].getId() == i)
+                {
+                    if (survivorsData[i].getId() == activeSurvivor.getId())
+                    {
+                        // the activeSurvivor just died, find another survivor
+                        if (i > 0)
+                        {
+                            // just set the previous survivor in the list as active since we know it exists
+                            activeSurvivor = survivorsData[i - 1];
+                        }
+                        else
+                        {
+                            activeSurvivor = null;
+                        }
+                    }
+
+                    survivorsData.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        public SurvivorData getActiveSurvivor()
+        {
+            return activeSurvivor;
         }
     }
 }

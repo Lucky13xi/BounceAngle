@@ -14,6 +14,9 @@ namespace BounceAngle
         List<SurvivorData> getAllSurvivors();
         SurvivorData getSurvivorById(int id);
 
+        void killSurvivor(int survivorDataId, Boolean isViolentDeath);
+        SurvivorData getActiveSurvivor();
+
         void init(ContentManager content);
         void update(GameTime gameTime);
         void draw(SpriteBatch spriteBatch);
