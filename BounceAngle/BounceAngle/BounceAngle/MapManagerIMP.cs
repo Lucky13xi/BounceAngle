@@ -94,14 +94,12 @@ namespace BounceAngle
             return null;
         }
 
-        public void setOffsetChange(Vector2 _offset)
+        public void setScreenWorldOffset(Vector2 _offset)
         {
-            offset += _offset;
-            offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
-            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);            
+            offset = _offset;
         }
 
-        public Vector2 getOffset()
+        public Vector2 getScreenWorldOffset()
         {
             return offset;
         }
@@ -127,7 +125,6 @@ namespace BounceAngle
 
         public int getCollision(Vector2 cord, Vector2 off)
         {
-
             for (int i = 0; i < buildings.Count; i++)
             {
                 Vector2 location = buildings[i].getBuildingData().getLocation();

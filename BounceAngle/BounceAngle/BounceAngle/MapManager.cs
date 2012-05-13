@@ -17,8 +17,8 @@ namespace BounceAngle
     {
         void LoadMap(ContentManager Content);
         void Draw(SpriteBatch spriteBatch);
-        Vector2 getOffset();
-        void setOffsetChange(Vector2 offset);
+        Vector2 getScreenWorldOffset();
+        void setScreenWorldOffset(Vector2 offset);
         List<Building> getAllBuildings();
         Building getBuildingByID(int id);
         int getCollision(Vector2 cord);

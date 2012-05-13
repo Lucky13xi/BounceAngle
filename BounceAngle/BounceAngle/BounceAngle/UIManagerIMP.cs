@@ -36,7 +36,7 @@ namespace BounceAngle
 
         public Vector2 getCurrentWorldToScreenOffset()
         {
-            return Vector2.Zero;    // TODO: too lazy to do now, should really be 
+            return worldToScreenOffset;
         }
 
         public Vector2 getPreviousWorldToScreenOffsetDifference()
@@ -63,7 +63,7 @@ namespace BounceAngle
             {
                 previousOffsetChange = new Vector2(0, -10);
             }
-            DayGameEngineImp.getGameEngine().getMapManager().setOffsetChange(previousOffsetChange);
+            DayGameEngineImp.getGameEngine().getMapManager().setScreenWorldOffset(getCurrentWorldToScreenOffset());
         }
 
         private void processClick(MouseState mouseState) {

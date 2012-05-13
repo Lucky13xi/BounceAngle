@@ -25,7 +25,7 @@ namespace BounceAngle
                 NightGameEngineImp.getGameEngine().getSurvivorManager().addSurvivor(
                     new SurvivorDataIMP(
                         SurvivorManagerIMP.survivorCounter++,
-                        DayGameEngineImp.getGameEngine().getMapManager().getOffset() + spawnLocs[i].getSpawnLocation(),
+                        NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset() + spawnLocs[i].getSpawnLocation(),
                         Vector2.Zero,
                         NightGameEngineImp.getGameEngine().getSurvivorManager().getTexture(),
                         1f));
@@ -45,13 +45,15 @@ namespace BounceAngle
                 spawnCounter = 0;
             }
 
-
             if (0 == NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors().Count)
             {
                 NightGameEngineImp.getGameEngine().stop();
                 DayGameEngineImp.getGameEngine().getMenuManager().SetUIScavenges = DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors;
                 DayGameEngineImp.getGameEngine().start();
             }
+
+            // display all the survivor icons
+            NightGameEngineImp.getGameEngine().getMenuManager().displaySurvivorIcons(NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors());
         }
     }
 }

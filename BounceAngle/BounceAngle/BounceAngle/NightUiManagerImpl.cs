@@ -36,7 +36,7 @@ namespace BounceAngle
 
         public void ProcessMouse(Microsoft.Xna.Framework.Input.MouseState mouseState)
         {
-            // process in night mode
+            processMenuClicks(mouseState);
             processScrolling();
 
             // update the final offset
@@ -55,10 +55,28 @@ namespace BounceAngle
                 // update the screen offsets to follow the active survivor
                 Vector2 centeredLocation = sd.getCurrentLocation() + new Vector2(-screenWidth / 2, -screenHeight / 2);
                 previousOffsetChange = sd.getCurrentLocation() - lastActiveSurvivorLocation;
+                //NightGameEngineImp.getGameEngine().getMapManager().setOffsetChange(previousOffsetChange);
+
+                lastActiveSurvivorLocation = sd.getCurrentLocation();
             }
-            //NightGameEngineImp.getGameEngine().getMapManager().setOffsetChange(previousOffsetChange);
-            
-            lastActiveSurvivorLocation = sd.getCurrentLocation();
+        }
+
+        private Boolean processMenuClicks(MouseState mouseState)
+        {
+            // 1. check if any menu was pressed.
+            MenuClickResult clickResult = DayGameEngineImp.getGameEngine().getMenuManager().getClickCollision(mouseState.X, mouseState.Y);
+            // if its a building popup, then do this
+            if (clickResult != null)
+            {
+                if (MenuClickResult.clickType.player == clickResult.type)
+                {
+                    SurvivorData sd = (SurvivorData)clickResult.payLoad;
+                    NightGameEngineImp.getGameEngine().getSurvivorManager().setActiveSurvivor(sd.getId());
+                }
+                return true;
+            }
+
+            return false;
         }
     }
 }
