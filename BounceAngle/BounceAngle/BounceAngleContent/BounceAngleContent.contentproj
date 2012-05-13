@@ -321,6 +321,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Images\gameScreen.png">
+      <Name>gameScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Images\nightclouds.png">
       <Name>nightclouds</Name>
       <Importer>TextureImporter</Importer>
