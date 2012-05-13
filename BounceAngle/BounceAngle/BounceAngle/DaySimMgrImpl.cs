@@ -28,7 +28,7 @@ namespace BounceAngle
 
         public void queueBuildingToScavenge(BuildingData data)
         {
-            Console.WriteLine("We queued the building " + data.getID());
+            //Console.WriteLine("We queued the building " + data.getID());
 
             // keep track of all the buildings that we will be scavenging
             buildingsToScavenge.Add(data);
@@ -75,7 +75,7 @@ namespace BounceAngle
             
             }
              // use _ammo & _food & _aliveSurvivors for the sub total of the day
-            Console.WriteLine("Food gathered: " + _food + " Ammo gathered: " + _ammo + " Survivors Found: " + _aliveSurvivors);
+            //Console.WriteLine("Food gathered: " + _food + " Ammo gathered: " + _ammo + " Survivors Found: " + _aliveSurvivors);
             //DayGameEngineImp.getGameEngine().getMenuManager().displaySummary(_food, _ammo, _zombies, _aliveSurvivors);
             DayGameEngineImp.getGameEngine().getMenuManager().displaySummary(_food, _ammo, _aliveSurvivors, _time);
             //clear the buildings scavenged this turn
