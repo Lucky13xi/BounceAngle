@@ -390,6 +390,11 @@
     </Compile>
     <Compile Include="Images\zombie4.png">
       <Name>zombie4</Name>
+	  <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="MenuItems\playerIcon.png">
+      <Name>playerIcon</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

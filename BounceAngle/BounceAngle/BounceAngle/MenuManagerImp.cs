@@ -19,7 +19,9 @@ namespace BounceAngle
         Texture2D scavenge;
         Texture2D cancel;
         Texture2D summary;
+        Texture2D playerIcon;
         BuildingData tempBuilding;
+        List<SurvivorData> tempSurvivor = new List<SurvivorData>();
         private int setUITime;
         private int setUIAmmo;
         private int setUIFood;
@@ -92,6 +94,7 @@ namespace BounceAngle
             cancel = content.Load<Texture2D>("MenuItems\\cancel");
             popUpBox = content.Load<Texture2D>("MenuItems\\popUp");
             summary = content.Load<Texture2D>("MenuItems\\summary");
+            playerIcon = content.Load<Texture2D>("MenuItems\\playerIcon");
             SpriteFont UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
             SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\subUIFont");
             popUpHeader = content.Load<SpriteFont>("MenuItems\\popUpHeader");
@@ -112,6 +115,10 @@ namespace BounceAngle
             menuItems.Add(new MenuItem(popUpBox, UIFont, new Vector2(640 - (popUpBox.Width / 2), 360 - (popUpBox.Height / 2)), popUpText, new Color(100f, 100f, 100f), false));
             menuItems.Add(new MenuItem(summary, UIFont, new Vector2(popUpBox.Width + summary.Width - 185, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
             menuItems.Add(new MenuItem(underBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) + 38, timeBox.Bounds.Bottom), underUIText, new Color(0f, 0f, 0f), true));
+            menuItems.Add(new MenuItem(playerIcon, UIFont, new Vector2(25, 200), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(playerIcon, UIFont, new Vector2(25, 300), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(playerIcon, UIFont, new Vector2(25, 400), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(playerIcon, UIFont, new Vector2(25, 500), blank, new Color(0f, 0f, 0f), false));
         }
 
         public MenuManagerImp()
@@ -124,6 +131,7 @@ namespace BounceAngle
             Rectangle checkClick = new Rectangle((int)menuItems[4].Position.X, (int)menuItems[4].Position.Y, scavenge.Width, scavenge.Height);
             Rectangle checkCancle = new Rectangle((int)menuItems[5].Position.X, (int)menuItems[5].Position.Y, cancel.Width, cancel.Height);
             Rectangle checkSummary = new Rectangle((int)menuItems[7].Position.X, (int)menuItems[7].Position.Y, summary.Width, summary.Height);
+            Rectangle playerCheck = new Rectangle((int)menuItems[9].Position.X, (int)menuItems[9].Position.Y, playerIcon.Width, playerIcon.Height);
 
             if (checkClick.Contains(new Point(x, y)) && menuItems[4].Alive)
             {
@@ -140,6 +148,26 @@ namespace BounceAngle
             {
                 hideSummary();
                 return new MenuClickResult(MenuClickResult.clickType.summary, null);
+            }
+            if (playerCheck.Contains(new Point(x, y)) && menuItems[9].Alive)
+            {
+                menuItems[9].Alive = false;
+                return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[0]);
+            }
+            if (playerCheck.Contains(new Point(x, y)) && menuItems[10].Alive)
+            {
+                menuItems[10].Alive = false;
+                return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[1]);
+            }
+            if (playerCheck.Contains(new Point(x, y)) && menuItems[11].Alive)
+            {
+                menuItems[11].Alive = false;
+                return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[2]);
+            }
+            if (playerCheck.Contains(new Point(x, y)) && menuItems[12].Alive)
+            {
+                menuItems[12].Alive = false;
+                return new MenuClickResult(MenuClickResult.clickType.player, tempSurvivor[3]);
             }
             else
             {
@@ -199,6 +227,19 @@ namespace BounceAngle
 
         public void displaySurvivorIcons(List<SurvivorData> data)
         {
+            tempSurvivor = data;
+            menuItems[9].Alive = true;
+            menuItems[10].Alive = true;
+            menuItems[11].Alive = true;
+            menuItems[12].Alive = true;
+        }
+
+        public void hideSurvivorIcon()
+        {
+            menuItems[9].Alive = false;
+            menuItems[10].Alive = false;
+            menuItems[11].Alive = false;
+            menuItems[12].Alive = false;
         }
     }
 }
