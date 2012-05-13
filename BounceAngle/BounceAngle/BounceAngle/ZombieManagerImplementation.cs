@@ -96,6 +96,7 @@ namespace BounceAngle
                                 Zombies[i].setDead(true);
                                 NightGameEngineImp.getGameEngine().getMenuManager().SetUIAmmo--;
                                 NightGameEngineImp.getGameEngine().getSoundManager().playGunFire();
+                                
                             }
                             else
                             {
