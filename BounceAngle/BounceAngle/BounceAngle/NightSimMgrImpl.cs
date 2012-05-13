@@ -19,6 +19,17 @@ namespace BounceAngle
         public void resetMode()
         {
             // 1. add all the survivors to the proper start locations from the DaySimMgr
+            List<BuildingData> spawnLocs = DayGameEngineImp.getGameEngine().getSimMgr().getQueuedBuildings();
+            for (int i = 0; i < spawnLocs.Count; i++)
+            {
+                NightGameEngineImp.getGameEngine().getSurvivorManager().addSurvivor(
+                    new SurvivorDataIMP(
+                        SurvivorManagerIMP.survivorCounter++,
+                        DayGameEngineImp.getGameEngine().getMapManager().getOffset() + spawnLocs[i].getSpawnLocation(),
+                        Vector2.Zero,
+                        NightGameEngineImp.getGameEngine().getSurvivorManager().getTexture(),
+                        1f));
+            }
         }
 
         public void update(GameTime gameTime)
