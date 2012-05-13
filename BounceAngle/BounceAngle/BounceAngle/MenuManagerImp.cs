@@ -185,7 +185,11 @@ namespace BounceAngle
             menuItems[3].Text[0] = data.getBuildingDescription();
             menuItems[3].popUpHeader();
             menuItems[3].PopUpImg = data.getTexture();
-            string[] subText = {"Suvivors: " + data.getSurvivors(), "Food: " +data.getFood(), "Ammo: " +data.getAmmo(), "Scavenge Time: " +data.getScavengeTime()};
+            string[] subText = { "Suvivors: " + data.getSurvivors(), "Food: " + data.getFood(), "Ammo: " + data.getAmmo(), "Scavenge Time: " + data.getScavengeTime() };
+            if (data.isSafehouse())
+            {
+                subText = new string[] { "SafeHouse: No Supplies" };
+            }
             menuItems[3].popUpSub(popUpSubText, subText);
         }
 
@@ -228,10 +232,15 @@ namespace BounceAngle
         public void displaySurvivorIcons(List<SurvivorData> data)
         {
             tempSurvivor = data;
-            menuItems[9].Alive = true;
-            menuItems[10].Alive = true;
-            menuItems[11].Alive = true;
-            menuItems[12].Alive = true;
+            int temp = data.Count;
+            if (temp > 4)
+            {
+                temp = 4;
+            }
+            for(int i = 9; i <= 8 + temp; i++)
+            {
+                menuItems[i].Alive = true;
+            }
         }
 
         public void hideSurvivorIcon()

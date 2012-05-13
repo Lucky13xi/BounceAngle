@@ -18,8 +18,9 @@ namespace BounceAngle
         void setRotation(float rot);
         void setOffset(Vector2 _offset);
         Vector2 getOffset();
+        void setTexture(Texture2D _tex);
 
-
+        void updateAnimation();
         void setCurrentLocation(Vector2 loc);
         void setDestination(Vector2 loc);
     }
