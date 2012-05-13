@@ -233,6 +233,12 @@ namespace BounceAngle
         {
             Console.WriteLine("Survivor: " + survivor.getId() + " reached safehouse.");
             removeFromListQueue.Add(survivor.getId());
+
+            // set a new active one if the active reached the safehouse
+            if (survivor.getId() == activeSurvivor.getId())
+            {
+                setActiveSurvivor(-1);
+            }
         }
 
         public void killSurvivor(int survivorDataId, Boolean isViolentDeath)
@@ -289,6 +295,14 @@ namespace BounceAngle
                 {
                     if (survivorsData[i].getId() == survivorDataId)
                     {
+                        if (null != activeSurvivor)
+                        {
+                            Console.WriteLine("From active survivor from " + activeSurvivor.getId() + " to: " + survivorsData[i].getId());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Switching active survivor to: " + survivorsData[i].getId());
+                        }
                         activeSurvivor = survivorsData[i];
                         return;
                     }
