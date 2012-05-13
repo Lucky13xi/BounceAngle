@@ -56,6 +56,9 @@ namespace BounceAngle
             return null;
         }
 
+        public EffectsManager getEffectsMgr() {
+            return null;
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (isRunning)

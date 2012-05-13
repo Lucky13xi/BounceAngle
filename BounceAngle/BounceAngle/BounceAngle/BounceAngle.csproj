@@ -113,6 +113,10 @@
     <Compile Include="BuildingIMP.cs" />
     <Compile Include="DayGameEngineImp.cs" />
     <Compile Include="DaySimMgrImpl.cs" />
+    <Compile Include="Effect.cs" />
+    <Compile Include="EffectImp.cs" />
+    <Compile Include="EffectsManager.cs" />
+    <Compile Include="EffectsManagerImp.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="MapManager.cs" />
     <Compile Include="MapManagerIMP.cs" />
@@ -129,7 +133,9 @@
     <Compile Include="DaySimMgr.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="SurvivorData.cs" />
+    <Compile Include="SurvivorDataIMP.cs" />
     <Compile Include="SurvivorManager.cs" />
+    <Compile Include="SurvivorManagerIMP.cs" />
     <Compile Include="UIManager.cs" />
     <Compile Include="UIManagerIMP.cs" />
     <Compile Include="ZombieData.cs" />

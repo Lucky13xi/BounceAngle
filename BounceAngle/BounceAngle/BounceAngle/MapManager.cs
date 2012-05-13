@@ -20,7 +20,7 @@ namespace BounceAngle
         void setOffset(Vector2 offset);
         List<Building> getAllBuildings();
         Building getBuildingByID(int id);
-        
         int getCollision(Vector2 cord);
+        int getSafehouseBuildingId();
     }
 }

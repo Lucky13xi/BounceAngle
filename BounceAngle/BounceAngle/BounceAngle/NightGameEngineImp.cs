@@ -18,6 +18,7 @@ namespace BounceAngle
         private MapManager mapMgr;
         private ZombieManager zombieMgr;
         private SurvivorManager survivorMgr;
+        private EffectsManager effectsMgr;
 
         private const int SPAWN_DELAY = 1000;
         private float spawnCounter;
@@ -29,6 +30,7 @@ namespace BounceAngle
         public DaySimMgr getSimMgr()                { return null; } // no day simulator in the night
         public ZombieManager getZombieManager()     { return zombieMgr; }
         public SurvivorManager getSurvivorManager() { return survivorMgr; }
+        public EffectsManager getEffectsMgr()       { return effectsMgr; }
         public void Init(ContentManager content)
         {
             isRunning = false;
@@ -39,14 +41,15 @@ namespace BounceAngle
             mapMgr = DayGameEngineImp.getGameEngine().getMapManager();
             spawnCounter = 0;
             zombieMgr = new ZombieManagerImplementation();
-            //survivorMgr = new SurvivorManagerImpl();
+            effectsMgr = new EffectsManagerImp();
+            survivorMgr = new SurvivorManagerIMP();
 
-            
+            effectsMgr.Init(content);
             //uiMgr.init();
             //menuMgr.Init(content);
             //mapMgr.Init();
             zombieMgr.init(content);
-            //survivorMgr.init(content);
+            survivorMgr.init(content);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -55,7 +58,8 @@ namespace BounceAngle
                 //menuMgr.draw(spriteBatch);
                 mapMgr.Draw(spriteBatch);
                 zombieMgr.draw(spriteBatch);
-                //survivorMgr.draw(spriteBatch);
+                effectsMgr.Draw(spriteBatch);
+                survivorMgr.draw(spriteBatch);
             }
         }
 
@@ -76,7 +80,8 @@ namespace BounceAngle
                 //menuMgr.update(gameTime);
                 //mapMgr.update(gameTime);
                 zombieMgr.update(gameTime);
-                //survivorMgr.update(gameTime);
+                effectsMgr.Update(gameTime);
+                survivorMgr.update(gameTime);
             }
         }
 

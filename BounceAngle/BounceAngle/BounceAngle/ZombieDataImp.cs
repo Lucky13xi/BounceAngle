@@ -10,22 +10,39 @@ namespace BounceAngle
     class ZombieDataImp : ZombieData
     {
         Texture2D texture;
+        Vector2 destination;
+        Vector2 location;
+        int id;
+        float speed;
+        float rotation;
+        Random random = new Random();
 
         public ZombieDataImp(Texture2D _texture)
         {
             texture = _texture;
+            speed = (float)random.NextDouble();
+            rotation = 0f;
+            setDestination(Vector2.Zero);
+        }
+        public void setRotation(float rot)
+        {
+            rotation = rot;
+        }
+        public float getRotation()
+        {
+            return rotation;
         }
         public int getId()
         {
-            return -1;
+            return id;
         }
         public Vector2 getCurrentLocation()
         {
-            return Vector2.Zero;
+            return location;
         }
         public Vector2 getDestination()
         {
-            return Vector2.Zero;
+            return destination;
         }
         public Texture2D getTexture()
         {
@@ -33,14 +50,16 @@ namespace BounceAngle
         }
         public float getMoveSpeed()
         {
-            return -1f;
+            return speed;
         }
 
         public void setCurrentLocation(Vector2 loc)
         {
+            location = loc;
         }
         public void setDestination(Vector2 loc)
         {
+            destination = loc;
         }
     }
 }

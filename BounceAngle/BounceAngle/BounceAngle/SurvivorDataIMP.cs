@@ -13,6 +13,8 @@ namespace BounceAngle
         Vector2 location;
         Vector2 destination;
         Texture2D texture;
+        //TODO: animations! 
+
         float moveSpeed;
 
         public SurvivorDataIMP( int _id, Vector2 _loc, Vector2 _des, Texture2D _tex, float _moveSpeed) {
@@ -43,12 +45,22 @@ namespace BounceAngle
             return moveSpeed;   
         }
 
+        public float getCollisionRadius()
+        {
+            return 25;
+        }
+
         public void setCurrentLocation(Vector2 loc) {
             location = loc;
         }
 
         public void setDestination(Vector2 loc) {
             destination = loc;
+        }
+
+        public void setMoveSpeed(float speed)
+        {
+            moveSpeed = speed;
         }
     }
 }
