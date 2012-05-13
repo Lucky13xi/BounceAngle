@@ -24,6 +24,7 @@ namespace BounceAngle
         private int setUIAmmo;
         private int setUIFood;
         private int setUISurvivors;
+        private int setUIScavenges;
 
         public int SetUITime
         {
@@ -49,11 +50,19 @@ namespace BounceAngle
             set { setUISurvivors = value; }
         }
 
+        public int SetUIScavenges
+        {
+            get { return setUIScavenges; }
+            set { setUIScavenges = value; }
+        }
+
+
         public void Update(GameTime gameTime)
         {
             menuItems[2].Text = new string[] { "Daylight Hours Remaining: " + SetUITime };
             menuItems[0].Text = new string[] { "Food: " + SetUIFood, "Ammo: " + SetUIAmmo };
             menuItems[1].Text = new string[] { "Survivors Remaining: " + SetUISurvivors };
+            menuItems[8].Text = new string[] { "Scavenges Left: " +SetUIScavenges };
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -78,12 +87,13 @@ namespace BounceAngle
             Texture2D timeBox = content.Load<Texture2D>("MenuItems\\timeBox");
             Texture2D leftUIBox = content.Load<Texture2D>("MenuItems\\leftUI");
             Texture2D rightUIBox = content.Load<Texture2D>("MenuItems\\rightUI");
+            Texture2D underBox = content.Load<Texture2D>("MenuItems\\scavengeLeft");
             scavenge = content.Load<Texture2D>("MenuItems\\scavenge");
             cancel = content.Load<Texture2D>("MenuItems\\cancel");
             popUpBox = content.Load<Texture2D>("MenuItems\\popUp");
             summary = content.Load<Texture2D>("MenuItems\\summary");
             SpriteFont UIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
-            SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\UIFont");
+            SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\subUIFont");
             popUpHeader = content.Load<SpriteFont>("MenuItems\\popUpHeader");
             popUpSubText = content.Load<SpriteFont>("MenuItems\\popUpSubText");
             string[] timeText = { "Daylight Hours Remaining: " +SetUITime };
@@ -91,6 +101,7 @@ namespace BounceAngle
             string[] rightUIText = { "Survivors Remaining: " +SetUISurvivors };
             string[] popUpText = { "", "" };
             string[] blank = { "" };
+            string[] underUIText = { "Scavenges Left: " +SetUIScavenges };
 
             menuItems.Add(new MenuItem(leftUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) - leftUIBox.Width *0.9f + 1, 0), leftUIText, new Color(0f, 0f, 0f), true));
             menuItems.Add(new MenuItem(rightUIBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) + rightUIBox.Width, 0), rightUIText, new Color(0f, 0f, 0f), true));
@@ -100,6 +111,7 @@ namespace BounceAngle
             menuItems.Add(new MenuItem(cancel, UIFont, new Vector2(popUpBox.Width + cancel.Width - 50f, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
             menuItems.Add(new MenuItem(popUpBox, UIFont, new Vector2(640 - (popUpBox.Width / 2), 360 - (popUpBox.Height / 2)), popUpText, new Color(100f, 100f, 100f), false));
             menuItems.Add(new MenuItem(summary, UIFont, new Vector2(popUpBox.Width + summary.Width - 185, popUpBox.Height + 80f), blank, new Color(0f, 0f, 0f), false));
+            menuItems.Add(new MenuItem(underBox, subUIFont, new Vector2(640 - (timeBox.Width / 2) + 38, timeBox.Bounds.Bottom), underUIText, new Color(0f, 0f, 0f), true));
         }
 
         public MenuManagerImp()
@@ -116,6 +128,7 @@ namespace BounceAngle
             if (checkClick.Contains(new Point(x, y)) && menuItems[4].Alive)
             {
                 hidePopUp();
+                SetUIScavenges--;
                 return new MenuClickResult(MenuClickResult.clickType.submit, tempBuilding);
             }
             if (checkCancle.Contains(new Point(x, y)) && menuItems[5].Alive)
