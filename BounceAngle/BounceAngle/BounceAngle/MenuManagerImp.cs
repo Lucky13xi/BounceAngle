@@ -228,10 +228,15 @@ namespace BounceAngle
         public void displaySurvivorIcons(List<SurvivorData> data)
         {
             tempSurvivor = data;
-            menuItems[9].Alive = true;
-            menuItems[10].Alive = true;
-            menuItems[11].Alive = true;
-            menuItems[12].Alive = true;
+            int temp = data.Count;
+            if (temp > 4)
+            {
+                temp = 4;
+            }
+            for(int i = 9; i <= 8 + temp; i++)
+            {
+                menuItems[i].Alive = true;
+            }
         }
 
         public void hideSurvivorIcon()
