@@ -64,10 +64,14 @@ namespace BounceAngle
         {
             zombieTextures.Add(content.Load<Texture2D>("Images//zombie0"));
             zombieTextures.Add(content.Load<Texture2D>("Images//zombie1"));
+            zombieTextures.Add(content.Load<Texture2D>("Images//zombie2"));
+            zombieTextures.Add(content.Load<Texture2D>("Images//zombie3"));
+            zombieTextures.Add(content.Load<Texture2D>("Images//zombie4"));
         }
         public void update(GameTime gameTime)
         {
             SurvivorManager survivors = NightGameEngineImp.getGameEngine().getSurvivorManager();
+
             for (int i = 0; i < Zombies.Count; i++)
             {
 
@@ -139,13 +143,18 @@ namespace BounceAngle
                 }
                 catch (ArgumentOutOfRangeException) {/*it's because i delete the zombie and then reference...bad coding i know...but you can die in a fire.*/ }
             }
+
+            for (int i =0;i< Zombies.Count;i++)
+            {
+                Zombies[i].updateAnimation();
+            }
         }
         public void draw(SpriteBatch spriteBatch)
         {
             Vector2 screenOffset = NightGameEngineImp.getGameEngine().getMapManager().getScreenWorldOffset();
             foreach (ZombieData zombie in Zombies)
             {
-                spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + screenOffset, null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation() + screenOffset, null, Color.White, zombie.getRotation(), new Vector2(zombie.getTexture().Width / 2, zombie.getTexture().Height / 2),0.5f, SpriteEffects.None, 0f);
                 //spriteBatch.Draw(zombie.getTexture(), zombie.getCurrentLocation(), Color.White);
             }
         }

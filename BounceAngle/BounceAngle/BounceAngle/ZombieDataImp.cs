@@ -16,6 +16,8 @@ namespace BounceAngle
         float speed;
         float rotation;
         Random random = new Random();
+        private float animationStep;
+        bool dead;
 
         public ZombieDataImp(Texture2D _texture)
         {
@@ -23,6 +25,8 @@ namespace BounceAngle
             speed = (float)random.NextDouble();
             rotation = 0f;
             setDestination(Vector2.Zero);
+            animationStep = 0;
+            dead = false;
         }
         public void setRotation(float rot)
         {
@@ -53,7 +57,41 @@ namespace BounceAngle
         {
             return speed;
         }
-
+        public void updateAnimation()
+        {
+            if (!dead && getDestination() != Vector2.Zero)
+            {
+                animationStep += speed;
+                if (animationStep > 15)
+                {
+                    if (getTexture().Equals(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[0]))
+                    {
+                        setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[1]);
+                    }
+                    else
+                    {
+                        setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[0]);
+                    }
+                    animationStep = 0;
+                }
+            }
+            else if(dead)
+            {
+                animationStep += 1;
+                if (animationStep > 600)
+                {
+                    NightGameEngineImp.getGameEngine().getZombieManager().getAllZombies().Remove(this);
+                }else if (animationStep > 300){
+                    setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[4]);
+                }else if (animationStep > 100){
+                    setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[3]);
+                }else setTexture(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[2]);                    
+            }
+        }
+        public void setTexture(Texture2D _tex)
+        {
+            texture = _tex;
+        }
         public void setCurrentLocation(Vector2 loc)
         {
             location = loc;

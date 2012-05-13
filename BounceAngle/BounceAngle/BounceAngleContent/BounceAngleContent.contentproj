@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{4D249AEC-23F8-4275-9143-8BAC52F7E0F0}</ProjectGuid>
@@ -378,8 +378,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuItems\playerIcon.png">
-      <Name>playerIcon</Name>
+    <Compile Include="Images\zombie2.png">
+      <Name>zombie2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\zombie3.png">
+      <Name>zombie3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\zombie4.png">
+      <Name>zombie4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
