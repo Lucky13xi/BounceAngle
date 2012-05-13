@@ -54,7 +54,7 @@ namespace BounceAngle
             //     - flip back into the day mode
  
             spawnCounter += gameTime.ElapsedGameTime.Milliseconds;
-            if (spawnCounter > SPAWN_DELAY)
+            if (spawnCounter > Math.Max(10,(SPAWN_DELAY - (DayGameEngineImp.getGameEngine().getMenuManager().SetUITime * 50))))
             {
                 NightGameEngineImp.getGameEngine().getZombieManager().addZombie(new ZombieDataImp(NightGameEngineImp.getGameEngine().getZombieManager().getZombieTextures()[0]));
                 spawnCounter = 0;

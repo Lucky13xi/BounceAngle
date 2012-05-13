@@ -103,10 +103,8 @@ namespace BounceAngle
             // if something reached the safe house, remove it here
             foreach (int removeSurvivorId in removeFromListQueue)
             {
-                killSurvivor(removeSurvivorId, false);
+                removeSurvivor(removeSurvivorId, false);
             }
-            removeFromListQueue.Clear();
-            
         }
 
         public List<Texture2D> getTextures()
@@ -247,29 +245,31 @@ namespace BounceAngle
             removeFromListQueue.Add(survivor.getId());
         }
 
-        public void killSurvivor(int survivorDataId, Boolean isViolentDeath)
+        public void removeSurvivor(int survivorDataId, Boolean isViolentDeath)
         {
             for (int i = 0; i < survivorsData.Count; ++i)
             {
                 if (survivorsData[i].getId() == survivorDataId)
                 {
+                    if (isViolentDeath)
+                    {
+                        Console.WriteLine("Survivor: " + survivorDataId + " got violently killed");
+                        NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
+                        deadSurvivors.Add(survivorsData[i]);
+                        DayGameEngineImp.getGameEngine().getSimMgr().killSurvivor();
+                    }
+                    
+                    survivorsData.RemoveAt(i);
+
                     if (null != activeSurvivor)
                     {
-                        if (survivorsData[i].getId() == activeSurvivor.getId())
+                        if (survivorDataId == activeSurvivor.getId())
                         {
                             // the activeSurvivor just died, find another survivor
                             setActiveSurvivor(-1);
                         }
                     }
 
-                    if (isViolentDeath)
-                    {
-                        Console.WriteLine("Survivor: " + survivorDataId + " got violently killed");
-                        NightGameEngineImp.getGameEngine().getSoundManager().playSurvivorDeathSound();
-                        deadSurvivors.Add(survivorsData[i]);
-                    }
-                    DayGameEngineImp.getGameEngine().getSimMgr().killSurvivor();
-                    survivorsData.RemoveAt(i);
                     break;
                 }
             }
