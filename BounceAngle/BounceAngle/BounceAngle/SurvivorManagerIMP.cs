@@ -227,7 +227,7 @@ namespace BounceAngle
         {
             for (int i = 0; i < survivorsData.Count; ++i)
             {
-                if (survivorsData[i].getId() == i)
+                if (survivorsData[i].getId() == survivorDataId)
                 {
                     if (survivorsData[i].getId() == activeSurvivor.getId())
                     {
