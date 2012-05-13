@@ -9,25 +9,13 @@ namespace BounceAngle
 {
     class BuildingIMP : Building
     {
-        public Vector2 location;
-        
-        public Boolean safeHouse;
         BuildingData buildingData;
         Vector2 offset;
 
-
-        public BuildingIMP(Vector2 _location, Boolean isSafeHouse, BuildingDataIMP _buildingData)
-        {
-            location = _location;
-            
-            safeHouse = isSafeHouse;
+        public BuildingIMP(BuildingDataIMP _buildingData)
+        {   
             buildingData = _buildingData;
             offset = Vector2.Zero;
-        }
-
-        public Boolean isSafeHouse()
-        {
-            return safeHouse;
         }
 
         public Boolean isCollision()
@@ -51,11 +39,11 @@ namespace BounceAngle
         public void Draw(SpriteBatch spriteBatch) {
             if (buildingData.isOver())
             {
-                spriteBatch.Draw(buildingData.getTexture(), location + offset, Color.Red);
+                spriteBatch.Draw(buildingData.getTexture(), buildingData.getLocation() + offset, Color.Red);
             }
             else
             {
-                spriteBatch.Draw(buildingData.getTexture(), location + offset, Color.White);
+                spriteBatch.Draw(buildingData.getTexture(), buildingData.getLocation() + offset, Color.White);
             }
         }
 
