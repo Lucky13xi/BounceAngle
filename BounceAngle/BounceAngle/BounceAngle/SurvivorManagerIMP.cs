@@ -116,7 +116,7 @@ namespace BounceAngle
                 //  spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation(), Color.White);
                 float facing = VectorToAngle(survivor.getDestination()- survivor.getCurrentLocation());
                 
-                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation(), null,
+                spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation() + survivor.getOffset(), null,
                     Color.White, facing, new Vector2(survivor.getTexture().Width/2,survivor.getTexture().Height/2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 1);
             }
         }

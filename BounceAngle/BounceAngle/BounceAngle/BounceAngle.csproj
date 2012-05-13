@@ -124,6 +124,7 @@
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MenuManagerImp.cs" />
+    <Compile Include="menuScreen.cs" />
     <Compile Include="NightGameEngineImp.cs" />
     <Compile Include="NightSimMgr.cs" />
     <Compile Include="NightSimMgrImpl.cs" />
