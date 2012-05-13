@@ -134,7 +134,7 @@ namespace BounceAngle
 
         private Vector2 checkBuildingCollission(SurvivorData survivor, Vector2 wantToGoHereLocation, int safehouseId)
         {
-            int buildingCollision = NightGameEngineImp.getGameEngine().getMapManager().getCollision(wantToGoHereLocation);
+            int buildingCollision = NightGameEngineImp.getGameEngine().getMapManager().getCollision(wantToGoHereLocation, survivor.getOffset());
             if (buildingCollision == safehouseId)
             {
                 survivorReachedSafehouse(survivor);

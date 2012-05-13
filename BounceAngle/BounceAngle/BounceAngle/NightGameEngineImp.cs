@@ -39,7 +39,7 @@ namespace BounceAngle
         {
             isRunning = false;
             soundMgr = DayGameEngineImp.getGameEngine().getSoundManager();
-            soundMgr.playNightMusic();
+            
             uiMgr = new NightUiManagerImpl();
             menuMgr = DayGameEngineImp.getGameEngine().getMenuManager();
             mapMgr = DayGameEngineImp.getGameEngine().getMapManager();
@@ -117,6 +117,7 @@ namespace BounceAngle
         public void start()
         {
             isRunning = true;
+            soundMgr.playNightMusic();
             nightSimMgr.resetMode();
         }
 

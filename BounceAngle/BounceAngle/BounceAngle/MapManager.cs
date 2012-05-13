@@ -22,6 +22,7 @@ namespace BounceAngle
         List<Building> getAllBuildings();
         Building getBuildingByID(int id);
         int getCollision(Vector2 cord);
+        int getCollision(Vector2 cord, Vector2 off);
         int getSafehouseBuildingId();
     }
 }
