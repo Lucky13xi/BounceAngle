@@ -105,8 +105,6 @@ namespace BounceAngle
             {
                 removeSurvivor(removeSurvivorId, false);
             }
-            removeFromListQueue.Clear();
-            
         }
 
         public List<Texture2D> getTextures()
@@ -253,15 +251,6 @@ namespace BounceAngle
             {
                 if (survivorsData[i].getId() == survivorDataId)
                 {
-                    if (null != activeSurvivor)
-                    {
-                        if (survivorsData[i].getId() == activeSurvivor.getId())
-                        {
-                            // the activeSurvivor just died, find another survivor
-                            setActiveSurvivor(-1);
-                        }
-                    }
-
                     if (isViolentDeath)
                     {
                         Console.WriteLine("Survivor: " + survivorDataId + " got violently killed");
@@ -269,7 +258,18 @@ namespace BounceAngle
                         deadSurvivors.Add(survivorsData[i]);
                         DayGameEngineImp.getGameEngine().getSimMgr().killSurvivor();
                     }
+                    
                     survivorsData.RemoveAt(i);
+
+                    if (null != activeSurvivor)
+                    {
+                        if (survivorDataId == activeSurvivor.getId())
+                        {
+                            // the activeSurvivor just died, find another survivor
+                            setActiveSurvivor(-1);
+                        }
+                    }
+
                     break;
                 }
             }
