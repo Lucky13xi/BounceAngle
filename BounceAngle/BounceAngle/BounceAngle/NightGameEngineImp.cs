@@ -42,14 +42,14 @@ namespace BounceAngle
             spawnCounter = 0;
             zombieMgr = new ZombieManagerImplementation();
             effectsMgr = new EffectsManagerImp();
-            //survivorMgr = new SurvivorManagerImpl();
+            survivorMgr = new SurvivorManagerIMP();
 
             effectsMgr.Init(content);
             //uiMgr.init();
             //menuMgr.Init(content);
             //mapMgr.Init();
             zombieMgr.init(content);
-            //survivorMgr.init(content);
+            survivorMgr.init(content);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -58,8 +58,8 @@ namespace BounceAngle
                 //menuMgr.draw(spriteBatch);
                 mapMgr.Draw(spriteBatch);
                 zombieMgr.draw(spriteBatch);
-                //survivorMgr.draw(spriteBatch);
                 effectsMgr.Draw(spriteBatch);
+                survivorMgr.draw(spriteBatch);
             }
         }
 
@@ -81,7 +81,7 @@ namespace BounceAngle
                 //mapMgr.update(gameTime);
                 zombieMgr.update(gameTime);
                 effectsMgr.Update(gameTime);
-                //survivorMgr.update(gameTime);
+                survivorMgr.update(gameTime);
             }
         }
 

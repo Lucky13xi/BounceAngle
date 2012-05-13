@@ -14,8 +14,10 @@ namespace BounceAngle
         Vector2 getDestination();
         Texture2D getTexture();
         float getMoveSpeed();
+        float getCollisionRadius();
 
         void setCurrentLocation(Vector2 loc);
         void setDestination(Vector2 loc);
+        void setMoveSpeed(float speed);
     }
 }
