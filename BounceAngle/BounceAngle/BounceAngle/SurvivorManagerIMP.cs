@@ -257,8 +257,11 @@ namespace BounceAngle
                             }
                         }
                     }
-
-                    survivorsData.RemoveAt(i);
+                    if (isViolentDeath)
+                    {
+                        survivorsData[i].setTexture(getTextures()[2]);
+                        survivorsData[i].setMoveSpeed(0);
+                    }else survivorsData.RemoveAt(i);
                     break;
                 }
             }
