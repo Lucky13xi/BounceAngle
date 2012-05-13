@@ -11,9 +11,13 @@ namespace BounceAngle
     {
         private MouseState preMouseState;
         private BuildingData lastHoveredBuildingData;
+        private Vector2 worldToScreenOffset;
+        private Vector2 previousOffsetChange;
         
         public void init()
         {
+            worldToScreenOffset = Vector2.Zero;
+            previousOffsetChange = Vector2.Zero;
         }
 
         public void ProcessMouse(MouseState mouseState) {
@@ -23,45 +27,43 @@ namespace BounceAngle
             processScrolling(mouseState);
             preMouseState = mouseState;
 
+            // update the final offset
+            worldToScreenOffset += previousOffsetChange;
+            worldToScreenOffset.X = MathHelper.Clamp(worldToScreenOffset.X, -1500, 1500);
+            worldToScreenOffset.Y = MathHelper.Clamp(worldToScreenOffset.Y, -900, 500);
+
+        }
+
+        public Vector2 getCurrentWorldToScreenOffset()
+        {
+            return Vector2.Zero;    // TODO: too lazy to do now, should really be 
+        }
+
+        public Vector2 getPreviousWorldToScreenOffsetDifference()
+        {
+            return previousOffsetChange;
         }
 
         private void processScrolling(MouseState mouseState)
         {
+            previousOffsetChange = Vector2.Zero;
             if (mouseState.X < 20)
             {
-                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(10, 0));
+                previousOffsetChange = new Vector2(10, 0);
             }
             if (mouseState.X > 1060)
             {
-                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(-10, 0));
+                previousOffsetChange = new Vector2(-10, 0);
             }
             if (mouseState.Y < 20)
             {
-                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(0, 10));
+                previousOffsetChange = new Vector2(0, 10);
             }
             if (mouseState.Y > 700)
             {
-                DayGameEngineImp.getGameEngine().getMapManager().setOffset(new Vector2(0, -10));
+                previousOffsetChange = new Vector2(0, -10);
             }
-            foreach (BuildingIMP building in DayGameEngineImp.getGameEngine().getMapManager().getAllBuildings())
-            {
-                if (mouseState.X < 20)
-                {
-                    building.setOffset(new Vector2(10, 0));
-                }
-                if (mouseState.X > 1060)
-                {
-                    building.setOffset(new Vector2(-10, 0));
-                }
-                if (mouseState.Y < 20)
-                {
-                    building.setOffset(new Vector2(0, 10));
-                }
-                if (mouseState.Y > 700)
-                {
-                    building.setOffset(new Vector2(0, -10));
-                }
-            }
+            DayGameEngineImp.getGameEngine().getMapManager().setOffsetChange(previousOffsetChange);
         }
 
         private void processClick(MouseState mouseState) {
