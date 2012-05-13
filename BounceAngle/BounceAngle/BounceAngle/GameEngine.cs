@@ -17,6 +17,7 @@ namespace BounceAngle
         DaySimMgr getSimMgr();
         ZombieManager getZombieManager();
         SurvivorManager getSurvivorManager();
+        EffectsManager getEffectsMgr();
         void Draw(SpriteBatch spriteBatch);
         void Init(ContentManager Content);
         void Update(GameTime gameTime);

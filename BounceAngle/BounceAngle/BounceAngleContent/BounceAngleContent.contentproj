@@ -321,6 +321,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Images\nightclouds.png">
+      <Name>nightclouds</Name>
+	    <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Images\survivor.png">
       <Name>survivor</Name>
       <Importer>TextureImporter</Importer>

@@ -113,6 +113,10 @@
     <Compile Include="BuildingIMP.cs" />
     <Compile Include="DayGameEngineImp.cs" />
     <Compile Include="DaySimMgrImpl.cs" />
+    <Compile Include="Effect.cs" />
+    <Compile Include="EffectImp.cs" />
+    <Compile Include="EffectsManager.cs" />
+    <Compile Include="EffectsManagerImp.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="MapManager.cs" />
     <Compile Include="MapManagerIMP.cs" />
