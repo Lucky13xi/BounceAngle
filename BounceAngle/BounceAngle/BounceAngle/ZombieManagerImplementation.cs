@@ -34,6 +34,11 @@ namespace BounceAngle
             Zombies.Add(zombie);
         }
 
+        public void clearList()
+        {
+            Zombies = new List<ZombieData>();
+        }
+
         public void addZombie(ZombieData zombie, Vector2 _spawnLocation)
         {
             NightGameEngineImp.getGameEngine().getSoundManager().playZombieSound();

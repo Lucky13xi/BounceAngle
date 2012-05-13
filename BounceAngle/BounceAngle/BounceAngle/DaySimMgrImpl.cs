@@ -107,6 +107,7 @@ namespace BounceAngle
             // clear our building list
             buildingsToScavenge.Clear();
             ++daysAlive;
+            NightGameEngineImp.getGameEngine().getZombieManager().clearList();
             // clear survivor icons
             DayGameEngineImp.getGameEngine().getMenuManager().hideSurvivorIcon();
         }
