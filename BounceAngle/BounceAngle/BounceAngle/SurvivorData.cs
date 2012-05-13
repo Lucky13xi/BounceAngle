@@ -19,5 +19,8 @@ namespace BounceAngle
         void setCurrentLocation(Vector2 loc);
         void setDestination(Vector2 loc);
         void setMoveSpeed(float speed);
+
+        Vector2 getOffset();
+        void setOffset(Vector2 _offset);
     }
 }
