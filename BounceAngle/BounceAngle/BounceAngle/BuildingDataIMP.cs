@@ -39,51 +39,7 @@ namespace BounceAngle
             spawnLoc = loc + new Vector2(texture.Width * spawnLocFactors.X, texture.Height * spawnLocFactors.Y);
         }
 
-        /*    List<Vector2> nSLoc = new List<Vector2>();
-            foreach (BuildingData data in buildingsPreScavenged) {
-                //Vector2 loca = data.getLocation() + DayGameEngineImp.getGameEngine().getMapManager().getOffset();
-                Vector2 loca = data.getLocation() + DayGameEngineImp.getGameEngine().getMapManager().getOffset();
-                switch (data.getID()) { 
-                    case 0:
-                        loca += ;
-                        break;
-                    case 1:
-                        l
-                        break;
-                    case 5:
-                        
-                        break;
-                    case 6:
-                    
-                        break;
-                    case 7:
-                        loca += new Vector2(data.getTexture().Width / 2, 0);
-                        break;
-                    case 8:
-                        loca += new Vector2(data.getTexture().Width/2, data.getTexture().Height);
-                        break;
-                    case 9:
-                        loca += new Vector2(0, data.getTexture().Height / 2);
-                        break;
-                    case 10:
-                        loca += new Vector2(data.getTexture().Width / 2, data.getTexture().Height / 2);
-                        break;
-                    
-                   
-                
-                  
-                 
-
-                    
-                   
-     
-                    default:
-                        break;
-                }
-                nSLoc.Add(loca);
-            }
-            return nSLoc;
-             */ 
+        
         public Boolean isOver() {
             return isOn;
         }
