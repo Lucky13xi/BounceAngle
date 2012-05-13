@@ -102,6 +102,8 @@ namespace BounceAngle
             if (gameState == GameState.mainMenu)
             {
                 UpdateInput(gameTime);
+                
+               
             }
 
             if (gameState == GameState.playing)
@@ -113,7 +115,7 @@ namespace BounceAngle
                 if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
                 {
                     //TODO: exit the game on escape
-                    this.Exit();
+                    gameState = GameState.mainMenu;
                 }
                 preKeyState = keyState;
             }
@@ -122,10 +124,12 @@ namespace BounceAngle
 
         public void UpdateInput(GameTime gameTime)
         {
+            KeyboardState keyState = Keyboard.GetState();
             MouseState mouseState = Mouse.GetState();
             if (gameState == GameState.mainMenu)
             {
                 menuScreen.Update();
+                
                 Rectangle start = new Rectangle(199, 325, 100, 35);
                 Rectangle instr = new Rectangle(199, 360, 150, 35);
                 Rectangle exit = new Rectangle(199, 395, 100, 35);
@@ -155,8 +159,14 @@ namespace BounceAngle
                 {
                     gameState = GameState.playing;
                 }
+                if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
+                {
+                    //TODO: exit the game on escape
+                    this.Exit();
+                }
             }
             preMouseState = mouseState;
+            preKeyState = keyState;
         }
 
         /// <summary>

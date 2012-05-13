@@ -88,36 +88,22 @@ namespace BounceAngle
                 survivorMgr.update(gameTime);
                 nightSimMgr.update(gameTime);
 
-<<<<<<< HEAD
-                if (ntc1pos.X >+ 1280)
-                {
-                    ntc1pos.X = -1280;
-                }
-                
-                    ntc1pos.X += 0.1f;
-                
-
-=======
+                //night clouds
                 if (ntc1pos.X >= 1280)
                 {
                     ntc1pos.X = -1280;
                 }
-
-                    ntc1pos.X += 0.5f;
                 
+                    ntc1pos.X += 1f;
 
->>>>>>> ddc1bcdb8814ef97ab5db483ceae2b8fb9567d1e
                 if (ntc2pos.X >= 1280)
                 {
                     ntc2pos.X = -1280;
                 }
-<<<<<<< HEAD
+
                
-                    ntc2pos.X += 0.1f;
-=======
-                
-                    ntc2pos.X += 0.5f;
->>>>>>> ddc1bcdb8814ef97ab5db483ceae2b8fb9567d1e
+                    ntc2pos.X += 1f;
+
                 
 
             }
