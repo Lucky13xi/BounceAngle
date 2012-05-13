@@ -44,6 +44,11 @@ namespace BounceAngle
             return simMgr;
         }
 
+        public NightSimMgr getNightSimMgr()
+        {
+            return null;
+        }
+
         public ZombieManager getZombieManager()
         {
             // we don't have zombies during the day
@@ -80,6 +85,7 @@ namespace BounceAngle
             soundManager.initializeSounds(content);
             mapMan.LoadMap(content);
             menuManager.Init(content);
+            uiMan.init();
             simMgr.init();
 
             soundManager.playDayMusic();
@@ -114,6 +120,7 @@ namespace BounceAngle
         public void start()
         {
             isRunning = true;
+            simMgr.resetMode();
         }
     }
 }
