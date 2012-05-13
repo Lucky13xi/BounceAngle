@@ -103,6 +103,7 @@ namespace BounceAngle
         public void resetMode()
         {
             // clear our building list
+            NightGameEngineImp.getGameEngine().getMenuManager().hideSurvivorIcon();
             buildingsToScavenge.Clear();
         }
     }

@@ -37,7 +37,7 @@ namespace BounceAngle
             // 1. handle spawning zombies
             // 2. handle end game state when all the suvivors are gone from the survivor manager
             //     - flip back into the day mode
-
+ 
             spawnCounter += gameTime.ElapsedGameTime.Milliseconds;
             if (spawnCounter > SPAWN_DELAY)
             {
@@ -52,6 +52,7 @@ namespace BounceAngle
                 DayGameEngineImp.getGameEngine().getMenuManager().SetUIScavenges = DayGameEngineImp.getGameEngine().getMenuManager().SetUISurvivors;
                 DayGameEngineImp.getGameEngine().start();
             }
+            NightGameEngineImp.getGameEngine().getMenuManager().displaySurvivorIcons(NightGameEngineImp.getGameEngine().getSurvivorManager().getAllSurvivors());
         }
     }
 }
