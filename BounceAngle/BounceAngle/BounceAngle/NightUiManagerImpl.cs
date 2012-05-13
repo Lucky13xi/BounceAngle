@@ -56,7 +56,7 @@ namespace BounceAngle
                 Vector2 centeredLocation = sd.getCurrentLocation() + new Vector2(-screenWidth / 2, -screenHeight / 2);
                 previousOffsetChange = sd.getCurrentLocation() - lastActiveSurvivorLocation;
             }
-            //DayGameEngineImp.getGameEngine().getMapManager().setOffsetChange(previousOffsetChange);
+            //NightGameEngineImp.getGameEngine().getMapManager().setOffsetChange(previousOffsetChange);
             
             lastActiveSurvivorLocation = sd.getCurrentLocation();
         }
