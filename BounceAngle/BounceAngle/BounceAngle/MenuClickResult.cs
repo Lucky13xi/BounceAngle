@@ -15,7 +15,8 @@ namespace BounceAngle
         {
             submit,
             cancel,
-            summary
+            summary,
+            player
         }
         public MenuClickResult(clickType button, Object p)
         {
