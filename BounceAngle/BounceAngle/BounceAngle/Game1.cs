@@ -56,10 +56,11 @@ namespace BounceAngle
             this.IsMouseVisible = true;
 
             //menu
-            string[] menuItems = { "Play", "Instructions", "Quit" };
+            string[] menuItems = { "Play", "Instructions", "Restart", "Quit" };
             menuFont = Content.Load<SpriteFont>("MenuItems\\menuFont");
             menuScreen = new MenuScreen(graphics, menuFont, menuItems);
             startMenu = Content.Load<Texture2D>("Images\\gameScreen");
+
 
             base.Initialize();
         }
@@ -73,15 +74,21 @@ namespace BounceAngle
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // load content for both game engines
+            nightGame = NightGameEngineImp.getGameEngine();
             dayGame = DayGameEngineImp.getGameEngine();
             dayGame.Init(Content);
-            nightGame = NightGameEngineImp.getGameEngine();
             nightGame.Init(Content);
 
+            restartGame();
+        }
+
+        public void restartGame()
+        {
+            DayGameEngineImp.getGameEngine().getSimMgr().init();
+
             // start the day game
+            nightGame.stop();
             dayGame.start();
-            //nightGame.start();
         }
 
         /// <summary>
@@ -154,9 +161,10 @@ namespace BounceAngle
             {
                 menuScreen.Update();
                 
-                Rectangle start = new Rectangle(199, 325, 100, 35);
-                Rectangle instr = new Rectangle(199, 360, 150, 35);
-                Rectangle exit = new Rectangle(199, 395, 100, 35);
+                Rectangle start = new Rectangle(199, 305, 100, 35);
+                Rectangle instr = new Rectangle(199, 340, 150, 35);
+                Rectangle restart = new Rectangle(199, 375, 100, 35);
+                Rectangle exit = new Rectangle(199, 415, 100, 35);
 
                 if (start.Contains(mouseState.X, mouseState.Y))
                 {
@@ -166,10 +174,15 @@ namespace BounceAngle
                 {
                     menuScreen.SelectedIndex = 1;
                 }
-                if (exit.Contains(mouseState.X, mouseState.Y))
+                if (restart.Contains(mouseState.X, mouseState.Y))
                 {
                     menuScreen.SelectedIndex = 2;
                 }
+                if (exit.Contains(mouseState.X, mouseState.Y))
+                {
+                    menuScreen.SelectedIndex = 3;
+                }
+
 
                 if ((exit.Contains(new Point(mouseState.X, mouseState.Y)) && preMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released))
                 {
@@ -181,6 +194,11 @@ namespace BounceAngle
                 }
                 if ((start.Contains(new Point(mouseState.X, mouseState.Y)) && preMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released))
                 {
+                    gameState = GameState.playing;
+                }
+                if ((restart.Contains(new Point(mouseState.X, mouseState.Y)) && preMouseState.LeftButton == ButtonState.Pressed && mouseState.LeftButton == ButtonState.Released))
+                {
+                    restartGame();
                     gameState = GameState.playing;
                 }
                 if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))

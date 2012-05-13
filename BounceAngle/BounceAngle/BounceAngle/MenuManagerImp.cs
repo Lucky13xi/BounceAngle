@@ -61,7 +61,7 @@ namespace BounceAngle
 
         public void Update(GameTime gameTime)
         {
-            menuItems[2].Text = new string[] { "Daylight Hours Remaining: " + SetUITime };
+            menuItems[2].Text = new string[] { "Days Survived: " + SetUITime };
             menuItems[0].Text = new string[] { "Food: " + SetUIFood, "Ammo: " + SetUIAmmo };
             menuItems[1].Text = new string[] { "Survivors Remaining: " + SetUISurvivors };
             menuItems[8].Text = new string[] { "Scavenges Left: " +SetUIScavenges };
@@ -99,7 +99,7 @@ namespace BounceAngle
             SpriteFont subUIFont = content.Load<SpriteFont>("MenuItems\\subUIFont");
             popUpHeader = content.Load<SpriteFont>("MenuItems\\popUpHeader");
             popUpSubText = content.Load<SpriteFont>("MenuItems\\popUpSubText");
-            string[] timeText = { "Daylight Hours Remaining: " +SetUITime };
+            string[] timeText = { "Days Survived: " +SetUITime };
             string[] leftUIText = { "Food: " +SetUIFood, "Ammo: " +SetUIAmmo };
             string[] rightUIText = { "Survivors Remaining: " +SetUISurvivors };
             string[] popUpText = { "", "" };
@@ -212,7 +212,7 @@ namespace BounceAngle
             SetUISurvivors += _survivors;
             SetUIAmmo += _ammo;
             SetUIFood += _food;
-            SetUITime -= _time;
+            SetUITime = _time;
             if (SetUITime <= 0)
             {
                 SetUITime = 0;
@@ -231,6 +231,7 @@ namespace BounceAngle
 
         public void displaySurvivorIcons(List<SurvivorData> data)
         {
+            hideSurvivorIcon(); 
             tempSurvivor = data;
             int temp = data.Count;
             if (temp > 4)

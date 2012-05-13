@@ -84,39 +84,43 @@ namespace BounceAngle
 
         public void menuSelect()
         {
-            keyState = Keyboard.GetState();
+            //keyState = Keyboard.GetState();
 
-            if (CheckKey(Keys.Down))
-            {
-                SelectedIndex++;
-                if (selectedIndex == menuItems.Length)
-                {
-                    SelectedIndex = 0;
-                }
-            }
-            if (CheckKey(Keys.Up))
-            {
-                SelectedIndex--;
-                if (SelectedIndex < 0)
-                {
-                    SelectedIndex = menuItems.Length - 1;
-                }
-            }
+            //if (CheckKey(Keys.Down))
+            //{
+            //    SelectedIndex++;
+            //    if (selectedIndex == menuItems.Length)
+            //    {
+            //        SelectedIndex = 0;
+            //    }
+            //}
+            //if (CheckKey(Keys.Up))
+            //{
+            //    SelectedIndex--;
+            //    if (SelectedIndex < 0)
+            //    {
+            //        SelectedIndex = menuItems.Length - 1;
+            //    }
+            //}
 
-            if (keyState.IsKeyDown(Keys.Enter) && SelectedIndex == menuItems.Length - 1)
-            {
-                ItemSelected = 3;
-            }
-            if (keyState.IsKeyDown(Keys.Enter) && SelectedIndex == menuItems.Length - 3)
-            {
-                ItemSelected = 1;
-            }
-            if (keyState.IsKeyDown(Keys.Enter) && SelectedIndex == menuItems.Length - 2)
-            {
-                ItemSelected = 2;
-            }
+            //if (keyState.IsKeyDown(Keys.Enter) && SelectedIndex == menuItems.Length - 1)
+            //{
+            //    ItemSelected = 4;
+            //}
+            //if (keyState.IsKeyDown(Keys.Enter) && SelectedIndex == menuItems.Length - 3)
+            //{
+            //    ItemSelected = 2;
+            //}
+            //if (keyState.IsKeyDown(Keys.Enter) && SelectedIndex == menuItems.Length - 2)
+            //{
+            //    ItemSelected = 3;
+            //}
+            //if (keyState.IsKeyDown(Keys.Enter) && SelectedIndex == menuItems.Length - 4)
+            //{
+            //    ItemSelected = 1;
+            //}
 
-            preKeyState = keyState;
+            //preKeyState = keyState;
         }
 
         public void Update()
