@@ -35,8 +35,8 @@ namespace BounceAngle
             zombieDeath = Content.Load<SoundEffect>("Audio//zombieDeath");
 
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.2f;
-            sfxVolume = 0.2f;
+            MediaPlayer.Volume = 0.8f;
+            sfxVolume = 0.8f;
         
         }
 
