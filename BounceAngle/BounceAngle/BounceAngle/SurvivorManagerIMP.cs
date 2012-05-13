@@ -15,10 +15,12 @@ namespace BounceAngle
         private List<SurvivorData> survivorsData;
         private List<int> removeFromListQueue;
         private SurvivorData activeSurvivor;
-        public Texture2D survivorTexture1, survivorTexture2;
+        public List<Texture2D> survivorTextures { get; set; }
+        private Texture2D destTexture;
 
         public SurvivorManagerIMP() {
             survivorsData = new List<SurvivorData>();
+            survivorTextures = new List<Texture2D>();
             removeFromListQueue = new List<int>();
         }
 
@@ -32,11 +34,6 @@ namespace BounceAngle
             
         }
 
-        public Texture2D getTexture()
-        {
-            return survivorTexture1;
-        }
-
         public SurvivorData getSurvivorById(int id) {
             foreach (SurvivorData survivor in survivorsData) {
                 if (survivor.getId() == id) {
@@ -47,8 +44,10 @@ namespace BounceAngle
         }
 
         public void init(ContentManager content) {
-            survivorTexture1 = content.Load<Texture2D>("Images//survivor0");
-            survivorTexture2 = content.Load<Texture2D>("Images//survivor1");
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor0"));
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor1"));
+            survivorTextures.Add(content.Load<Texture2D>("Images//survivor2"));
+            destTexture = content.Load<Texture2D>("Images//survivor");
         }
 
         public void update(GameTime gameTime) { 
@@ -89,6 +88,7 @@ namespace BounceAngle
                 Vector2 newNextLocation = checkBuildingCollission(survivor, nextLocation, safehouseBuildingId);
 
                 survivor.setCurrentLocation(newNextLocation);
+                survivor.updateAnimations();
                 //Console.WriteLine("Survivor: " + survivor.getId() + " at position: (" + newNextLocation.X + "," + newNextLocation.Y + ")");
             }
 
@@ -98,6 +98,12 @@ namespace BounceAngle
                 killSurvivor(removeSurvivorId, false);
             }
             removeFromListQueue.Clear();
+            
+        }
+
+        public List<Texture2D> getTextures()
+        {
+            return survivorTextures;
         }
 
         public float VectorToAngle(Vector2 vector)
@@ -114,6 +120,9 @@ namespace BounceAngle
 
                 spriteBatch.Draw(survivor.getTexture(), survivor.getCurrentLocation() + screenOffset, null,
                     Color.White, facing, new Vector2(survivor.getTexture().Width/2,survivor.getTexture().Height/2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 1);
+
+                // draw the destination target for debugging
+                spriteBatch.Draw(destTexture, survivor.getDestination() + screenOffset, Color.White);
             }
         }
 
