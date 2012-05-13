@@ -11,6 +11,11 @@ namespace BounceAngle
     {
         private MouseState preMouseState;
         private BuildingData lastHoveredBuildingData;
+        
+        public void init()
+        {
+        }
+
         public void ProcessMouse(MouseState mouseState) {
 
             processBuildingHover(new Vector2(mouseState.X, mouseState.Y));
