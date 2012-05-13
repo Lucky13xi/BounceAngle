@@ -11,7 +11,6 @@ namespace BounceAngle
     {
         Boolean isCollision();
         BuildingData getBuildingData();
-        void Draw(SpriteBatch spriteBatch);
-        void setOffset(Vector2 offset);
+        void Draw(SpriteBatch spriteBatch, Vector2 offset);
     }
 }

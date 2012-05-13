@@ -94,16 +94,15 @@ namespace BounceAngle
             return null;
         }
 
-       
-
-        public void setOffset(Vector2 _offset)
+        public void setOffsetChange(Vector2 _offset)
         {
             offset += _offset;
             offset.X = MathHelper.Clamp(offset.X, -1500, 1500);
-            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);
-            
+            offset.Y = MathHelper.Clamp(offset.Y, -900, 500);            
         }
-        public Vector2 getOffset() {
+
+        public Vector2 getOffset()
+        {
             return offset;
         }
 
@@ -159,16 +158,11 @@ namespace BounceAngle
                     spriteBatch.Draw(backgroundTile, new Vector2(i * 60 + (offset.X % 60), j * 60 + (offset.Y % 60)), Color.White);
                 }
             }
-
-
             drawRoads(spriteBatch);
             foreach (BuildingIMP building in buildings)
             {
-                building.Draw(spriteBatch);
+                building.Draw(spriteBatch, offset);
             }
-            
-
-
         }
 
         private void drawRoads(SpriteBatch spriteBatch)
