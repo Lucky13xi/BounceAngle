@@ -99,6 +99,18 @@ namespace BounceAngle
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState keyState = Keyboard.GetState();
+            //Volume Control
+            if (keyState.IsKeyDown(Keys.Subtract) && preKeyState.IsKeyUp(Keys.Subtract))
+            {
+                DayGameEngineImp.getGameEngine().getSoundManager().volumeDown();
+                //NightGameEngineImp.getGameEngine().getSoundManager().volumeDown();
+            }
+            if (keyState.IsKeyDown(Keys.Add) && preKeyState.IsKeyUp(Keys.Add))
+            {
+                DayGameEngineImp.getGameEngine().getSoundManager().volumeUp();
+                //NightGameEngineImp.getGameEngine().getSoundManager().volumeUp();
+            }
             if (gameState == GameState.mainMenu)
             {
                 UpdateInput(gameTime);
@@ -108,13 +120,14 @@ namespace BounceAngle
             {
                 dayGame.Update(gameTime);
                 nightGame.Update(gameTime);
-                KeyboardState keyState = Keyboard.GetState();
+                
 
                 if (keyState.IsKeyUp(Keys.Escape) && preKeyState.IsKeyDown(Keys.Escape))
                 {
                     //TODO: exit the game on escape
                     this.Exit();
                 }
+                
                 preKeyState = keyState;
             }
             base.Update(gameTime);
@@ -123,6 +136,8 @@ namespace BounceAngle
         public void UpdateInput(GameTime gameTime)
         {
             MouseState mouseState = Mouse.GetState();
+
+            
             if (gameState == GameState.mainMenu)
             {
                 menuScreen.Update();
